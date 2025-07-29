@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Execution Time (s)} &
+          \multicolumn{3}{c|}{Token Consumption} &
+          \multicolumn{1}{c|}{Success} \\ \cline{2-8}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Rate (\%)} \\ \hline
+    DP & 44.17 & 73.88 & 31.68 & 11074 & 21777 & 8587 & 1.000 \\ \hline
+MC & 8.87 & 22.08 & 6.66 & 793 & 4035 & 534 & 1.000 \\ \hline
+SG & 117.86 & 242.87 & 7.13 & 13028 & 16602 & 1731 & 0.300 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics including execution time, token consumption, and success rate in three stages. 10.25}
+        \label{tab:performance_metrics_10.25}
+        \end{table}
+    

@@ -1,0 +1,21 @@
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{|l|c|c|c|c|}
+  \hline
+  \multicolumn{1}{|c|}{} &
+    \multicolumn{4}{c|}{Total Time (s)} \\ \cline{2-5}
+  \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+    \multicolumn{1}{c|}{Ave} &
+    \multicolumn{1}{c|}{Med} &
+    \multicolumn{1}{c|}{Max} &
+    \multicolumn{1}{c|}{Min} \\ \hline
+  Data Processing &
+    39.38 & 30.39 & 121.11 & 2.81 \\ \hline
+  \begin{tabular}[c]{@{}l@{}}Model INT8 Quantization\\ \& conversion\end{tabular} &
+    18.62 & 14.78 & 48.33 & 6.34 \\ \hline
+  Sketch Generation &
+    100.99 & 108.82 & 147.56 & 64.41 \\ \hline
+  \end{tabular}
+  \caption{Time consumption.}
+  \label{tab:detailed_token_consumption}
+\end{table}

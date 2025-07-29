@@ -1,0 +1,39 @@
+\begin{table}[!hp]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|r|r|}
+    \hline
+    \multicolumn{1}{|c|}{} &
+      \multicolumn{4}{c|}{Overall Token Consumption} &
+      \multicolumn{4}{c|}{Input Token Consumption} &
+      \multicolumn{4}{c|}{Output Token Consumption} \\ \cline{2-13}
+    \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+      \multicolumn{1}{c|}{Ave} &
+      \multicolumn{1}{c|}{Med} &
+      \multicolumn{1}{c|}{Max} &
+      \multicolumn{1}{c|}{Min} &
+      \multicolumn{1}{c|}{Ave} &
+      \multicolumn{1}{c|}{Med} &
+      \multicolumn{1}{c|}{Max} &
+      \multicolumn{1}{c|}{Min} &
+      \multicolumn{1}{c|}{Ave} &
+      \multicolumn{1}{c|}{Med} &
+      \multicolumn{1}{c|}{Max} &
+      \multicolumn{1}{c|}{Min} \\ \hline
+    DP &
+      \texttt{\{total\_ave\}} & \texttt{\{total\_med\}} & \texttt{\{total\_max\}} & \texttt{\{total\_min\}} &
+      \texttt{\{input\_ave\}} & \texttt{\{input\_med\}} & \texttt{\{input\_max\}} & \texttt{\{input\_min\}} &
+      \texttt{\{output\_ave\}} & \texttt{\{output\_med\}} & \texttt{\{output\_max\}} & \texttt{\{output\_min\}} \\ \hline
+    \begin{tabular}[c]{@{}l@{}}MC \end{tabular} &
+      \texttt{\{total\_ave\}} & \texttt{\{total\_med\}} & \texttt{\{total\_max\}} & \texttt{\{total\_min\}} &
+      \texttt{\{input\_ave\}} & \texttt{\{input\_med\}} & \texttt{\{input\_max\}} & \texttt{\{input\_min\}} &
+      \texttt{\{output\_ave\}} & \texttt{\{output\_med\}} & \texttt{\{output\_max\}} & \texttt{\{output\_min\}} \\ \hline
+    SG &
+      \texttt{\{total\_ave\}} & \texttt{\{total\_med\}} & \texttt{\{total\_max\}} & \texttt{\{total\_min\}} &
+      \texttt{\{input\_ave\}} & \texttt{\{input\_med\}} & \texttt{\{input\_max\}} & \texttt{\{input\_min\}} &
+      \texttt{\{output\_ave\}} & \texttt{\{output\_med\}} & \texttt{\{output\_max\}} & \texttt{\{output\_min\}} \\ \hline
+    \end{tabular}%
+    }
+    \caption{Token consumption regarding Overall, Input, and Output in three stages.}
+    \label{tab:detailed_token_consumption}
+    \end{table}

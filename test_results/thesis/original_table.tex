@@ -1,0 +1,54 @@
+\begin{table}[hp]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|rlll|llll|l|}
+  \hline
+  \multicolumn{1}{|c|}{} &
+    \multicolumn{4}{c|}{Token consumption (tks)} &
+    \multicolumn{4}{c|}{Time consumption (s)} &
+     \\ \cline{2-9}
+  \multicolumn{1}{|c|}{\multirow{2}{*}{Stages}} &
+    \multicolumn{1}{r|}{Average} &
+    \multicolumn{1}{l|}{Minimum} &
+    \multicolumn{1}{l|}{Maximum} &
+    Median &
+    \multicolumn{1}{r|}{Average} &
+    \multicolumn{1}{l|}{Minimum} &
+    \multicolumn{1}{l|}{Maximum} &
+    Median &
+    \multicolumn{1}{|c|}{Success rate} \\ \hline
+  Data processing &
+    \multicolumn{1}{r|}{16500.56} &
+    \multicolumn{1}{l|}{13072} &
+    \multicolumn{1}{l|}{21032} &
+    14983.50 &
+    \multicolumn{1}{r|}{34.92} &
+    \multicolumn{1}{l|}{24.47} &
+    \multicolumn{1}{l|}{48.33} &
+    33.28 &
+    0.8 \\ \hline
+  \begin{tabular}[c]{@{}l@{}}Model INT8 Quantization\\[-0.8ex] \& conversion\end{tabular} &
+    \multicolumn{1}{r|}{5318.17} &
+    \multicolumn{1}{l|}{613} &
+    \multicolumn{1}{l|}{14146} &
+    3597.50 &
+    \multicolumn{1}{r|}{21.39} &
+    \multicolumn{1}{l|}{7.27} &
+    \multicolumn{1}{l|}{44.32} &
+    19.00 &
+    0.9 \\ \hline
+  Sketch generation &
+    \multicolumn{1}{r|}{31184.80} &
+    \multicolumn{1}{l|}{22448} &
+    \multicolumn{1}{l|}{37076} &
+    33518.00 &
+    \multicolumn{1}{r|}{109.21} &
+    \multicolumn{1}{l|}{93.17} &
+    \multicolumn{1}{l|}{143.20} &
+    98.43 &
+    0.25 \\ \hline
+  \end{tabular}%
+  }
+  \caption{Token and time consumption count in different stages.}
+  \label{tab:data}
+  \end{table}

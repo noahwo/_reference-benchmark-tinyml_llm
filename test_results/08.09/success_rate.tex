@@ -1,0 +1,27 @@
+\begin{table}[!h]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|ll|ll|c|}
+  \hline
+  \multicolumn{1}{|c|}{} & \multicolumn{2}{l|}{Ave. Time (s)}  & \multicolumn{2}{l|}{Ave. Total Tokens}   & \multicolumn{1}{l|}{} \\ \cline{2-5}
+  \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+    \multicolumn{1}{l|}{Passed} &
+    Failed &
+    \multicolumn{1}{l|}{Passed} &
+    Failed &
+    \multicolumn{1}{l|}{\multirow{-2}{*}{Success Rate}} \\ \hline
+  Data Processing        & \multicolumn{1}{l|}{36.00} & 69.79  & \multicolumn{1}{l|}{15284.30} & 28654.00 & 0.900                 \\ \hline
+  
+  \begin{tabular}[c]{@{}l@{}}Model INT8 Quantization\\ \& conversion\end{tabular} &
+    \multicolumn{1}{l|}{16.63} &
+    46.58 &
+    \multicolumn{1}{l|}{3849.43} &
+    16622.00 &
+    0.933 \\ \hline
+    
+  Sketch Generation & \multicolumn{1}{l|}{113.86} & 119.58 & \multicolumn{1}{l|}{10094.89} & 14286.14 & 0.300 \\ \hline
+  \end{tabular}%
+  }
+  \caption{Performance metrics regarding passed and failed runs.}
+  \label{tab:success_rate}
+  \end{table}

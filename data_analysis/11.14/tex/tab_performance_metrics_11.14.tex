@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Execution Time (s)} &
+          \multicolumn{3}{c|}{Token Consumption} &
+          \multicolumn{1}{c|}{Success} \\ \cline{2-8}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Rate (\%)} \\ \hline
+    SG0 & 87.42 & 174.55 & 44.50 & 14435 & 16953 & 9991 & 0.250 \\ \hline
+SG1 & 42.76 & 76.44 & 7.03 & 18014 & 23105 & 4739 & 0.300 \\ \hline
+SG2 & 53.39 & 145.49 & 22.41 & 18671 & 26742 & 7852 & 0.150 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics including execution time, token consumption, and success rate in three levels of JSON structure usage. 11.14}
+        \label{tab:performance_metrics_11.14}
+        \end{table}
+    

@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Execution Time (s)} &
+          \multicolumn{3}{c|}{Token Consumption} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    DP & 102.46 & 153.41 & 61.70 & 22783 & 35413 & 13801 & 0.267 \\ \hline
+MC & 37.70 & 54.64 & 9.77 & 7561 & 10071 & 1027 & 0.400 \\ \hline
+SG & 102.00 & 148.94 & 46.18 & 18509 & 24046 & 9753 & 0.118 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics including execution time, token consumption, and success rate in three stages. Model: codestral:latest, Date: 03.22}
+        \label{tab:performance_metrics_codestral:latest_03.22}
+        \end{table}
+    

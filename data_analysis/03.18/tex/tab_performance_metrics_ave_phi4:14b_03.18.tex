@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    DP & 47.97 & 39.03 & 56.91 & 15220 & 12867 & 17573 & 0.500 \\ \hline
+MC & 11.87 & 11.16 & 32.57 & 2149 & 1922 & 8731 & 0.967 \\ \hline
+SG & 97.60 & 30.36 & 99.92 & 16396 & 6830 & 16726 & 0.033 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Model: phi4:14b, Date: 03.18}
+        \label{tab:performance_metrics_ave_phi4:14b_03.18}
+        \end{table}
+    

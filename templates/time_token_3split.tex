@@ -1,0 +1,33 @@
+
+\begin{table}[!h]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|lll|lll|c|}
+  \hline
+  \multicolumn{1}{|c|}{} & \multicolumn{3}{c|}{Ave. Time (s)}  & \multicolumn{3}{c|}{Ave. Total Tokens}   & \multicolumn{1}{l|}{} \\ \cline{2-7}
+  \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+    \multicolumn{1}{c|}{Overall} &
+    \multicolumn{1}{c|}{Passed} &
+    \multicolumn{1}{c|}{Failed} &
+    \multicolumn{1}{c|}{Overall} &
+    \multicolumn{1}{c|}{Passed} &
+    \multicolumn{1}{c|}{Failed} &
+    \multicolumn{1}{c|}{\multirow{-2}{*}{Success Rate}} \\ \hline
+  DP       & \multicolumn{1}{l|}{\texttt{\{dp\_time\_overall\}}} & \multicolumn{1}{l|}{\texttt{\{dp\_time\_passed\}}} & \texttt{\{dp\_time\_failed\}} & \multicolumn{1}{l|}{\texttt{\{dp\_tokens\_overall\}}} & \multicolumn{1}{l|}{\texttt{\{dp\_tokens\_passed\}}} & \texttt{\{dp\_tokens\_failed\}} & \texttt{\{dp\_success\_rate\}} \\ \hline
+  
+  \cellcolor[HTML]{FFFFFF}{\color[HTML]{0f1013} 
+  \begin{tabular}[c]{@{}l@{}}MC\end{tabular}} &
+    \multicolumn{1}{l|}{\texttt{\{mc\_time\_overall\}}} &
+    \multicolumn{1}{l|}{\texttt{\{mc\_time\_passed\}}} &
+    \texttt{\{mc\_time\_failed\}} &
+    \multicolumn{1}{l|}{\texttt{\{mc\_tokens\_overall\}}} &
+    \multicolumn{1}{l|}{\texttt{\{mc\_tokens\_passed\}}} &
+    \texttt{\{mc\_tokens\_failed\}} &
+    \texttt{\{mc\_success\_rate\}} \\ \hline
+    
+  SG & \multicolumn{1}{l|}{\texttt{\{sg\_time\_overall\}}} & \multicolumn{1}{l|}{\texttt{\{sg\_time\_passed\}}} & \texttt{\{sg\_time\_failed\}} & \multicolumn{1}{l|}{\texttt{\{sg\_tokens\_overall\}}} & \multicolumn{1}{l|}{\texttt{\{sg\_tokens\_passed\}}} & \texttt{\{sg\_tokens\_failed\}} & \texttt{\{sg\_success\_rate\}} \\ \hline
+  \end{tabular}%
+  }
+  \caption{Performance metrics regarding overall, passed, and failed runs.}
+  \label{tab:performance_metrics}
+  \end{table}

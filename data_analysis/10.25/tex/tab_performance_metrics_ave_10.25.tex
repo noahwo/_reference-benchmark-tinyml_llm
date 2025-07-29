@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{Success} \\ \cline{2-8}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Rate (\%)} \\ \hline
+    DP & 44.17 & 44.17 & 0.00 & 11074 & 11074 & 0 & 1.000 \\ \hline
+MC & 8.87 & 8.87 & 0.00 & 793 & 793 & 0 & 1.000 \\ \hline
+SG & 117.86 & 113.86 & 119.58 & 13028 & 10094 & 14286 & 0.300 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. 10.25}
+        \label{tab:performance_metrics_ave_10.25}
+        \end{table}
+    

@@ -1,0 +1,39 @@
+\begin{table}[!hp]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|r|r|}
+  \hline
+  \multicolumn{1}{|c|}{} &
+    \multicolumn{4}{c|}{Total Token Consumption} &
+    \multicolumn{4}{c|}{Input Token Consumption} &
+    \multicolumn{4}{c|}{Output Token Consumption} \\ \cline{2-13}
+  \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+    \multicolumn{1}{c|}{Ave} &
+    \multicolumn{1}{c|}{Med} &
+    \multicolumn{1}{c|}{Max} &
+    \multicolumn{1}{c|}{Min} &
+    \multicolumn{1}{c|}{Ave} &
+    \multicolumn{1}{c|}{Med} &
+    \multicolumn{1}{c|}{Max} &
+    \multicolumn{1}{c|}{Min} &
+    \multicolumn{1}{c|}{Ave} &
+    \multicolumn{1}{c|}{Med} &
+    \multicolumn{1}{c|}{Max} &
+    \multicolumn{1}{c|}{Min} \\ \hline
+  Data Processing &
+    16621 & 15616 & 38380 & 817 &
+    14740 & 13930 & 32402 & 612 &
+    1880 & 1652 & 5978 & 205 \\ \hline
+  \begin{tabular}[c]{@{}l@{}}Model INT8 Quantization\\[-0.8ex] \& conversion\end{tabular} &
+    4700 & 3698 & 17020 & 582 &
+    3916 & 3043 & 14927 & 333 &
+    784 & 662 & 2434 & 249 \\ \hline
+  Sketch Generation &
+    29858 & 30542 & 46780 & 12759 &
+    25675 & 26457 & 42591 & 9990 &
+    4182 & 4245 & 5931 & 2496 \\ \hline
+  \end{tabular}%
+  }
+  \caption{Token consumption.}
+  \label{tab:detailed_token_consumption}
+  \end{table}

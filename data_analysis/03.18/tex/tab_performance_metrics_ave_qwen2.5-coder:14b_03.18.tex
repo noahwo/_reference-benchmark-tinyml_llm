@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    DP & 52.46 & 51.36 & 52.93 & 16929 & 14582 & 17935 & 0.300 \\ \hline
+MC & 22.16 & 16.67 & 29.34 & 6106 & 4462 & 8257 & 0.567 \\ \hline
+SG & 121.34 & 0.00 & 121.34 & 17485 & 0 & 17485 & 0.000 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Model: qwen2.5-coder:14b, Date: 03.18}
+        \label{tab:performance_metrics_ave_qwen2.5-coder:14b_03.18}
+        \end{table}
+    

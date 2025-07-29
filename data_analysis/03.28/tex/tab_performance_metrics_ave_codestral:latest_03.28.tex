@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    DP & 96.24 & 96.72 & 95.97 & 23241 & 23105 & 23320 & 0.367 \\ \hline
+MC & 29.82 & 24.35 & 36.07 & 6612 & 5134 & 8300 & 0.533 \\ \hline
+SG & 117.02 & 0.00 & 117.02 & 20531 & 0 & 20531 & 0.000 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Model: codestral:latest, Date: 03.28}
+        \label{tab:performance_metrics_ave_codestral:latest_03.28}
+        \end{table}
+    

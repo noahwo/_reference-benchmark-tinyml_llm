@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{graphicx} % Required for inserting images
+\usepackage{multirow}
+\usepackage[table,xcdraw,dvipsnames]{xcolor}
+\usepackage{url}
+% \usetikzlibrary{positioning, arrows.meta, decorations.pathreplacing, shapes.geometric}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[section]{placeins}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
+% Add this before the lstlisting environment
+\lstdefinelanguage{JSON}{
+    string=[s]{"}{"},
+    stringstyle=\color{airforceblue},
+    numbers=left,
+    numberstyle=\small,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    keywords={false,true},
+    comment=[l]{//},
+    commentstyle=\color{gray},
+    morecomment=[s]{/*}{*/},
+}
+
+
+\usepackage[breaklinks=true,colorlinks=true,urlcolor=blue]{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, decorations.pathreplacing, shapes.geometric}
+\usepackage{placeins}
+
+
+
+\title{reference-tracking-tinyml_llm}
+
+\begin{document}
+\tableofcontents
+\section{Experiments Results}
+
+\subsection{Original in Thesis}
+\input{test_results/thesis/original_table}
+
+\subsection{Results: 2024.08.09, Model: GPT-4o}
+
+This test was conducted through 30 runs of each task, and the statistics include both passed and failed runs.
+
+\input{test_results/08.09/table_tokens}
+\input{test_results/08.09/table_time}
+\input{test_results/08.09/table_cost}
+\input{test_results/08.09/success_rate}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{test_results/08.09/distribution_scatter.png}
+    \caption{Distribution of time and token consumption in three tasks.}
+    \label{fig:scatter1}
+\end{figure}
+
+\newpage
+\subsection{Results: 2024.10.02, Model: GPT-4o}
+\FloatBarrier
+\input{data_analysis/10.02/tex/tab_token_details_10.02}
+\input{data_analysis/10.02/tex/tab_performance_metrics_10.02}
+\input{data_analysis/10.02/tex/tab_cost_details_10.02}
+\input{data_analysis/10.02/tex/tab_performance_metrics_ave_10.02}
+\input{data_analysis/10.02/tex/tab_time_10.02}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/10.02/tex/scatter_plot_10.02.pdf}
+    \caption{Distribution of time and token consumption in three tasks 10.02.}
+    \label{fig:scatter_10.02}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/10.02/tex/bar_plot_10.02.pdf}
+    \caption{Average Time and Token Consumption by Task Status. \\ \textit{The average time (top) and token consumption (bottom) are compared across three stages, broken down by overall performance (considering all runs), performance of only successful runs, and of only the failed runs. 10.02.}}
+    \label{fig:bar_10.02}
+\end{figure}
+
+\FloatBarrier
+
+
+\newpage
+\subsection{Results: 2024.10.25, Model: GPT-4o}
+\FloatBarrier
+\input{data_analysis/10.25/tex/tab_token_details_10.25}
+\input{data_analysis/10.25/tex/tab_performance_metrics_10.25}
+\input{data_analysis/10.25/tex/tab_cost_details_10.25}
+\input{data_analysis/10.25/tex/tab_performance_metrics_ave_10.25}
+\input{data_analysis/10.25/tex/tab_time_10.25}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/10.25/tex/scatter_plot_10.25.pdf}
+    \caption{Distribution of time and token consumption in three tasks 10.25.}
+    \label{fig:scatter_10.25}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/10.25/tex/bar_plot_10.25.pdf}
+    \caption{Average Time and Token Consumption by Task Status. \\ \textit{The average time (top) and token consumption (bottom) are compared across three stages, broken down by overall performance (considering all runs), performance of only successful runs, and of only the failed runs. 10.25.}}
+    \label{fig:bar_10.25}
+\end{figure}
+
+\FloatBarrier
+
+
+\newpage
+\subsection{Results: 2024.10.28, Model: GPT-4o}
+\FloatBarrier
+\input{data_analysis/10.28/tex/tab_token_details_10.28}
+\input{data_analysis/10.28/tex/tab_performance_metrics_10.28}
+\input{data_analysis/10.28/tex/tab_cost_details_10.28}
+\input{data_analysis/10.28/tex/tab_performance_metrics_ave_10.28}
+\input{data_analysis/10.28/tex/tab_time_10.28}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/10.28/tex/scatter_plot_10.28.pdf}
+    \caption{Distribution of time and token consumption in three tasks 10.28.}
+    \label{fig:scatter_10.28}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/10.28/tex/bar_plot_10.28.pdf}
+    \caption{Average Time and Token Consumption by Task Status. \\ \textit{The average time (top) and token consumption (bottom) are compared across three stages, broken down by overall performance (considering all runs), performance of only successful runs, and of only the failed runs. 10.28.}}
+    \label{fig:bar_10.28}
+\end{figure}
+
+ 
+\FloatBarrier
+\input{test_results/11.14/11.14}
+\newpage
+\FloatBarrier
+\input{test_results/11.28/11.28}
+\FloatBarrier
+\newpage
+
+
+
+% \FloatBarrier
+% \input{test_results/01.15}
+% \FloatBarrier
+% \input{test_results/01.23}
+
+\subsection{Results: 2025.01.15/23, Models: 4 Open-source Models}
+There were 4 subsections commented out: \\ {Results: 2025.01.15, Model: phi4:14b}, \\{Results: 2025.01.15, Model: llama3.1:8b}, \\{Results: 2025.01.23, Model: qwen2.5-coder:14b}, \\{Results: 2025.01.23, Model: deepseek-r1:14b}
+
+They were only DP and MC, now they are merged into the Results: 2025.03.18 related sections. 
+
+\FloatBarrier
+\input{test_results/02.04/02.04}
+
+\clearpage 
+
+\input{test_results/03.18}
+\clearpage 
+\input{test_results/03.22}
+\clearpage 
+\input{test_results/03.27}
+\clearpage 
+\input{test_results/03.28}
+\clearpage 
+\input{data_analysis/05.19/tex/05.19}
+\clearpage 
+\input{data_analysis/05.21/tex/05.21}
+\clearpage 
+ 
+
+\newpage
+
+\FloatBarrier
+\section{Future Extensions}
+
+\begin{itemize}
+    \item Add library installation step to sketch generation. \textit{\\ Each code generation output can include a section, especially for imported libraries. The local executor installs those libraries for arduino-cli before trying compilation.}
+    \item This is very interesting: \url{https://huggingface.co/blog/unified-tool-use}. I will write something about this in the current paper.
+
+ \end{itemize}
+
+\textcolor{gray}{\subsection{Extensions Mentioned in the Thesis}}
+
+
+\begin{itemize}
+    \item \textcolor{gray}{\textbf{Expanding Lifecycle Coverage}: Expanding the system to cover additional stages of the TinyML lifecycle, such as model designing and training, would provide a more comprehensive automation solution.}
+    
+    \item \textcolor{gray}{\textbf{Expanding Model and Hardware Coverage}: Testing this framework with a wider range of TinyML models and hardware platforms to assess its versatility and identify potential improvements.}
+    
+    \item \textcolor{gray}{\textbf{LLM Comparison}: Evaluating the performance of this framework with different LLMs to understand how the choice of LLM impacts the system's effectiveness.}
+    
+    \item \textcolor{gray}{\textbf{Performance Benchmarking}: Conducting comprehensive benchmarks comparing the LLM-powered approach to traditional development methods in terms of development time, code quality, and application performance would provide valuable insights into the system's practical benefits, and make the proposal more trustable.}
+    
+    \item \textcolor{gray}{\textbf{Qualitative Analysis}: Conducting a formal qualitative evaluation involving a questionnaire provided to different individuals for testing the proposed solution and comparing it with the traditional methods. This would provide valuable insights into real-world applicability.}
+    
+    \item \textcolor{gray}{\textbf{Improving Reliability}: Enhancing the success rate of code generation, particularly for sketch generation. This can be done by refining prompt engineering to have finer control of LLM's behavior.}
+    
+    \item \textcolor{gray}{\textbf{Specialized Fine-Tuning}: Fine-tuning LLMs specifically for TinyML tasks could improve LLM's performance and reliability in this domain.}
+    
+    \item \textcolor{gray}{\textbf{Integration with Traditional Tools}: Combining LLM-powered automation with traditional TinyML tools could leverage the strengths of both approaches.}
+    
+    \item \textcolor{gray}{\textbf{User Interface Development}: Creating intuitive interfaces for interacting with the LLM system could facilitate the usage of this system.}
+\end{itemize}
+
+
+
+\newpage
+% \noindent\makebox[\linewidth]{\rule{\maxdimen}{0.4pt}}
+
+\section{Bibliography List}
+\cite{englhardtExploringCharacterizingLarge2023}
+\cite{douWhatsWrongYour2024}
+\cite{gaoEfficientToolUse2024}
+% \maketitle
+
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+
+\end{document}

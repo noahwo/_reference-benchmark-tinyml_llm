@@ -1,0 +1,32 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{4}{c|}{Overall Token} &
+          \multicolumn{4}{c|}{Input Token} &
+          \multicolumn{4}{c|}{Output Token} \\ \cline{2-13}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} \\ \hline
+    DP & 31304 & 29202 & 57981 & 13742 & 18742 & 17441 & 35044 & 7925 & 12562 & 11416 & 22937 & 5391 \\ \hline
+MC & 8589 & 9334 & 11289 & 1248 & 4991 & 5462 & 6716 & 381 & 3598 & 3627 & 5213 & 867 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Token consumption details regarding Overall, Input, and Output in three stages. Model: deepseek-r1:14b, Date: 01.23}
+        \label{tab:token_details_deepseek-r1:14b_01.23}
+        \end{table}
+    

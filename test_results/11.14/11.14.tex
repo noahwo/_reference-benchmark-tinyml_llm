@@ -1,0 +1,115 @@
+\newpage
+\subsection{Results: 2024.11.14, Model: GPT-4o: Comparison of the impact of JSON structure on SG}
+\textbf{\textcolor{red}{NOTICE:} The results were based on the task of sketch generation with 3 levels of JSON structure usage. From 0 to 2, higher number indicates fewer JSON structures. }
+
+\begin{itemize}
+
+\item[1] Sketch Generation0 or SG0 is the original prompt structure, with the \texttt{guideline} embedded in the \texttt{application\_specification}, which again embedded in the task description (\texttt{task}), under \#\#\# OBJECTIVE \#\#\#. They three are all JSON-like objects.  
+
+\begin{lstlisting}[language=JSON]
+### OBJECTIVE ###
+"task":{
+    ...
+    "application_specification":{
+        ...
+        "guideline":{
+            ...
+        }
+    }
+}
+\end{lstlisting}
+
+\item[2] Sketch Generation1 or SG1 is the prompt structure with the task description directly written as a prompt section (noted as `\#\#\# OBJECTIVE \#\#\#`) in Markdown format, and the \texttt{application\_specification} written as another prompt section (noted as \texttt{\#\#\# APPLICATION SPECIFICATIONS \#\#\#}) but still as a JSON-like object.  The \texttt{guideline}, as a JSON-like object, embedded in the \texttt{application\_specification}, remained the same.
+
+\begin{lstlisting}[language=JSON]
+### OBJECTIVE ###
+- **TASK**:...
+...
+
+### APPLICATION SPECIFICATIONS ###
+"application_specification":{
+        ...
+        "guideline":{
+            ...
+        }
+    }
+\end{lstlisting}
+
+\item[3] Sketch Generation2 or SG2 is the prompt structure similar to SG1, only the \texttt{guideline} was moved out as a prompt section (noted as \texttt{\#\#\# GUIDELINE FOR SKETCH \#\#\# }) in Markdown format. 
+\begin{lstlisting}[language=JSON]
+### OBJECTIVE ###
+- **TASK**:...
+...
+
+### APPLICATION SPECIFICATIONS ###
+"application_specification":{
+        ...
+}
+
+### GUIDELINE FOR SKETCH ###
+# Steps...
+...
+\end{lstlisting}
+
+ \textcolor{red}{\textbf{As a result}}:
+
+ Average Token Comsumption wise: 
+ \hfill $SG0 \gg SG2 > SG1$
+
+ Success Rate wise:
+ \hfill $SG1 > SG0 \gg SG2$
+
+ Average Time Consumption wise: 
+ \hfill $SG2 > SG1 > SG0$
+
+
+\end{itemize}
+\FloatBarrier
+\input{data_analysis/11.14/tex/tab_token_details_11.14}
+\input{data_analysis/11.14/tex/tab_performance_metrics_11.14}
+\input{data_analysis/11.14/tex/tab_cost_details_11.14}
+\input{data_analysis/11.14/tex/tab_performance_metrics_ave_11.14}
+\input{data_analysis/11.14/tex/tab_time_11.14}
+
+
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/11.14/tex/scatter_plot_11.14.pdf}
+    \caption{Distribution of time and token consumption in three levels of JSON structure. Model: GPT-4o, Date: 11.14.}
+    \label{fig:scatter_11.14}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/11.14/tex/bar_plot.pdf}
+    \caption{Average Time and Token Consumption by different levels of JSON Usage. Model: GPT-4o, Date: 11.14. \\ \textit{The average time (top) and token consumption (bottom) are compared across three levels of JSON structure, broken down by overall performance (considering all runs), performance of only successful runs, and of only the failed runs.}}
+    \label{fig:bar_11.14}
+\end{figure}
+
+
+\input{data_analysis/11.14/tex/mad_time_table}
+\input{data_analysis/11.14/tex/mad_tokens_table}
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/11.14/tex/mad_visualization.pdf}
+    \caption{Mean Absolute Deviation of Time and Token Usage Model: GPT-4o, Date: 11.14.}
+    \label{fig:mad_vis_11.14}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/11.14/tex/relative_variability_time.pdf}
+    \caption{Relative variability (MAD/Mean) of Time Comsumption Model: GPT-4o, Date: 11.14.}
+    \label{fig:mad_vis_11.14}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/11.14/tex/relative_variability_tokens.pdf}
+    \caption{Relative variability (MAD/Mean) of Token Usage Model: GPT-4o, Date: 11.14.}
+    \label{fig:mad_vis_11.14}
+\end{figure}

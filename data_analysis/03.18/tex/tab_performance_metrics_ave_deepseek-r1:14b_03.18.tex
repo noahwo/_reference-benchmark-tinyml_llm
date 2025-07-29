@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    DP & 204.56 & 274.67 & 179.07 & 31304 & 40695 & 27890 & 0.267 \\ \hline
+MC & 58.05 & 46.12 & 64.02 & 8589 & 6435 & 9667 & 0.333 \\ \hline
+SG & 201.29 & 0.00 & 201.29 & 20260 & 0 & 20260 & 0.000 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Model: deepseek-r1:14b, Date: 03.18}
+        \label{tab:performance_metrics_ave_deepseek-r1:14b_03.18}
+        \end{table}
+    

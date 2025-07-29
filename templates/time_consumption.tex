@@ -1,0 +1,23 @@
+\begin{table}[!h]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \begin{tabular}{|l|r|r|r|r|}
+    \hline
+    \multicolumn{1}{|c|}{} &
+      \multicolumn{4}{c|}{Total Time (s)} \\ \cline{2-5}
+    \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+      \multicolumn{1}{c|}{Ave} &
+      \multicolumn{1}{c|}{Med} &
+      \multicolumn{1}{c|}{Max} &
+      \multicolumn{1}{c|}{Min} \\ \hline
+    Data Processing &
+      \texttt{\{ave\}} & \texttt{\{med\}} & \texttt{\{max\}} & \texttt{\{min\}} \\ \hline
+    \begin{tabular}[c]{@{}l@{}}Model INT8 Quantization\\[-0.8ex] \vspace{-0.1}\& conversion\end{tabular} &
+      \texttt{\{ave\}} & \texttt{\{med\}} & \texttt{\{max\}} & \texttt{\{min\}} \\ \hline
+    Sketch Generation &
+      \texttt{\{ave\}} & \texttt{\{med\}} & \texttt{\{max\}} & \texttt{\{min\}} \\ \hline
+    \end{tabular}%
+    }
+    \caption{Time consumption.}
+    \label{tab:detailed_token_consumption}
+    \end{table}

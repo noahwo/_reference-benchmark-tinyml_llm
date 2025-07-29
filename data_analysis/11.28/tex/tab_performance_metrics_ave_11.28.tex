@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{Success} \\ \cline{2-8}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Rate (\%)} \\ \hline
+    DP & 91.24 & 91.03 & 93.17 & 21693 & 21023 & 27723 & 0.900 \\ \hline
+MC & 12.57 & 9.08 & 23.03 & 5843 & 4413 & 10131 & 0.750 \\ \hline
+SG & 73.93 & 15.75 & 80.39 & 27406 & 5213 & 29872 & 0.100 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Model: GPT-4o-mini, Date: 11.28}
+        \label{tab:performance_metrics_ave_11.28}
+        \end{table}
+    

@@ -1,0 +1,75 @@
+
+\newpage
+\subsection{Discussion: 2025.02.04, Output format handling issues with open-source models}
+
+Open-source models' output can break the workflow by making faults in the middle and completely misleading the follow-up steps in the flow by \textbf{case 1).} incorrect/unparsable format of output (especially when i ask for merely code blocks while it outputs with explaninary text), \textbf{case 2).} wrong information or important information skipped, with right format, causing false positive results, \textbf{case 3).} not following the instructions in the prompt, not understanding the output/dataset path so that modifications happen in the directory it shouldnt touch. The SG stage is especially vulnerable to the issue case 2. DP is sometimes confused by issue case 3. 
+
+Here are the cases with examples:
+\subsubsection{Case 1 - incorrect/unparsable format of output:}
+
+This is very common in all stages, especially in DP and SG, because they have complex/multi-step code generation. For example, when repeatedly debugging one step and getting errors, the LLM tends to instruct me something about its code, or it outputs only the code snippets of the needed correction instead of the full code. 
+
+It's fine to output explanation text along with (before or after) the code block containing complete code, because the output parsing will pick out the \texttt{```python/cpp/ino/json '''} code block and run it. What's not dealable with is \textbf{1)} mixing explanation text with code blocks, when they are alternate, code snippet + explanation by code snippet + explanation, as shown in the example \ref{fig:code-text-alternate}; or similarly, giving text as the majority, code snippets as the exmaple of its explanation, dispersive and incomplete code blocks, as examplified in \ref{fig:code-in-text}; \textbf{2)} Giving multiple solutions in the code, telling user to choose one accrodingly. Typically with alternative code pieces (method invocations, etc.) commented out, as shown in \ref{fig:multiple-solutions}. \textbf{To conclude, it doesnt work when there is no single one code block containing complete code in the output, while this is always required in the prompt.}
+
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\linewidth]{test_results/02.04/code-text-alternate.png}
+    \caption{Example of code and text being alternate.}
+    \label{fig:code-text-alternate}
+\end{figure}
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\linewidth]{test_results/02.04/code-in-text.png}
+    \caption{Example of code given under/inside explaninary text.}
+    \label{fig:code-in-text}
+\end{figure}
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\linewidth]{test_results/02.04/multiple-solutions.png}
+    \caption{Example of given solution examples which requires user to choose one.}
+    \label{fig:multiple-solutions}
+\end{figure}
+
+
+\subsubsection{Case 2 - bad code with missing operations passes the test in a false positive way:}
+
+\textcolor{red}{This was actually a bug in the error handing for specification filing and now it's fixed: } \textit{I was mentioning that when constructing the skecth specification for skecth generation, bad spec list with missing information leads to something-else sketch code, and that allows false positve sketch generation (under wrong or faulty specification, the returen code is compilable and passing our test, but the skecth is not practically usable, e.g., a sketch simply invokes color senser and has nothing to do with the machine leaning model). }
+
+\textbf{But the problems with usability of compilable sketch still exists. I found that some of the compiled \texttt{.ino} files indeed has no response when flashed to Arduino, and this needs to be attach importance to and addressed. I think this is where we would use our testbed.} 
+
+
+
+This also happens in DP, due to it's multi-step and long process natures of one whole task. For example, the image \ref{fig:wrong-path} shows the case that the code reads the given path correctly, but doesnt save the processed dataset, while reporting the dataset is updated. This causes false positive in the current step, and breaking the follow-up steps.The next step would seek for a path that doesn't exist, and the whole flow would be broken.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.99\linewidth]{test_results/02.04/case2-path.png}
+    \caption{Example of unsaved but reported data processing, causing false positive in the current step, and breaking the follow-up steps.}
+    \label{fig:wrong-path}
+\end{figure}
+
+
+
+\subsubsection{Case 3 - messing up directories:}
+
+
+All the data processing related mediate artefacts, including \texttt{*.csv} files and folders like \texttt{processed} should only be placed under \texttt{data/fruit\_to\_emoji/playground}. And the artefacts about model conversion like \texttt{*.tflite} should be under \texttt{models/fruit\_to\_emoji/tflite\_model}. As shown in the image \ref{fig:mess-dir}, all the mediate folders and files before which there's the red bar are located in wrong plcaes. They should either be under \texttt{data/fruit\_to\_emoji/playground} which is rectangled in green, or \texttt{models/fruit\_to\_emoji/tflite\_model}.   
+
+This also includes the naming of the files, especially the converted model, the name is predefined as \texttt{model\_quant\_int8.tflite} in our code, but e.g. under the second red bar in \ref{fig:mess-dir}, it's named as \texttt{converted\_model.tflite}, as well as put in the wrong directory.
+
+This happens directly because the path variables defined in the output code do not match the specificatio in the prompt. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.85\linewidth]{test_results/02.04/mess-dir.png}
+    \caption{Results of directory mess-up.}
+    \label{fig:mess-dir}
+\end{figure}
+ 
+

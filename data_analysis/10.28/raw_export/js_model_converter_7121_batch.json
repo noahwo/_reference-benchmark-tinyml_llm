@@ -1,0 +1,2916 @@
+[
+  {
+    "id": "ed6bf88b-2f8e-47ec-8103-7059fd5ea5fc",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:08:25.129210",
+      "end_time": "2024-10-28 15:08:33.300650"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "3f2ed1e4",
+      "num_run": 29,
+      "batch_id": "7121_batch",
+      "network_latency": 0.028522968292236328,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 296,
+      "total_tokens": 595
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00444,
+      "total_cost": 0.005935
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "fe6c9bd8-de12-4ef5-89d2-a71fca53eb1d",
+    "name": "3f_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:08:25.127137",
+      "end_time": "2024-10-28 15:08:33.300908"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "3f2ed1e4",
+      "num_run": 29,
+      "batch_id": "7121_batch",
+      "network_latency": 0.028522968292236328,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 296,
+      "total_tokens": 595
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00444,
+      "total_cost": 0.005935
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "ed6bf88b-2f8e-47ec-8103-7059fd5ea5fc"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "84d214cb-3a6f-4358-a66d-4f37edffeb55",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:07:55.786134",
+      "end_time": "2024-10-28 15:08:00.385755"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "e5f3cd88",
+      "num_run": 28,
+      "batch_id": "7121_batch",
+      "network_latency": 0.04324030876159668,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 276,
+      "total_tokens": 575
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00414,
+      "total_cost": 0.005635
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "087fd990-c422-49b6-a49f-287a81729469",
+    "name": "e5_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:07:55.784198",
+      "end_time": "2024-10-28 15:08:00.386133"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "e5f3cd88",
+      "num_run": 28,
+      "batch_id": "7121_batch",
+      "network_latency": 0.04324030876159668,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 276,
+      "total_tokens": 575
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00414,
+      "total_cost": 0.005635
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "84d214cb-3a6f-4358-a66d-4f37edffeb55"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "b6cba57a-3082-43a4-ad36-84fdf0664a15",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:07:26.532394",
+      "end_time": "2024-10-28 15:07:31.025729"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "fe05af47",
+      "num_run": 27,
+      "batch_id": "7121_batch",
+      "network_latency": 0.051509857177734375,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 268,
+      "total_tokens": 567
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00402,
+      "total_cost": 0.005515
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "model_converter",
+      "gpt-4o",
+      "benchmark"
+    ]
+  },
+  {
+    "id": "840c0705-6dae-4c50-9520-f40c9f1a275c",
+    "name": "fe_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:07:26.530499",
+      "end_time": "2024-10-28 15:07:31.026102"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "fe05af47",
+      "num_run": 27,
+      "batch_id": "7121_batch",
+      "network_latency": 0.051509857177734375,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 268,
+      "total_tokens": 567
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00402,
+      "total_cost": 0.005515
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "b6cba57a-3082-43a4-ad36-84fdf0664a15"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "a12d89b8-4abd-469f-ac1b-72ad15d5a8a3",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:06:52.993274",
+      "end_time": "2024-10-28 15:07:01.794121"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "447b62ec",
+      "num_run": 26,
+      "batch_id": "7121_batch",
+      "network_latency": 0.02562713623046875,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 276,
+      "total_tokens": 575
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00414,
+      "total_cost": 0.005635
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "model_converter",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "50e52aa4-d509-453d-b285-057c430e6c07",
+    "name": "44_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:06:52.991377",
+      "end_time": "2024-10-28 15:07:01.794377"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "447b62ec",
+      "num_run": 26,
+      "batch_id": "7121_batch",
+      "network_latency": 0.02562713623046875,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 276,
+      "total_tokens": 575
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00414,
+      "total_cost": 0.005635
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "a12d89b8-4abd-469f-ac1b-72ad15d5a8a3"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "49da3d37-9213-4b69-a701-60e343690247",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:06:23.622232",
+      "end_time": "2024-10-28 15:06:28.247132"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "7ee01614",
+      "num_run": 25,
+      "batch_id": "7121_batch",
+      "network_latency": 0.022810935974121094,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "ee2a4c4b-bf94-40a2-870f-a68e206044f9",
+    "name": "7e_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:06:23.620140",
+      "end_time": "2024-10-28 15:06:28.247389"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "7ee01614",
+      "num_run": 25,
+      "batch_id": "7121_batch",
+      "network_latency": 0.022810935974121094,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "49da3d37-9213-4b69-a701-60e343690247"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "0b9f2c0e-888d-4509-b99d-21e39f454024",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:05:52.076276",
+      "end_time": "2024-10-28 15:05:58.861844"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "70af3961",
+      "num_run": 24,
+      "batch_id": "7121_batch",
+      "network_latency": 0.028965234756469727,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 301,
+      "total_tokens": 600
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004515,
+      "total_cost": 0.00601
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "model_converter",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "ffbd9940-6423-443e-ba34-5fff93e9ab65",
+    "name": "70_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:05:52.074378",
+      "end_time": "2024-10-28 15:05:58.862098"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "70af3961",
+      "num_run": 24,
+      "batch_id": "7121_batch",
+      "network_latency": 0.028965234756469727,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 301,
+      "total_tokens": 600
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004515,
+      "total_cost": 0.00601
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "0b9f2c0e-888d-4509-b99d-21e39f454024"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "2d0aab31-70ee-4fa8-85f2-f867103b5647",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:05:21.140047",
+      "end_time": "2024-10-28 15:05:27.518443"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "49ae9567",
+      "num_run": 23,
+      "batch_id": "7121_batch",
+      "network_latency": 0.04435324668884277,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 261,
+      "total_tokens": 560
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003915,
+      "total_cost": 0.00541
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "b661b15b-00a9-4845-bcd9-e6ea2d12af77",
+    "name": "49_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:05:21.138020",
+      "end_time": "2024-10-28 15:05:27.518697"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "49ae9567",
+      "num_run": 23,
+      "batch_id": "7121_batch",
+      "network_latency": 0.04435324668884277,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 261,
+      "total_tokens": 560
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003915,
+      "total_cost": 0.00541
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "2d0aab31-70ee-4fa8-85f2-f867103b5647"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "e34b3516-b979-49e3-92e8-5319f682c2f4",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:04:49.396824",
+      "end_time": "2024-10-28 15:04:56.374040"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "8a0332e4",
+      "num_run": 22,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03578996658325195,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "af818edf-b0a5-458a-85b4-ed86d6553f8e",
+    "name": "8a_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:04:49.394756",
+      "end_time": "2024-10-28 15:04:56.374406"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "8a0332e4",
+      "num_run": 22,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03578996658325195,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "e34b3516-b979-49e3-92e8-5319f682c2f4"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "3ae61f40-0ed2-4ebc-b978-9cf22c2732e9",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:04:18.804354",
+      "end_time": "2024-10-28 15:04:24.538602"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "a548c1f2",
+      "num_run": 21,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03392648696899414,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 307,
+      "total_tokens": 606
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004605,
+      "total_cost": 0.0061
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "model_converter",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "2bfb5197-a1ae-4695-b6f4-c01b193809ff",
+    "name": "a5_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:04:18.802274",
+      "end_time": "2024-10-28 15:04:24.538868"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "a548c1f2",
+      "num_run": 21,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03392648696899414,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 307,
+      "total_tokens": 606
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004605,
+      "total_cost": 0.0061
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "3ae61f40-0ed2-4ebc-b978-9cf22c2732e9"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "ee562151-9691-45e6-bb7d-04d91136c3af",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:03:47.239216",
+      "end_time": "2024-10-28 15:03:53.839333"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "5b3c7ea7",
+      "num_run": 20,
+      "batch_id": "7121_batch",
+      "network_latency": 0.026175260543823242,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 291,
+      "total_tokens": 590
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004365,
+      "total_cost": 0.00586
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "model_converter",
+      "benchmark"
+    ]
+  },
+  {
+    "id": "51b3fefb-3ae9-4f13-afde-aa28ea8a0658",
+    "name": "5b_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:03:47.237364",
+      "end_time": "2024-10-28 15:03:53.839591"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "5b3c7ea7",
+      "num_run": 20,
+      "batch_id": "7121_batch",
+      "network_latency": 0.026175260543823242,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 291,
+      "total_tokens": 590
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004365,
+      "total_cost": 0.00586
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "ee562151-9691-45e6-bb7d-04d91136c3af"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "a7efbb08-7b69-4e22-9872-eabd33abf0c5",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:03:15.218849",
+      "end_time": "2024-10-28 15:03:22.465608"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "7e48dfe6",
+      "num_run": 19,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03701376914978027,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 270,
+      "total_tokens": 569
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00405,
+      "total_cost": 0.005545
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "model_converter",
+      "benchmark",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "b9a9e3a6-bd2b-44c6-ab08-b850a5af9e03",
+    "name": "7e_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:03:15.216808",
+      "end_time": "2024-10-28 15:03:22.465868"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "7e48dfe6",
+      "num_run": 19,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03701376914978027,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 270,
+      "total_tokens": 569
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00405,
+      "total_cost": 0.005545
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "a7efbb08-7b69-4e22-9872-eabd33abf0c5"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "db0bab51-b65e-438e-b73b-eb8d002ca2ba",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:02:44.779943",
+      "end_time": "2024-10-28 15:02:50.416803"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "18071451",
+      "num_run": 18,
+      "batch_id": "7121_batch",
+      "network_latency": 0.027445316314697266,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 257,
+      "total_tokens": 556
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003855,
+      "total_cost": 0.00535
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "f0f52c83-bace-42f0-bc74-912af12e212f",
+    "name": "18_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:02:44.778156",
+      "end_time": "2024-10-28 15:02:50.417059"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "18071451",
+      "num_run": 18,
+      "batch_id": "7121_batch",
+      "network_latency": 0.027445316314697266,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 257,
+      "total_tokens": 556
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003855,
+      "total_cost": 0.00535
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "db0bab51-b65e-438e-b73b-eb8d002ca2ba"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "98a88b55-df76-4818-999d-31f762f1991a",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:02:13.814801",
+      "end_time": "2024-10-28 15:02:20.020278"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "d945a143",
+      "num_run": 17,
+      "batch_id": "7121_batch",
+      "network_latency": 0.0211334228515625,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 288,
+      "total_tokens": 587
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00432,
+      "total_cost": 0.005815
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "7d7147ef-fed0-4410-9eed-e66cb8643d10",
+    "name": "d9_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:02:13.812881",
+      "end_time": "2024-10-28 15:02:20.020534"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "d945a143",
+      "num_run": 17,
+      "batch_id": "7121_batch",
+      "network_latency": 0.0211334228515625,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 288,
+      "total_tokens": 587
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00432,
+      "total_cost": 0.005815
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "98a88b55-df76-4818-999d-31f762f1991a"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "f2a96308-e02f-4dbe-9d1b-8eaa572d0d30",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:01:43.182662",
+      "end_time": "2024-10-28 15:01:49.027691"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "25c13392",
+      "num_run": 16,
+      "batch_id": "7121_batch",
+      "network_latency": 0.02463674545288086,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 252,
+      "total_tokens": 551
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00378,
+      "total_cost": 0.005275
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "model_converter",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "60b9e8cd-9307-4d08-9c61-dedb3c10c7f3",
+    "name": "25_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:01:43.180771",
+      "end_time": "2024-10-28 15:01:49.027951"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "25c13392",
+      "num_run": 16,
+      "batch_id": "7121_batch",
+      "network_latency": 0.02463674545288086,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 252,
+      "total_tokens": 551
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00378,
+      "total_cost": 0.005275
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "f2a96308-e02f-4dbe-9d1b-8eaa572d0d30"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "a6243c4c-2098-43ca-bfe4-9508d3441b11",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:01:12.930948",
+      "end_time": "2024-10-28 15:01:18.331133"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "29f621d0",
+      "num_run": 15,
+      "batch_id": "7121_batch",
+      "network_latency": 0.028439998626708984,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 272,
+      "total_tokens": 571
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00408,
+      "total_cost": 0.005575
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "model_converter",
+      "benchmark",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "62019f0a-210f-4a45-b39d-da76780d9c4d",
+    "name": "29_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:01:12.929050",
+      "end_time": "2024-10-28 15:01:18.331389"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "29f621d0",
+      "num_run": 15,
+      "batch_id": "7121_batch",
+      "network_latency": 0.028439998626708984,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 272,
+      "total_tokens": 571
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00408,
+      "total_cost": 0.005575
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "a6243c4c-2098-43ca-bfe4-9508d3441b11"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "1f8fdb92-cb64-4824-90ad-514289b6cf03",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:00:40.316490",
+      "end_time": "2024-10-28 15:00:48.044347"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "3db64ce8",
+      "num_run": 14,
+      "batch_id": "7121_batch",
+      "network_latency": 0.0327606201171875,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "b85ab709-c5fe-439c-9a26-3018e7cc191c",
+    "name": "3d_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:00:40.314431",
+      "end_time": "2024-10-28 15:00:48.044602"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "3db64ce8",
+      "num_run": 14,
+      "batch_id": "7121_batch",
+      "network_latency": 0.0327606201171875,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "1f8fdb92-cb64-4824-90ad-514289b6cf03"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "4f3413ae-3670-4d59-80bd-4e4c410bf064",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 15:00:10.788946",
+      "end_time": "2024-10-28 15:00:15.424786"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "288d9f29",
+      "num_run": 13,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03117823600769043,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 285,
+      "total_tokens": 584
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004275,
+      "total_cost": 0.00577
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "model_converter",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "770c5fd8-867e-4ad6-bd2e-4215d8117cdd",
+    "name": "28_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 15:00:10.786907",
+      "end_time": "2024-10-28 15:00:15.425049"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "288d9f29",
+      "num_run": 13,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03117823600769043,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 285,
+      "total_tokens": 584
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004275,
+      "total_cost": 0.00577
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "4f3413ae-3670-4d59-80bd-4e4c410bf064"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "6f6eb23f-c34a-4864-a5ea-257a6c844c60",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:59:39.831355",
+      "end_time": "2024-10-28 14:59:45.932630"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "5ef4951b",
+      "num_run": 12,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03134417533874512,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 295,
+      "total_tokens": 594
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004425,
+      "total_cost": 0.00592
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "model_converter",
+      "gpt-4o",
+      "benchmark"
+    ]
+  },
+  {
+    "id": "5d377b2d-4144-47e4-afa8-42189a591631",
+    "name": "5e_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:59:39.829491",
+      "end_time": "2024-10-28 14:59:45.932891"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "5ef4951b",
+      "num_run": 12,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03134417533874512,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 295,
+      "total_tokens": 594
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004425,
+      "total_cost": 0.00592
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "6f6eb23f-c34a-4864-a5ea-257a6c844c60"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "688db9fc-9332-4416-b20c-fa6238e043b3",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:59:04.588956",
+      "end_time": "2024-10-28 14:59:14.941118"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "f073942d",
+      "num_run": 11,
+      "batch_id": "7121_batch",
+      "network_latency": 0.071044921875,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "2ff8134c-4a25-45d4-81e0-0326e52df075",
+    "name": "f0_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:59:04.587027",
+      "end_time": "2024-10-28 14:59:14.941485"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "f073942d",
+      "num_run": 11,
+      "batch_id": "7121_batch",
+      "network_latency": 0.071044921875,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 265,
+      "total_tokens": 564
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003975,
+      "total_cost": 0.00547
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "688db9fc-9332-4416-b20c-fa6238e043b3"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "fd4f98ac-52db-4c47-94d0-49ee06b66d48",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:58:34.456815",
+      "end_time": "2024-10-28 14:58:39.760074"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "0c0bf152",
+      "num_run": 10,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03513455390930176,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 3134,
+      "completion_tokens": 267,
+      "total_tokens": 3401
+    },
+    "cost": {
+      "prompt_cost": 0.01567,
+      "completion_cost": 0.004005,
+      "total_cost": 0.019675
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "75ea75b8-1626-49f7-b4fa-27e5adc9838b",
+    "name": "0c_mc_error_handling2",
+    "timing": {
+      "start_time": "2024-10-28 14:58:34.456241",
+      "end_time": "2024-10-28 14:58:39.760528"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "0c0bf152",
+      "num_run": 10,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03513455390930176,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 3134,
+      "completion_tokens": 267,
+      "total_tokens": 3401
+    },
+    "cost": {
+      "prompt_cost": 0.01567,
+      "completion_cost": 0.004005,
+      "total_cost": 0.019675
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "fd4f98ac-52db-4c47-94d0-49ee06b66d48"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "543ff108-cc1a-4e97-8fa9-74638c982441",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:58:27.427968",
+      "end_time": "2024-10-28 14:58:30.996131"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "0c0bf152",
+      "num_run": 10,
+      "batch_id": "7121_batch",
+      "network_latency": 0.030785799026489258,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 249,
+      "total_tokens": 548
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003735,
+      "total_cost": 0.00523
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "c5299264-0a7c-4256-bbf4-79148ce22671",
+    "name": "0c_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:58:27.426066",
+      "end_time": "2024-10-28 14:58:30.996388"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "0c0bf152",
+      "num_run": 10,
+      "batch_id": "7121_batch",
+      "network_latency": 0.030785799026489258,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 249,
+      "total_tokens": 548
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003735,
+      "total_cost": 0.00523
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "543ff108-cc1a-4e97-8fa9-74638c982441"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "5fdd7f44-6ff3-47f0-b3e3-10ccf8560b03",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:57:57.262101",
+      "end_time": "2024-10-28 14:58:02.466151"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "6acc5ae6",
+      "num_run": 9,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03403139114379883,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 293,
+      "total_tokens": 592
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004395,
+      "total_cost": 0.00589
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "model_converter",
+      "benchmark",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "7998b02a-9f6e-48ca-b436-6f9f225bfa2a",
+    "name": "6a_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:57:57.260039",
+      "end_time": "2024-10-28 14:58:02.466411"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "6acc5ae6",
+      "num_run": 9,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03403139114379883,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 293,
+      "total_tokens": 592
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004395,
+      "total_cost": 0.00589
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "5fdd7f44-6ff3-47f0-b3e3-10ccf8560b03"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "37588fae-d372-42f5-a1e2-4777e19fb4fa",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:57:28.195151",
+      "end_time": "2024-10-28 14:57:32.339050"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "6ce14bcf",
+      "num_run": 8,
+      "batch_id": "7121_batch",
+      "network_latency": 0.04894137382507324,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 260,
+      "total_tokens": 559
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.0039,
+      "total_cost": 0.005395
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "model_converter",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "6d3bfe76-5b3b-4fc7-b940-f03ef1484ba4",
+    "name": "6c_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:57:28.193199",
+      "end_time": "2024-10-28 14:57:32.339412"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "6ce14bcf",
+      "num_run": 8,
+      "batch_id": "7121_batch",
+      "network_latency": 0.04894137382507324,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 260,
+      "total_tokens": 559
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.0039,
+      "total_cost": 0.005395
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "37588fae-d372-42f5-a1e2-4777e19fb4fa"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "20cae4c3-4783-45b1-a42c-6f7c1a18d2c9",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:56:57.996172",
+      "end_time": "2024-10-28 14:57:03.291242"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "6bdee8fe",
+      "num_run": 7,
+      "batch_id": "7121_batch",
+      "network_latency": 0.02594733238220215,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 266,
+      "total_tokens": 565
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00399,
+      "total_cost": 0.005485
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "d6577657-e2c7-4a22-9fe4-fa50584157c5",
+    "name": "6b_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:56:57.994157",
+      "end_time": "2024-10-28 14:57:03.291496"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "6bdee8fe",
+      "num_run": 7,
+      "batch_id": "7121_batch",
+      "network_latency": 0.02594733238220215,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 266,
+      "total_tokens": 565
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00399,
+      "total_cost": 0.005485
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "20cae4c3-4783-45b1-a42c-6f7c1a18d2c9"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "7f77e3a0-1872-49cc-b127-f7a6dbb648c0",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:56:25.954300",
+      "end_time": "2024-10-28 14:56:33.141931"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "bef7fd15",
+      "num_run": 6,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03086400032043457,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 307,
+      "total_tokens": 606
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004605,
+      "total_cost": 0.0061
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "benchmark",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "b4abec3b-c63f-4928-9567-ad9d7e916fab",
+    "name": "be_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:56:25.952243",
+      "end_time": "2024-10-28 14:56:33.142187"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "bef7fd15",
+      "num_run": 6,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03086400032043457,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 307,
+      "total_tokens": 606
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004605,
+      "total_cost": 0.0061
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "7f77e3a0-1872-49cc-b127-f7a6dbb648c0"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "dba826d4-952a-47e9-a5bb-9a52304d8f50",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:55:54.079930",
+      "end_time": "2024-10-28 14:56:01.059983"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "df6b046a",
+      "num_run": 5,
+      "batch_id": "7121_batch",
+      "network_latency": 0.039292335510253906,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 282,
+      "total_tokens": 581
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00423,
+      "total_cost": 0.005725
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "6fa589f8-d5d2-4940-bad4-1e2fe9772877",
+    "name": "df_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:55:54.077988",
+      "end_time": "2024-10-28 14:56:01.060236"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "df6b046a",
+      "num_run": 5,
+      "batch_id": "7121_batch",
+      "network_latency": 0.039292335510253906,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 282,
+      "total_tokens": 581
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00423,
+      "total_cost": 0.005725
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "dba826d4-952a-47e9-a5bb-9a52304d8f50"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "f8aa5cff-f4a8-483d-b0fd-d4941ddf03d6",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:55:22.589504",
+      "end_time": "2024-10-28 14:55:29.141349"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "f9db7936",
+      "num_run": 4,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03146767616271973,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 246,
+      "total_tokens": 545
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00369,
+      "total_cost": 0.005185
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "model_converter",
+      "benchmark",
+      "gpt-4o"
+    ]
+  },
+  {
+    "id": "1c2edefe-df92-4b65-a5d7-4d802adf072d",
+    "name": "f9_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:55:22.587644",
+      "end_time": "2024-10-28 14:55:29.141602"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "f9db7936",
+      "num_run": 4,
+      "batch_id": "7121_batch",
+      "network_latency": 0.03146767616271973,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 246,
+      "total_tokens": 545
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00369,
+      "total_cost": 0.005185
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "f8aa5cff-f4a8-483d-b0fd-d4941ddf03d6"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "238c07b8-1ffc-4fb5-9055-04a57b84a64f",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:54:53.992359",
+      "end_time": "2024-10-28 14:54:57.707870"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "81fcfa5b",
+      "num_run": 3,
+      "batch_id": "7121_batch",
+      "network_latency": 0.032965660095214844,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 249,
+      "total_tokens": 548
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003735,
+      "total_cost": 0.00523
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "2939e4ef-3ec6-47a2-8d10-2476a24fcc33",
+    "name": "81_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:54:53.990469",
+      "end_time": "2024-10-28 14:54:57.708125"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "81fcfa5b",
+      "num_run": 3,
+      "batch_id": "7121_batch",
+      "network_latency": 0.032965660095214844,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 249,
+      "total_tokens": 548
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.003735,
+      "total_cost": 0.00523
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "238c07b8-1ffc-4fb5-9055-04a57b84a64f"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "9e5ab500-e599-4872-b363-9593794103ec",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:54:24.359713",
+      "end_time": "2024-10-28 14:54:29.117548"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "075d390d",
+      "num_run": 2,
+      "batch_id": "7121_batch",
+      "network_latency": 0.0252377986907959,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 272,
+      "total_tokens": 571
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00408,
+      "total_cost": 0.005575
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "d3ed02d4-142e-4511-995e-741e7fc63d72",
+    "name": "07_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:54:24.357897",
+      "end_time": "2024-10-28 14:54:29.117815"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "075d390d",
+      "num_run": 2,
+      "batch_id": "7121_batch",
+      "network_latency": 0.0252377986907959,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 272,
+      "total_tokens": 571
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00408,
+      "total_cost": 0.005575
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "9e5ab500-e599-4872-b363-9593794103ec"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "7498f176-2aa3-469c-ad60-b505742c6724",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:53:54.673416",
+      "end_time": "2024-10-28 14:53:59.500029"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "0f28a10a",
+      "num_run": 1,
+      "batch_id": "7121_batch",
+      "network_latency": 0.055052995681762695,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 314,
+      "total_tokens": 613
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00471,
+      "total_cost": 0.006205
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "model_converter",
+      "benchmark"
+    ]
+  },
+  {
+    "id": "0f745116-cdd6-4f60-9fb8-a5af60584c0b",
+    "name": "0f_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:53:54.671314",
+      "end_time": "2024-10-28 14:53:59.500438"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "0f28a10a",
+      "num_run": 1,
+      "batch_id": "7121_batch",
+      "network_latency": 0.055052995681762695,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 314,
+      "total_tokens": 613
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.00471,
+      "total_cost": 0.006205
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "7498f176-2aa3-469c-ad60-b505742c6724"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  },
+  {
+    "id": "0413f3b8-3c10-4f92-a68b-37a63baa29ad",
+    "name": "ChatOpenAI",
+    "timing": {
+      "start_time": "2024-10-28 14:53:24.698820",
+      "end_time": "2024-10-28 14:53:29.651226"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "f56464f9",
+      "num_run": 0,
+      "batch_id": "7121_batch",
+      "network_latency": 0.025883197784423828,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 305,
+      "total_tokens": 604
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004575,
+      "total_cost": 0.00607
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [],
+    "tags": [
+      "gpt-4o",
+      "model_converter",
+      "benchmark"
+    ]
+  },
+  {
+    "id": "34b75b7e-575b-4dee-b2ae-8b37f7c4424f",
+    "name": "f5_mc_conversion_code_gen",
+    "timing": {
+      "start_time": "2024-10-28 14:53:24.696788",
+      "end_time": "2024-10-28 14:53:29.651598"
+    },
+    "run_type": "llm",
+    "metadata": {
+      "trace_id": "f56464f9",
+      "num_run": 0,
+      "batch_id": "7121_batch",
+      "network_latency": 0.025883197784423828,
+      "ls_method": "trace",
+      "revision_id": "a439e92-dirty"
+    },
+    "runtime": {
+      "sdk": "langsmith-py",
+      "sdk_version": "0.1.137",
+      "library": "langsmith",
+      "platform": "Linux-6.8.0-47-generic-x86_64-with-glibc2.39",
+      "runtime": "python",
+      "py_implementation": "CPython",
+      "runtime_version": "3.10.15",
+      "langchain_version": "0.3.4",
+      "langchain_core_version": "0.3.12"
+    },
+    "tokens": {
+      "prompt_tokens": 299,
+      "completion_tokens": 305,
+      "total_tokens": 604
+    },
+    "cost": {
+      "prompt_cost": 0.001495,
+      "completion_cost": 0.004575,
+      "total_cost": 0.00607
+    },
+    "status": "success",
+    "session_id": "601dc250-34d5-4229-a99b-74074fd8c221",
+    "child_run_ids": [
+      "0413f3b8-3c10-4f92-a68b-37a63baa29ad"
+    ],
+    "tags": [
+      "benchmark",
+      "gpt-4o",
+      "model_converter"
+    ]
+  }
+]

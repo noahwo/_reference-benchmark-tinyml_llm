@@ -1,0 +1,26 @@
+\newpage
+\subsection{Results: 2025.03.22, Model: codestral:22b}
+ 
+
+\FloatBarrier
+\input{data_analysis/03.22/tex/tab_token_details_codestral:latest_03.22}
+\input{data_analysis/03.22/tex/tab_performance_metrics_codestral:latest_03.22}
+% \input{data_analysis/03.22/tex/tab_cost_details_codestral:latest_03.22}
+\input{data_analysis/03.22/tex/tab_performance_metrics_ave_codestral:latest_03.22}
+\input{data_analysis/03.22/tex/tab_time_codestral:latest_03.22}
+\newpage
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/03.22/tex/scatter_plot_codestral:latest_03.22.pdf}
+    \caption{Distribution of time and token consumption in three tasks. Model: codestral:22b, Date: 03.22 (Date of DP and MC is 01.15).}
+    \label{fig:scatter_codestral:latest_03.22}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/03.22/tex/bar_plot_codestral:latest_03.22.pdf}
+    \caption{Average Time and Token Consumption by Task Status. Model: codestral:22b, Date: 03.22. \\ \textit{The average time (top) and token consumption (bottom) are compared across three stages, broken down by overall performance (considering all runs), the performance of only successful runs, and of only the failed runs.}}
+    \label{fig:bar_codestral:latest_03.22}
+\end{figure}
+
+ 

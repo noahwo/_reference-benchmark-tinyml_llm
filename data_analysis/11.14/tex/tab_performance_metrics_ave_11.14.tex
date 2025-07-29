@@ -1,0 +1,27 @@
+\begin{table}[!h]
+    \centering
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{|l|r|r|r|r|r|r|r|}
+    \hline
+    \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{Success} \\ \cline{2-8}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Rate (\%)} \\ \hline
+    SG0 & 87.42 & 85.02 & 88.22 & 14435 & 12356 & 15128 & 0.250 \\ \hline
+SG1 & 42.76 & 38.18 & 44.72 & 18014 & 17299 & 18320 & 0.300 \\ \hline
+SG2 & 53.39 & 30.87 & 57.36 & 18671 & 11522 & 19933 & 0.150 \\ \hline
+
+        \end{tabular}%
+        }
+    \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three levels of JSON structure usage. 11.14}
+    \label{tab:performance_metrics_ave_11.14}
+\end{table}
+    

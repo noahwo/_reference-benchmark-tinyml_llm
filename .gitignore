@@ -1,3 +1,4 @@
 main.pdf
 main.synctex.gz
 .DS_Store
+*/**/tmp.ipynb

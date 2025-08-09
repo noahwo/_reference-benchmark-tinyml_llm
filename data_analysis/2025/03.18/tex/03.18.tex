@@ -1,5 +1,5 @@
 \newpage
-\subsection{Results: 2025.03.18, Model: phi4:14b}
+\subsection{2025.03.18, phi4:14b}
 \textcolor{red}{Note: The results of DP and MC are from 2025.01.15, and the results of SG are from 2025.03.18.
 }
 \FloatBarrier
@@ -26,7 +26,7 @@
 
 
 \clearpage 
-\subsection{Results: 2025.03.18, Model: llama3.1:8b}
+\subsection{2025.03.18, Model: llama3.1:8b}
 \textcolor{red}{Note: The results of DP and MC are from 2025.01.15, and the results of SG are from 2025.03.18.
 }
 \input{data_analysis/2025/03.18/tex/tab_token_details_llama3.1:8b_03.18}
@@ -52,7 +52,7 @@
 
 
 \clearpage 
-\subsection{Results: 2025.03.18, Model: qwen2.5-coder:14b}
+\subsection{2025.03.18, Model: qwen2.5-coder:14b}
 \textcolor{red}{Note: The results of DP and MC are from 2025.01.23, and the results of SG are from 2025.03.18.
 }
 \FloatBarrier
@@ -79,14 +79,14 @@
 
 
 \clearpage 
-\subsection{Results: 2025.03.18, Model: deepseek-r1:14b}
+\subsection{2025.03.18, Model: deepseek-r1:14b}
 \textcolor{red}{Note: The results of DP and MC are from 2025.01.23, and the results of SG are from 2025.03.18.s}\\
 
 
 In this test, we used Deepseek's \texttt{deepseek-r1:14b}, which is a reasoning LLM in their reasoning series of LLMs. Similar to OpenAI's \texttt{o1} series, it trades off speed for more powerful reasoning ability. It also outputs the reasoning process before the real answer to the question. A typical output is shown below \ref{fig:deepseekr1_example}. Although the model is powerful in its reasoning capability according to recent studies and tests, our test results based on using it's direct output as engineering code are not outstanding. Perhaps the reasoning model series can be excellent for providing helpful insights into human-in-the-loop engineering tasks instead.
 \begin{figure}[!h]
     \centering
-\includegraphics[width=0.75\linewidth]{data_analysis/01.23/tex/deepseekr1_example.png}
+\includegraphics[width=0.75\linewidth]{data_analysis/2025/01.23/tex/deepseekr1_example.png}
 \caption{An example output of \texttt{deepseek-r1:14b}.}
 \label{fig:deepseekr1_example}
 \end{figure}

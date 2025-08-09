@@ -1,0 +1,32 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{4}{c|}{Overall Token} &
+          \multicolumn{4}{c|}{Input Token} &
+          \multicolumn{4}{c|}{Output Token} \\ \cline{2-13}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} \\ \hline
+    PSG & 11765 & 12091 & 12408 & 4720 & 9536 & 9810 & 9810 & 3666 & 2228 & 2281 & 2598 & 1054 \\ \hline
+TPUSG & 2609 & 2609 & 2609 & 2609 & 1833 & 1833 & 1833 & 1833 & 776 & 776 & 776 & 776 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Token consumption details regarding Overall, Input, and Output in three stages. Batch ID: 3193, Model: qwen2.5-coder:14b, Date: 08.04, Parameters: temperature=0.1, top-p=0.3}
+        \label{tab:token_details_3193_qwen2.5-coder:14b_08.04}
+        \end{table}
+    

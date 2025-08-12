@@ -6,6 +6,7 @@ Open-source models' output can break the workflow by making faults in the middle
 
 Here are the cases with examples:
 \subsubsection*{Case 1 - incorrect/unparsable format of output:}
+\addcontentsline{toc}{subsubsection}{Case 1 - incorrect/unparsable format of output:}
 
 This is very common in all stages, especially in DP and SG, because they have complex/multi-step code generation. For example, when repeatedly debugging one step and getting errors, the LLM tends to instruct me something about its code, or it outputs only the code snippets of the needed correction instead of the full code. 
 
@@ -38,6 +39,7 @@ It's fine to output explanation text along with (before or after) the code block
 
 
 \subsubsection*{Case 2 - bad code with missing operations passes the test in a false positive way:}
+\addcontentsline{toc}{subsubsection}{Case 2 - bad code with missing operations passes the test in a false positive way:}
 
 \textcolor{red}{This was actually a bug in the error handing for specification filing and now it's fixed: } \textit{I was mentioning that when constructing the skecth specification for skecth generation, bad spec list with missing information leads to something-else sketch code, and that allows false positve sketch generation (under wrong or faulty specification, the returen code is compilable and passing our test, but the skecth is not practically usable, e.g., a sketch simply invokes color senser and has nothing to do with the machine leaning model). }
 
@@ -57,6 +59,7 @@ This also happens in DP, due to it's multi-step and long process natures of one 
 
 
 \subsubsection*{Case 3 - messing up directories:}
+\addcontentsline{toc}{subsubsection}{Case 3 - messing up directories:}
 
 
 All the data processing related mediate artefacts, including \texttt{*.csv} files and folders like \texttt{processed} should only be placed under \texttt{data/fruit\_to\_emoji/playground}. And the artefacts about model conversion like \texttt{*.tflite} should be under \texttt{models/fruit\_to\_emoji/tflite\_model}. As shown in the image \ref{fig:mess-dir}, all the mediate folders and files before which there's the red bar are located in wrong plcaes. They should either be under \texttt{data/fruit\_to\_emoji/playground} which is rectangled in green, or \texttt{models/fruit\_to\_emoji/tflite\_model}.   

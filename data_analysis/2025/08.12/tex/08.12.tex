@@ -1,0 +1,25 @@
+\newpage
+\subsection{Results: 08.12, Model: gemma3:27b, Parameters: temperature=0.1, top-p=0.3}
+
+\subsubsection{{PSG, TPUSG}; \texttt{batch\_uid:d558}}
+
+\FloatBarrier
+\input{data_analysis/2025/08.12/tex/tab_performance_metrics_ave_gemma3:27b_08.12_d558.tex}
+\input{data_analysis/2025/08.12/tex/tab_performance_metrics_gemma3:27b_08.12_d558.tex}
+\input{data_analysis/2025/08.12/tex/tab_time_gemma3:27b_08.12_d558.tex}
+\input{data_analysis/2025/08.12/tex/tab_token_details_gemma3:27b_08.12_d558.tex}
+\newpage
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/2025/08.12/tex/bar_plot_gemma3:27b_08.12_d558.pdf}
+    \caption{Average Time and Token Consumption by Task Status. Model: gemma3:27b, Date: 08.12, Parameters: temperature=0.1, top-p=0.3 \\ \textit{The average time (top) and token consumption (bottom) are compared across three stages, broken down by overall performance (considering all runs), performance of only successful runs, and of only the failed runs.}}
+    \label{fig:bar_plot_gemma3:27b_08.12_d558}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.75\linewidth]{data_analysis/2025/08.12/tex/scatter_plot_gemma3:27b_08.12_d558.pdf}
+    \caption{Distribution of time and token consumption in three tasks. Model: gemma3:27b, Date: 08.12, Parameters: temperature=0.1, top-p=0.3}
+    \label{fig:scatter_plot_gemma3:27b_08.12_d558}
+\end{figure}
+

@@ -1,0 +1,3071 @@
+{
+  "data": [
+    {
+      "id": "e700644d",
+      "timestamp": "2025-08-05T01:06:41.705000+00:00",
+      "name": "e700_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocessing (resize for TFLite model)\n    resized_frame = cv2.resize(frame, (300, 300))\n    input_data = resized_frame\n\n    # Phase 3: Inference (Not implemented, as the original code already handles it)\n    # In this case, the original code already performs the inference.\n    # We are only focusing on Phases 2 and 4.2, 4.3.\n\n    # Phase 4.2: Interpret Results (Not applicable, as the original code handles it)\n    # The original code already interprets the results and draws bounding boxes.\n\n    # Phase 4.3: Handle Output\n    out.write(frame)\n\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 30
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 98.901,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-04-06-41-707188_chatcmpl-18c585f4-57fb-447b-93d7-5cb4e924c966",
+          "traceId": "e700644d",
+          "type": "GENERATION",
+          "name": "e700_psg_gen_attempt#1",
+          "startTime": "2025-08-05T01:06:41.707000+00:00",
+          "endTime": "2025-08-05T01:07:07.519000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25812.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-07-07-690219_chatcmpl-3eed66eb-6c02-4ba5-b7a6-f6c6f2535237",
+          "traceId": "e700644d",
+          "type": "GENERATION",
+          "name": "e700_psg_gen_attempt#2",
+          "startTime": "2025-08-05T01:07:07.690000+00:00",
+          "endTime": "2025-08-05T01:07:29.732000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22042.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-07-29-883350_chatcmpl-f1076d97-0dfe-4b39-9314-9b9d278b10c5",
+          "traceId": "e700644d",
+          "type": "GENERATION",
+          "name": "e700_psg_gen_attempt#3",
+          "startTime": "2025-08-05T01:07:29.883000+00:00",
+          "endTime": "2025-08-05T01:07:46.767000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16884.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-07-46-934961_chatcmpl-6181823a-4980-4a19-8640-38a4f4a6f452",
+          "traceId": "e700644d",
+          "type": "GENERATION",
+          "name": "e700_psg_gen_attempt#4",
+          "startTime": "2025-08-05T01:07:46.934000+00:00",
+          "endTime": "2025-08-05T01:08:09.241000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22307.0,
+          "completionTokens": 777,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2825,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-08-09-403423_chatcmpl-51fcc8bf-4c0d-4068-a99f-3f4daffd1f3e",
+          "traceId": "e700644d",
+          "type": "GENERATION",
+          "name": "e700_psg_gen_attempt#5",
+          "startTime": "2025-08-05T01:08:09.403000+00:00",
+          "endTime": "2025-08-05T01:08:20.608000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 11205.0,
+          "completionTokens": 360,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2408,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T01:06:42.226Z",
+      "updatedAt": "2025-08-05T01:08:26.318Z"
+    },
+    {
+      "id": "70861c04",
+      "timestamp": "2025-08-05T01:04:49.138000+00:00",
+      "name": "7086_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Phase 1: Setup (already done in the provided code)\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ndef process_video(input_path, output_path):\n    cap = cv2.VideoCapture(input_path)\n    if not cap.isOpened():\n        print(\"Error opening video file\")\n        return\n\n    while True:\n        ret, frame = cap.read()\n        if not ret:\n            break\n\n        # Preprocess data (no specific preprocessing needed for this task)\n        input_data = frame\n\n        # Phase 3: Inference (already implemented in the provided code)\n\n        # Phase 4: Output Interpretation & Handling Loop\n        # 4.2 Interpret Results (No interpretation needed, just drawing bounding boxes)\n        # 4.3 Handle Output\n        # Assuming the model outputs bounding boxes directly in the frame\n        # For demonstration, we'll just write the frame to the output video\n        \n        # Write the frame to the output video\n        \n        # Placeholder for drawing bounding boxes (replace with actual model output)\n        # For example:\n        # for box in detections:\n        #     x1, y1, x2, y2 = box\n        #     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)\n\n        # Write the frame to the output video\n        fourcc = cv2.VideoWriter_fourcc(*'mp4v')\n        out = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n        out.write(frame)\n        \n    cap.release()\n    out.release()\n    cv2.destroyAllWindows()\n\n# Phase 5: Cleanup (already done in the provided code)\n\n# Example usage:\ninput_video_path  = \"data/object_detection/sheeps.mp4\"\noutput_video_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\nprocess_video(input_video_path, output_video_path)"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 29
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 105.545,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-04-04-49-139847_chatcmpl-9c3db6cb-7bf4-47cb-a96d-ae84e178d969",
+          "traceId": "70861c04",
+          "type": "GENERATION",
+          "name": "7086_psg_gen_attempt#1",
+          "startTime": "2025-08-05T01:04:49.139000+00:00",
+          "endTime": "2025-08-05T01:05:14.956000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25817.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-05-15-122969_chatcmpl-c4f0f1da-f7b5-4dd8-87e5-3791a1d3baca",
+          "traceId": "70861c04",
+          "type": "GENERATION",
+          "name": "7086_psg_gen_attempt#2",
+          "startTime": "2025-08-05T01:05:15.122000+00:00",
+          "endTime": "2025-08-05T01:05:37.174000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22052.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-05-37-331267_chatcmpl-67036c3a-ae7c-4548-9980-41d729847d2a",
+          "traceId": "70861c04",
+          "type": "GENERATION",
+          "name": "7086_psg_gen_attempt#3",
+          "startTime": "2025-08-05T01:05:37.331000+00:00",
+          "endTime": "2025-08-05T01:05:57.824000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 20493.0,
+          "completionTokens": 709,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2757,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-05-57-971025_chatcmpl-d7f77e5b-1945-40ef-a6fa-a6282648eee8",
+          "traceId": "70861c04",
+          "type": "GENERATION",
+          "name": "7086_psg_gen_attempt#4",
+          "startTime": "2025-08-05T01:05:57.971000+00:00",
+          "endTime": "2025-08-05T01:06:19.633000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 21662.0,
+          "completionTokens": 752,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2800,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-06-19-795750_chatcmpl-11b4595a-1dce-4317-9b3d-ec1f5d69a7c3",
+          "traceId": "70861c04",
+          "type": "GENERATION",
+          "name": "7086_psg_gen_attempt#5",
+          "startTime": "2025-08-05T01:06:19.795000+00:00",
+          "endTime": "2025-08-05T01:06:34.684000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14889.0,
+          "completionTokens": 498,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2546,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T01:04:49.660Z",
+      "updatedAt": "2025-08-05T01:06:41.256Z"
+    },
+    {
+      "id": "bad938f6",
+      "timestamp": "2025-08-05T01:02:55.276000+00:00",
+      "name": "bad9_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\n\n# Phase 1: Setup (Loading model and setting up video capture)\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video stream or file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile(cap.isOpened()):\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocessing: Resize and normalize the frame\n    resized_frame = cv2.resize(frame, (300, 300))\n    normalized_frame = resized_frame / 255.0\n\n    # Phase 3: Inference (Not applicable in this case, as the model is not loaded)\n\n    # Phase 4.2: Interpret Results (Not applicable in this case, as the model is not loaded)\n\n    # Phase 4.3: Handle Output\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 28
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 106.541,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-04-02-55-278063_chatcmpl-535f7576-a6a4-48c2-8982-e84a5bc94d1d",
+          "traceId": "bad938f6",
+          "type": "GENERATION",
+          "name": "bad9_psg_gen_attempt#1",
+          "startTime": "2025-08-05T01:02:55.278000+00:00",
+          "endTime": "2025-08-05T01:03:21.146000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25868.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-03-21-313665_chatcmpl-112db846-8f13-4040-a3b0-e223aaa51d67",
+          "traceId": "bad938f6",
+          "type": "GENERATION",
+          "name": "bad9_psg_gen_attempt#2",
+          "startTime": "2025-08-05T01:03:21.313000+00:00",
+          "endTime": "2025-08-05T01:03:43.382000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22069.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-03-43-540173_chatcmpl-30078155-072a-41a2-97cb-808c79f0abeb",
+          "traceId": "bad938f6",
+          "type": "GENERATION",
+          "name": "bad9_psg_gen_attempt#3",
+          "startTime": "2025-08-05T01:03:43.540000+00:00",
+          "endTime": "2025-08-05T01:04:04.973000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 21433.0,
+          "completionTokens": 744,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2792,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-04-05-121090_chatcmpl-294c988e-8978-4064-97f7-12d74ccd1292",
+          "traceId": "bad938f6",
+          "type": "GENERATION",
+          "name": "bad9_psg_gen_attempt#4",
+          "startTime": "2025-08-05T01:04:05.121000+00:00",
+          "endTime": "2025-08-05T01:04:29.599000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 24478.0,
+          "completionTokens": 858,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2906,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-04-29-747136_chatcmpl-6efc06cb-36eb-45db-ba38-186de1449a78",
+          "traceId": "bad938f6",
+          "type": "GENERATION",
+          "name": "bad9_psg_gen_attempt#5",
+          "startTime": "2025-08-05T01:04:29.747000+00:00",
+          "endTime": "2025-08-05T01:04:41.819000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 12072.0,
+          "completionTokens": 393,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2441,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T01:02:55.797Z",
+      "updatedAt": "2025-08-05T01:04:47.966Z"
+    },
+    {
+      "id": "078aaa22",
+      "timestamp": "2025-08-05T01:01:09.434000+00:00",
+      "name": "078a_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocessing (resize for TFLite model)\n    resized_frame = cv2.resize(frame, (300, 300))\n    input_data = resized_frame\n\n    # Phase 3: Inference (Not implemented, as the original code already handles it)\n    # In this case, the original code already performs the inference.\n    # We are only focusing on Phases 2 and 4.2, 4.3.\n\n    # Phase 4.2: Interpret Results (Not applicable, as the original code handles it)\n    # The original code already interprets the results and draws bounding boxes.\n\n    # Phase 4.3: Handle Output\n    out.write(frame)\n\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 27
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 98.901,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-04-01-09-435830_chatcmpl-84ec7127-aa80-4835-9d40-597d57b2bc96",
+          "traceId": "078aaa22",
+          "type": "GENERATION",
+          "name": "078a_psg_gen_attempt#1",
+          "startTime": "2025-08-05T01:01:09.435000+00:00",
+          "endTime": "2025-08-05T01:01:35.251000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25816.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-01-35-401109_chatcmpl-2a416553-cef5-46ab-9526-2e4a11d8841a",
+          "traceId": "078aaa22",
+          "type": "GENERATION",
+          "name": "078a_psg_gen_attempt#2",
+          "startTime": "2025-08-05T01:01:35.401000+00:00",
+          "endTime": "2025-08-05T01:01:57.444000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22043.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-01-57-593008_chatcmpl-18f4c8f1-98f8-4ba8-80c7-5a78b938c742",
+          "traceId": "078aaa22",
+          "type": "GENERATION",
+          "name": "078a_psg_gen_attempt#3",
+          "startTime": "2025-08-05T01:01:57.593000+00:00",
+          "endTime": "2025-08-05T01:02:14.500000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16907.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-02-14-646740_chatcmpl-94078ff3-3876-49e7-85ae-e02ba76c5d9e",
+          "traceId": "078aaa22",
+          "type": "GENERATION",
+          "name": "078a_psg_gen_attempt#4",
+          "startTime": "2025-08-05T01:02:14.646000+00:00",
+          "endTime": "2025-08-05T01:02:36.977000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22331.0,
+          "completionTokens": 777,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2825,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-02-37-130512_chatcmpl-d2a21086-e00c-4986-a1fe-aac694132ba7",
+          "traceId": "078aaa22",
+          "type": "GENERATION",
+          "name": "078a_psg_gen_attempt#5",
+          "startTime": "2025-08-05T01:02:37.130000+00:00",
+          "endTime": "2025-08-05T01:02:48.336000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 11206.0,
+          "completionTokens": 360,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2408,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T01:01:09.955Z",
+      "updatedAt": "2025-08-05T01:02:54.071Z"
+    },
+    {
+      "id": "39292e1d",
+      "timestamp": "2025-08-05T00:59:41.829000+00:00",
+      "name": "3929_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup (already done in the provided code)\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\n# Phase 4.2 and 4.3 are integrated into the loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.) - assuming the model expects a specific input size\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resize\n    input_data = resized_frame / 255.0  # Normalize to [0, 1]\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, :, :, :] # Add batch dimension\n\n    # Phase 3: Inference (Placeholder - replace with actual inference code)\n    # Assuming a simple placeholder for demonstration\n    # Replace this with your actual TFLite inference code\n    # output_data = interpreter.invoke(input_data)\n\n    # Placeholder output - replace with actual model output processing\n    # For demonstration, just copy the original frame\n    output_frame = frame.copy()\n\n    # Draw bounding boxes or labels on the output frame (if applicable)\n    # Replace this with your actual bounding box/label drawing code\n\n    # Write the output frame to the video file\n    out.write(output_frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 26
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 80.843,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-59-41-831201_chatcmpl-ee87fd29-b60a-45d6-a40c-f68f4f954c76",
+          "traceId": "39292e1d",
+          "type": "GENERATION",
+          "name": "3929_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:59:41.831000+00:00",
+          "endTime": "2025-08-05T01:00:07.651000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25820.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-00-07-805111_chatcmpl-cbca8ccb-af64-475a-b5a7-843881ddc26b",
+          "traceId": "39292e1d",
+          "type": "GENERATION",
+          "name": "3929_psg_gen_attempt#2",
+          "startTime": "2025-08-05T01:00:07.805000+00:00",
+          "endTime": "2025-08-05T01:00:29.854000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22049.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-00-30-006667_chatcmpl-938045b6-6115-44c0-ae94-78a3e6e23004",
+          "traceId": "39292e1d",
+          "type": "GENERATION",
+          "name": "3929_psg_gen_attempt#3",
+          "startTime": "2025-08-05T01:00:30.006000+00:00",
+          "endTime": "2025-08-05T01:00:48.183000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18177.0,
+          "completionTokens": 620,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2668,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-04-00-48-327138_chatcmpl-4e902138-653a-411f-a8cf-bfd0cc667c98",
+          "traceId": "39292e1d",
+          "type": "GENERATION",
+          "name": "3929_psg_gen_attempt#4",
+          "startTime": "2025-08-05T01:00:48.327000+00:00",
+          "endTime": "2025-08-05T01:01:02.674000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14347.0,
+          "completionTokens": 477,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2525,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:59:42.351Z",
+      "updatedAt": "2025-08-05T01:01:08.505Z"
+    },
+    {
+      "id": "af6b5f7b",
+      "timestamp": "2025-08-05T00:57:53.235000+00:00",
+      "name": "af6b_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup\n# 1.3 Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# 1.4 Load Interpreter (Not needed for cv2 implementation)\n# 1.5 Get Model Details (Not needed for cv2 implementation)\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n# 2.1 Acquire Input Data\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Phase 4: Output Interpretation & Handling Loop\n# 4.2 Interpret Results & 4.3 Handle Output\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Perform inference (replace with your actual inference code)\n    # This is a placeholder for the model's prediction\n    # Assuming the model predicts a class index\n    # predicted_class_index = 0  # Replace with actual prediction\n\n    # Interpret results (map index to label)\n    # predicted_label = labels[predicted_class_index]\n\n    # Handle output (draw bounding box and label on frame)\n    # cv2.putText(frame, predicted_label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)\n\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 25
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 101.527,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-57-53-237179_chatcmpl-ff7a6c5f-a1db-4f4f-83dd-e8ba0a185d7d",
+          "traceId": "af6b5f7b",
+          "type": "GENERATION",
+          "name": "af6b_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:57:53.237000+00:00",
+          "endTime": "2025-08-05T00:58:19.056000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25819.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-58-19-205052_chatcmpl-3407b553-f92e-4b72-93b9-f405163114f6",
+          "traceId": "af6b5f7b",
+          "type": "GENERATION",
+          "name": "af6b_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:58:19.205000+00:00",
+          "endTime": "2025-08-05T00:58:41.292000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22087.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-58-41-438658_chatcmpl-34faef82-6078-45d9-8fe5-037c95ba8343",
+          "traceId": "af6b5f7b",
+          "type": "GENERATION",
+          "name": "af6b_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:58:41.438000+00:00",
+          "endTime": "2025-08-05T00:58:58.309000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16871.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-58-58-461060_chatcmpl-c43fc1cc-2756-42aa-9f8f-84808ec8480a",
+          "traceId": "af6b5f7b",
+          "type": "GENERATION",
+          "name": "af6b_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:58:58.461000+00:00",
+          "endTime": "2025-08-05T00:59:20.527000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22066.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-59-20-672078_chatcmpl-b415abbf-d6e2-4335-a7c8-485c50d3694f",
+          "traceId": "af6b5f7b",
+          "type": "GENERATION",
+          "name": "af6b_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:59:20.672000+00:00",
+          "endTime": "2025-08-05T00:59:34.764000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14092.0,
+          "completionTokens": 468,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2516,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:57:53.756Z",
+      "updatedAt": "2025-08-05T00:59:40.700Z"
+    },
+    {
+      "id": "fbc61fce",
+      "timestamp": "2025-08-05T00:56:03.715000+00:00",
+      "name": "fbc6_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\n\n# Load labels\ntry:\n    with open(label_path, 'r') as f:\n        labels = [line.strip() for line in f]\nexcept FileNotFoundError:\n    labels = []  # Handle the case where the label file is not found\n\n# Initialize video capture\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.) - Replace with your model's requirements\n    resized_frame = cv2.resize(frame, (300, 300))\n    input_data = resized_frame / 255.0  # Normalize to [0, 1]\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, :, :, :]  # Add batch dimension\n\n    # Perform inference (replace with your actual inference code)\n    # This is a placeholder, replace with your TFLite interpreter code\n    # For example:\n    # interpreter.set_tensor(input_details[0]['index'], input_data)\n    # interpreter.invoke()\n    # output_data = interpreter.get_tensor(output_details[0]['index'])\n\n    # Placeholder for output processing\n    # Replace with your actual output processing code\n    # For example:\n    # predicted_class = np.argmax(output_data)\n    # predicted_label = labels[predicted_class]\n    # cv2.putText(frame, predicted_label, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)\n\n    # Write the output frame\n    out.write(frame)\n\n# Release resources\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 24
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 102.651,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-56-03-716690_chatcmpl-398c8cde-33f0-420e-8f9c-3325ebf4602a",
+          "traceId": "fbc61fce",
+          "type": "GENERATION",
+          "name": "fbc6_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:56:03.716000+00:00",
+          "endTime": "2025-08-05T00:56:29.531000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25815.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-56-29-673919_chatcmpl-c984091a-d1ac-4927-9d4b-ee916d193d8b",
+          "traceId": "fbc61fce",
+          "type": "GENERATION",
+          "name": "fbc6_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:56:29.673000+00:00",
+          "endTime": "2025-08-05T00:56:51.724000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22051.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-56-51-868137_chatcmpl-b8c50c36-da90-4cdd-a55f-6d67bcb5ad8a",
+          "traceId": "fbc61fce",
+          "type": "GENERATION",
+          "name": "fbc6_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:56:51.868000+00:00",
+          "endTime": "2025-08-05T00:57:10.712000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18844.0,
+          "completionTokens": 647,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2695,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-57-10-864060_chatcmpl-e921320b-e90f-42c8-b0bd-3adbef064183",
+          "traceId": "fbc61fce",
+          "type": "GENERATION",
+          "name": "fbc6_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:57:10.864000+00:00",
+          "endTime": "2025-08-05T00:57:26.481000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 15617.0,
+          "completionTokens": 526,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2574,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-57-26-644648_chatcmpl-1f2f19cc-bcfb-4dee-9f6a-d6eaf0fad26a",
+          "traceId": "fbc61fce",
+          "type": "GENERATION",
+          "name": "fbc6_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:57:26.644000+00:00",
+          "endTime": "2025-08-05T00:57:46.367000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 19723.0,
+          "completionTokens": 680,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2728,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:56:04.236Z",
+      "updatedAt": "2025-08-05T00:57:52.419Z"
+    },
+    {
+      "id": "4aed5512",
+      "timestamp": "2025-08-05T00:54:30.164000+00:00",
+      "name": "4aed_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup\ntry:\n    labels = []\n    with open(label_path, 'r') as f:\n        labels = [line.strip() for line in f]\nexcept FileNotFoundError:\n    print(\"Label file not found. Proceeding without labels.\")\n    labels = []\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.)\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resizing\n    input_data = resized_frame / 255.0  # Normalize pixel values\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, ...]  # Add batch dimension\n\n    # Phase 3: Inference (Not implemented here, as the model loading and invocation are not part of the prompt)\n    # In a real implementation, you would load the TFLite model, allocate tensors,\n    # set the input tensor, invoke the interpreter, and get the output tensor.\n\n    # Placeholder for inference results\n    output_data = None  # Replace with actual inference results\n\n    # Phase 4.2: Interpret Results (Placeholder)\n    # Assuming output_data contains bounding boxes and class indices\n    if output_data is not None:\n        # Example: Draw bounding boxes and labels on the frame\n        # for box, class_id in output_data:\n        #     x1, y1, x2, y2 = box\n        #     label = labels[class_id] if labels else str(class_id)\n        #     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)\n        #     cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n        pass\n\n    # Phase 4.3: Handle Output\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 23
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 86.598,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-54-30-165566_chatcmpl-2fc06561-040a-40db-b8fd-87b870d9dfd2",
+          "traceId": "4aed5512",
+          "type": "GENERATION",
+          "name": "4aed_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:54:30.165000+00:00",
+          "endTime": "2025-08-05T00:54:55.970000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25805.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-54-56-116295_chatcmpl-005f5c11-124b-42e0-abf3-0af2c6ed21eb",
+          "traceId": "4aed5512",
+          "type": "GENERATION",
+          "name": "4aed_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:54:56.116000+00:00",
+          "endTime": "2025-08-05T00:55:18.198000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22082.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-55-18-350152_chatcmpl-fffd65af-dcac-48e8-9bd5-9ba592af117b",
+          "traceId": "4aed5512",
+          "type": "GENERATION",
+          "name": "4aed_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:55:18.350000+00:00",
+          "endTime": "2025-08-05T00:55:35.244000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16894.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-55-35-388897_chatcmpl-f38b7bcd-44bd-49cc-a9d7-16b12e0b1c62",
+          "traceId": "4aed5512",
+          "type": "GENERATION",
+          "name": "4aed_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:55:35.388000+00:00",
+          "endTime": "2025-08-05T00:55:56.763000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 21375.0,
+          "completionTokens": 742,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2790,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:54:30.683Z",
+      "updatedAt": "2025-08-05T00:56:02.778Z"
+    },
+    {
+      "id": "b897f12b",
+      "timestamp": "2025-08-05T00:52:38.607000+00:00",
+      "name": "b897_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_code": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\n\n# Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Initialize video capture\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Load the TFLite model\ninterpreter = cv2.dnn.readNetFromTflite(model_path)\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame\n    resized_frame = cv2.resize(frame, (300, 300))\n    input_data = resized_frame / 255.0  # Normalize\n    input_data = input_data.astype('float32')\n\n    # Phase 3: Inference\n    interpreter.setInput(input_data)\n    output = interpreter.forward()\n\n    # Phase 4.2: Interpret Results\n    # Assuming output is a bounding box and class probability\n    boxes = output[0]\n    classes = output[1]\n\n    for i in range(len(boxes)):\n        if classes[i] > 0.5:  # Confidence threshold\n            box = boxes[i]\n            x, y, w, h = box\n            x = int(x * frame_width)\n            y = int(y * frame_height)\n            w = int(w * frame_width)\n            h = int(h * frame_height)\n            class_id = int(output[2][i])\n            label = labels[class_id]\n            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)\n            cv2.putText(frame, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Phase 4.3: Handle Output\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()",
+        "last_error": "Traceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/results/object_detection/sketches/tmp_20250805035423_psg_gemma3:27b/tmp_20250805035423_psg_gemma3:27b.py\", line 29, in <module>\n    interpreter = cv2.dnn.readNetFromTflite(model_path)\nAttributeError: module 'cv2.dnn' has no attribute 'readNetFromTflite'. Did you mean: 'readNetFromTFLite'?\n"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 22
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 104.739,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-52-38-609358_chatcmpl-7b213b0b-2c54-4466-b815-6f8dfac6d5bd",
+          "traceId": "b897f12b",
+          "type": "GENERATION",
+          "name": "b897_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:52:38.609000+00:00",
+          "endTime": "2025-08-05T00:53:04.430000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25821.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-53-04-581097_chatcmpl-94ae10d0-cd44-4493-b733-cb48a40eed68",
+          "traceId": "b897f12b",
+          "type": "GENERATION",
+          "name": "b897_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:53:04.581000+00:00",
+          "endTime": "2025-08-05T00:53:26.617000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22036.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-53-26-784371_chatcmpl-9a5e559d-d249-4c5c-b0bb-eafcffa807a5",
+          "traceId": "b897f12b",
+          "type": "GENERATION",
+          "name": "b897_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:53:26.784000+00:00",
+          "endTime": "2025-08-05T00:53:43.697000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16913.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-53-43-849399_chatcmpl-b99f282b-4174-4dfb-8fcb-e6c85485159f",
+          "traceId": "b897f12b",
+          "type": "GENERATION",
+          "name": "b897_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:53:43.849000+00:00",
+          "endTime": "2025-08-05T00:54:03.516000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 19667.0,
+          "completionTokens": 677,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2725,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-54-03-661474_chatcmpl-bab1998a-0c57-4c72-8035-2132d75b1653",
+          "traceId": "b897f12b",
+          "type": "GENERATION",
+          "name": "b897_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:54:03.661000+00:00",
+          "endTime": "2025-08-05T00:54:23.198000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 19537.0,
+          "completionTokens": 672,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2720,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "662baa18-c4b3-49ff-94e6-311673ccff06",
+          "traceId": "b897f12b",
+          "type": "SPAN",
+          "name": "error_b8_psg_failure_signal_py_sketch_generator",
+          "startTime": "2025-08-05T00:54:23.348000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Failed. Last error: Traceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/results/object_detection/sketches/tmp_20250805035423_psg_gemma3:27b/tmp_20250805035423_psg_gemma3:27b.py\", line 29, in <module>\n    interpreter = cv2.dnn.readNetFromTflite(model_path)\nAttributeError: module 'cv2.dnn' has no attribute 'readNetFromTflite'. Did you mean: 'readNetFromTFLite'?\n",
+          "calculatedTotalCost": 0.0,
+          "completionTokens": 0,
+          "environment": "default",
+          "promptTokens": 0,
+          "totalTokens": 0,
+          "costDetails": {},
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:52:39.129Z",
+      "updatedAt": "2025-08-05T00:54:29.024Z"
+    },
+    {
+      "id": "c398991d",
+      "timestamp": "2025-08-05T00:50:51.055000+00:00",
+      "name": "c398_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup\n# 1.3 Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# 1.4 Load Interpreter (Not needed for cv2 implementation)\n# 1.5 Get Model Details (Not needed for cv2 implementation)\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n# 2.1 Acquire Input Data\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Phase 4: Output Interpretation & Handling Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # 4.2 Interpret Results (Placeholder for model inference)\n    # Replace this with your TFLite model inference code\n    # For example:\n    # input_data = preprocess_frame(frame)\n    # interpreter.set_tensor(input_details[0]['index'], input_data)\n    # interpreter.invoke()\n    # output_data = interpreter.get_tensor(output_details[0]['index'])\n    # predictions = postprocess_output(output_data, labels)\n\n    # For now, just draw a rectangle on the frame as a placeholder\n    cv2.rectangle(frame, (100, 100), (200, 200), (0, 255, 0), 2)\n\n    # 4.3 Handle Output\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 21
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 100.964,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-50-51-056797_chatcmpl-90f59154-8ea1-4dd3-9a98-c4179c0e50dd",
+          "traceId": "c398991d",
+          "type": "GENERATION",
+          "name": "c398_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:50:51.056000+00:00",
+          "endTime": "2025-08-05T00:51:16.858000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25802.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-51-17-007638_chatcmpl-84757487-8516-4fd3-96d7-66ed897e30ce",
+          "traceId": "c398991d",
+          "type": "GENERATION",
+          "name": "c398_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:51:17.007000+00:00",
+          "endTime": "2025-08-05T00:51:39.066000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22059.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-51-39-222112_chatcmpl-78ec02f1-4c5c-449b-83e9-5bc544eec2e6",
+          "traceId": "c398991d",
+          "type": "GENERATION",
+          "name": "c398_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:51:39.222000+00:00",
+          "endTime": "2025-08-05T00:51:56.106000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16884.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-51-56-262150_chatcmpl-09393871-738d-4d97-aa10-e7e60e4538d0",
+          "traceId": "c398991d",
+          "type": "GENERATION",
+          "name": "c398_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:51:56.262000+00:00",
+          "endTime": "2025-08-05T00:52:15.877000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 19615.0,
+          "completionTokens": 675,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2723,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-52-16-034133_chatcmpl-b012e3f2-d37e-44da-af25-1670534e97b1",
+          "traceId": "c398991d",
+          "type": "GENERATION",
+          "name": "c398_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:52:16.034000+00:00",
+          "endTime": "2025-08-05T00:52:32.020000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 15986.0,
+          "completionTokens": 539,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2587,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:50:51.575Z",
+      "updatedAt": "2025-08-05T00:52:37.686Z"
+    },
+    {
+      "id": "30812e48",
+      "timestamp": "2025-08-05T00:49:02.383000+00:00",
+      "name": "3081_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\n\n# Phase 1: Setup\n# 1.3 Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f]\n\n# 1.4 Load Interpreter (Not needed for cv2 implementation)\n# 1.5 Get Model Details (Not needed for cv2 implementation)\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n# 2.1 Acquire Input Data\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Phase 4: Output Interpretation & Handling Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # 4.2 Interpret Results (Placeholder for model inference)\n    # Replace this with your TFLite model inference code\n    # For example:\n    # input_data = preprocess_image(frame)\n    # interpreter.set_tensor(input_details[0]['index'], input_data)\n    # interpreter.invoke()\n    # output_data = interpreter.get_tensor(output_details[0]['index'])\n    # predictions = interpret_output(output_data, labels)\n\n    # For now, just draw a rectangle on the frame as a placeholder\n    cv2.rectangle(frame, (100, 100), (200, 200), (0, 255, 0), 2)\n\n    # 4.3 Handle Output\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 20
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 101.849,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-49-02-384926_chatcmpl-b5e19332-c243-4782-878f-c69682ced799",
+          "traceId": "30812e48",
+          "type": "GENERATION",
+          "name": "3081_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:49:02.384000+00:00",
+          "endTime": "2025-08-05T00:49:28.226000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25842.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-49-28-377486_chatcmpl-126397ec-cc24-43dd-8425-1e878b17b061",
+          "traceId": "30812e48",
+          "type": "GENERATION",
+          "name": "3081_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:49:28.377000+00:00",
+          "endTime": "2025-08-05T00:49:50.484000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22107.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-49-50-656510_chatcmpl-2464e8bb-068d-4c5c-b43d-0fa35c6f5f98",
+          "traceId": "30812e48",
+          "type": "GENERATION",
+          "name": "3081_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:49:50.656000+00:00",
+          "endTime": "2025-08-05T00:50:07.531000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16875.0,
+          "completionTokens": 572,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2620,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-50-07-700189_chatcmpl-7ff97ee6-4ca5-4a5c-a2ac-fee46996c38d",
+          "traceId": "30812e48",
+          "type": "GENERATION",
+          "name": "3081_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:50:07.700000+00:00",
+          "endTime": "2025-08-05T00:50:28.175000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 20475.0,
+          "completionTokens": 708,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2756,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-50-28-336354_chatcmpl-28499112-1f8c-4ad2-990c-54514bd2231c",
+          "traceId": "30812e48",
+          "type": "GENERATION",
+          "name": "3081_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:50:28.336000+00:00",
+          "endTime": "2025-08-05T00:50:44.233000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 15897.0,
+          "completionTokens": 536,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2584,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:49:02.905Z",
+      "updatedAt": "2025-08-05T00:50:49.988Z"
+    },
+    {
+      "id": "8315d125",
+      "timestamp": "2025-08-05T00:47:29.328000+00:00",
+      "name": "8315_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup\ntry:\n    labels = []\n    with open(label_path, 'r') as f:\n        labels = [line.strip() for line in f]\nexcept FileNotFoundError:\n    print(\"Label file not found. Proceeding without labels.\")\n    labels = []\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.)\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resizing\n    input_data = resized_frame / 255.0  # Normalize pixel values\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, ...]  # Add batch dimension\n\n    # Phase 3: Inference (Not implemented here, as the model loading and invocation are not part of the prompt)\n\n    # Phase 4.2: Interpret Results (Placeholder - Replace with actual interpretation logic)\n    # Assuming the model outputs bounding boxes and class probabilities\n    # Replace this with your model's output processing\n    # For example:\n    # boxes, classes, scores = process_model_output(output_data)\n\n    # Phase 4.3: Handle Output\n    # Draw bounding boxes and labels on the frame\n    # for box, class_id, score in zip(boxes, classes, scores):\n    #     if score > 0.5:\n    #         x1, y1, x2, y2 = box\n    #         label = labels[class_id] if labels else str(class_id)\n    #         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)\n    #         cv2.putText(frame, f\"{label}: {score:.2f}\", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)\n\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 19
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 85.77,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-47-29-330761_chatcmpl-f9093824-9c11-4667-a70b-c2e5dae9ebec",
+          "traceId": "8315d125",
+          "type": "GENERATION",
+          "name": "8315_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:47:29.330000+00:00",
+          "endTime": "2025-08-05T00:47:55.164000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25834.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-47-55-310079_chatcmpl-ec5ab349-66a3-4b18-93d7-619aaf10744d",
+          "traceId": "8315d125",
+          "type": "GENERATION",
+          "name": "8315_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:47:55.310000+00:00",
+          "endTime": "2025-08-05T00:48:17.361000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22051.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-48-17-506363_chatcmpl-905a31ed-352c-4cf2-aa3f-79e7bfaa91f9",
+          "traceId": "8315d125",
+          "type": "GENERATION",
+          "name": "8315_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:48:17.506000+00:00",
+          "endTime": "2025-08-05T00:48:33.689000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16183.0,
+          "completionTokens": 547,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2595,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-48-33-850450_chatcmpl-64f99777-58e5-4e95-91a7-837d1767d8ff",
+          "traceId": "8315d125",
+          "type": "GENERATION",
+          "name": "8315_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:48:33.850000+00:00",
+          "endTime": "2025-08-05T00:48:55.100000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 21250.0,
+          "completionTokens": 736,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2784,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:47:29.852Z",
+      "updatedAt": "2025-08-05T00:49:00.980Z"
+    },
+    {
+      "id": "34e97ab4",
+      "timestamp": "2025-08-05T00:45:57.492000+00:00",
+      "name": "34e9_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Initialize video capture\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.)\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resizing\n    input_data = resized_frame / 255.0  # Normalize to [0, 1]\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, ...]  # Add batch dimension\n\n    # Phase 3: Inference (Placeholder - Replace with actual inference code)\n    # In a real implementation, you would load the TFLite model,\n    # allocate tensors, set input data, invoke the interpreter,\n    # and get the output data.\n\n    # Phase 4.2: Interpret Results (Placeholder - Replace with actual interpretation code)\n    # In a real implementation, you would process the output data\n    # to extract meaningful information (e.g., object detections,\n    # classifications).\n\n    # Phase 4.3: Handle Output\n    # Draw bounding boxes or labels on the frame based on the\n    # interpreted results.\n    # Example:\n    # cv2.putText(frame, \"Detected Object\", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)\n\n    # Write the processed frame to the output video\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 18
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 85.162,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-45-57-494317_chatcmpl-5b250f5e-e913-4866-a032-b8d97a1dea35",
+          "traceId": "34e97ab4",
+          "type": "GENERATION",
+          "name": "34e9_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:45:57.494000+00:00",
+          "endTime": "2025-08-05T00:46:23.339000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25845.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-46-23-484024_chatcmpl-952a1879-3812-45d6-a6ba-de8b6838b14c",
+          "traceId": "34e97ab4",
+          "type": "GENERATION",
+          "name": "34e9_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:46:23.484000+00:00",
+          "endTime": "2025-08-05T00:46:45.556000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22072.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-46-45-733825_chatcmpl-38cf5e18-47b0-4562-a0b3-d0294c17a0c1",
+          "traceId": "34e97ab4",
+          "type": "GENERATION",
+          "name": "34e9_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:46:45.733000+00:00",
+          "endTime": "2025-08-05T00:47:02.626000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16893.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-47-02-793358_chatcmpl-c5cd5638-01cf-4e91-a472-3c32388304f9",
+          "traceId": "34e97ab4",
+          "type": "GENERATION",
+          "name": "34e9_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:47:02.793000+00:00",
+          "endTime": "2025-08-05T00:47:22.656000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 19863.0,
+          "completionTokens": 683,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2731,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:45:58.016Z",
+      "updatedAt": "2025-08-05T00:47:28.668Z"
+    },
+    {
+      "id": "38486a9d",
+      "timestamp": "2025-08-05T00:44:07.967000+00:00",
+      "name": "3848_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup (Parts 1.2, 1.3 are done in Configuration Parameters)\n# Phase 1.4 and 1.5 are not needed for cv2 implementation\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 30.0, (int(cap.get(3)), int(cap.get(4))))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocessing (resize, normalize, etc.) - adjust as needed for your model\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resize\n    normalized_frame = resized_frame / 255.0  # Example normalization\n    input_data = normalized_frame.astype('float32')\n    input_data = input_data[None, ...] # Add batch dimension\n\n    # Phase 3: Inference (Not needed for cv2 implementation)\n\n    # Phase 4: Output Interpretation & Handling\n    # Replace this with your model's output processing logic\n    # For example, if the model detects objects, draw bounding boxes on the frame\n    # This is a placeholder - replace with your actual inference code\n    # Example:\n    # detections = model.predict(input_data)\n    # for detection in detections:\n    #     x, y, w, h = detection\n    #     cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)\n\n    # Write the output frame\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 17
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 103.354,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-44-07-969169_chatcmpl-23e5fcaf-f212-4537-b3f2-59a66cf3dac7",
+          "traceId": "38486a9d",
+          "type": "GENERATION",
+          "name": "3848_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:44:07.969000+00:00",
+          "endTime": "2025-08-05T00:44:33.750000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25781.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-44-33-898636_chatcmpl-4e75b9b8-e502-408f-9bb3-f3149a3f7cfd",
+          "traceId": "38486a9d",
+          "type": "GENERATION",
+          "name": "3848_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:44:33.898000+00:00",
+          "endTime": "2025-08-05T00:44:55.996000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22098.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-44-56-143041_chatcmpl-dac238c2-56a3-4446-ab52-e64666de5a89",
+          "traceId": "38486a9d",
+          "type": "GENERATION",
+          "name": "3848_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:44:56.143000+00:00",
+          "endTime": "2025-08-05T00:45:13.042000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16899.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-45-13-188570_chatcmpl-fca44d46-2cc6-4ea1-b356-ac52e5deafbc",
+          "traceId": "38486a9d",
+          "type": "GENERATION",
+          "name": "3848_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:45:13.188000+00:00",
+          "endTime": "2025-08-05T00:45:35.771000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22583.0,
+          "completionTokens": 785,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2833,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-45-35-913218_chatcmpl-68d22cec-8c4f-4bdb-8612-8ffc757d883a",
+          "traceId": "38486a9d",
+          "type": "GENERATION",
+          "name": "3848_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:45:35.913000+00:00",
+          "endTime": "2025-08-05T00:45:51.323000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 15410.0,
+          "completionTokens": 515,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2563,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:44:08.488Z",
+      "updatedAt": "2025-08-05T00:45:57.157Z"
+    },
+    {
+      "id": "2f51bbe5",
+      "timestamp": "2025-08-05T00:42:38.020000+00:00",
+      "name": "2f51_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup\ntry:\n    labels = []\n    with open(label_path, 'r') as f:\n        labels = [line.strip() for line in f]\nexcept FileNotFoundError:\n    print(\"Label file not found. Proceeding without labels.\")\n    labels = []\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.)\n    resized_frame = cv2.resize(frame, (300, 300))\n    input_data = resized_frame / 255.0  # Normalize pixel values\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, :, :, :]  # Add batch dimension\n\n    # Phase 3: Inference (Not implemented as the model loading and invocation are not part of the prompt)\n    # In a real implementation, you would load the TFLite model here and run inference.\n\n    # Phase 4.2: Interpret Results (Placeholder - Replace with actual interpretation logic)\n    # Assuming the model outputs bounding boxes and class probabilities\n    # Replace this with your actual interpretation logic based on the model's output\n    # For example:\n    #   - Extract bounding boxes and class probabilities from the output tensor\n    #   - Map class indices to class names using the 'labels' list\n    #   - Draw bounding boxes and labels on the frame\n\n    # Phase 4.3: Handle Output\n    # Write the processed frame to the output video\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 16
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 83.209,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-42-38-021647_chatcmpl-c319d09b-d449-4d13-ba21-d4a54cd11510",
+          "traceId": "2f51bbe5",
+          "type": "GENERATION",
+          "name": "2f51_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:42:38.021000+00:00",
+          "endTime": "2025-08-05T00:43:03.804000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25783.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-43-03-951479_chatcmpl-075cbf53-32a2-418a-865d-bbc03a0271d7",
+          "traceId": "2f51bbe5",
+          "type": "GENERATION",
+          "name": "2f51_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:43:03.951000+00:00",
+          "endTime": "2025-08-05T00:43:26+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22049.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-43-26-183519_chatcmpl-6b478518-80a0-4fb1-8b28-9fcdeb922167",
+          "traceId": "2f51bbe5",
+          "type": "GENERATION",
+          "name": "2f51_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:43:26.183000+00:00",
+          "endTime": "2025-08-05T00:43:43.051000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16868.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-43-43-194911_chatcmpl-44cdfc4a-09b8-4f0d-ab34-e00beb8b8f84",
+          "traceId": "2f51bbe5",
+          "type": "GENERATION",
+          "name": "2f51_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:43:43.194000+00:00",
+          "endTime": "2025-08-05T00:44:01.230000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18036.0,
+          "completionTokens": 617,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2665,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:42:38.540Z",
+      "updatedAt": "2025-08-05T00:44:07.178Z"
+    },
+    {
+      "id": "2893b8f0",
+      "timestamp": "2025-08-05T00:40:46.359000+00:00",
+      "name": "2893_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\n\n# Phase 1: Setup\ntry:\n    labels = []\n    with open(label_path, 'r') as f:\n        labels = [line.strip() for line in f]\nexcept FileNotFoundError:\n    print(\"Label file not found.  Proceeding without labels.\")\n    labels = []\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocessing (resize, normalize, etc.) - adjust as needed for your model\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resize\n    input_data = resized_frame / 255.0  # Normalize to [0, 1]\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, :, :, :]  # Add batch dimension\n\n    # Phase 3: Inference (Placeholder - replace with actual TFLite inference code)\n    # In a real implementation, you would load the TFLite model,\n    # allocate tensors, set input data, invoke the interpreter,\n    # and get the output data.  This is a placeholder.\n    # For demonstration, we'll just copy the frame.\n    output_data = output_data if 'output_data' in locals() else input_data\n\n    # Phase 4.2: Interpret Results (Placeholder - replace with actual interpretation)\n    # In a real implementation, you would process the output_data\n    # to get meaningful results (e.g., object detections, classifications).\n    # For demonstration, we'll just use the frame as the output.\n    # Example: If the model outputs class probabilities, you would\n    # find the class with the highest probability and use the labels list\n    # to get the class name.\n\n    # Phase 4.3: Handle Output\n    # Write the processed frame to the output video\n    out.write(resized_frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 15
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 105.025,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-40-46-361317_chatcmpl-16a91e26-e222-441e-a158-9d463d1f7bfe",
+          "traceId": "2893b8f0",
+          "type": "GENERATION",
+          "name": "2893_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:40:46.361000+00:00",
+          "endTime": "2025-08-05T00:41:12.170000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25809.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-41-12-318173_chatcmpl-666727e8-0fbd-4c1d-8c73-efe2d2b134d6",
+          "traceId": "2893b8f0",
+          "type": "GENERATION",
+          "name": "2893_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:41:12.318000+00:00",
+          "endTime": "2025-08-05T00:41:34.362000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22044.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-41-34-511546_chatcmpl-7ff0f650-2e6e-408b-93c3-62a808ddd3d6",
+          "traceId": "2893b8f0",
+          "type": "GENERATION",
+          "name": "2893_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:41:34.511000+00:00",
+          "endTime": "2025-08-05T00:41:52.083000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 17572.0,
+          "completionTokens": 599,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2647,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-41-52-229103_chatcmpl-0f646c23-0d4b-47ce-9887-e9d4d9b3545e",
+          "traceId": "2893b8f0",
+          "type": "GENERATION",
+          "name": "2893_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:41:52.229000+00:00",
+          "endTime": "2025-08-05T00:42:11.153000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18924.0,
+          "completionTokens": 650,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2698,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-42-11-302079_chatcmpl-edd7f954-e642-4efe-a657-a7acc3458213",
+          "traceId": "2893b8f0",
+          "type": "GENERATION",
+          "name": "2893_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:42:11.302000+00:00",
+          "endTime": "2025-08-05T00:42:31.386000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 20084.0,
+          "completionTokens": 693,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2741,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:40:46.880Z",
+      "updatedAt": "2025-08-05T00:42:36.966Z"
+    },
+    {
+      "id": "9ade8ab6",
+      "timestamp": "2025-08-05T00:38:55.805000+00:00",
+      "name": "9ade_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup (already done with configuration parameters)\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 30.0, (int(cap.get(3)), int(cap.get(4))))\n\n# Phase 4: Output Interpretation & Handling Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.) - assuming the model expects a specific input size\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resize\n    input_data = resized_frame / 255.0  # Normalize to [0, 1]\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, ...] # Add batch dimension\n\n    # Perform inference (placeholder - replace with actual TFLite inference code)\n    # Assuming the model outputs bounding boxes and class probabilities\n    # Replace this with your actual TFLite inference code\n    # output_data = interpreter.invoke(input_data)\n\n    # Placeholder for inference output\n    # Replace with actual output processing\n    # For example:\n    # boxes = output_data['boxes']\n    # classes = output_data['classes']\n    # scores = output_data['scores']\n\n    # Draw bounding boxes and labels on the frame (placeholder)\n    # Replace with your actual bounding box drawing code\n    # for box, class_id, score in zip(boxes, classes, scores):\n    #     if score > 0.5:\n    #         x1, y1, x2, y2 = box\n    #         label = labels[class_id]\n    #         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)\n    #         cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Write the processed frame to the output video\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 14
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 104.25,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-38-55-807349_chatcmpl-2a3e0bf7-312f-4f1a-86d5-8e207d1a15a4",
+          "traceId": "9ade8ab6",
+          "type": "GENERATION",
+          "name": "9ade_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:38:55.807000+00:00",
+          "endTime": "2025-08-05T00:39:21.628000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25821.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-39-21-778252_chatcmpl-da00390d-cb84-4fb4-adb3-e13bdc4baa2a",
+          "traceId": "9ade8ab6",
+          "type": "GENERATION",
+          "name": "9ade_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:39:21.778000+00:00",
+          "endTime": "2025-08-05T00:39:43.836000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22058.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-39-44-006250_chatcmpl-949b5042-83b5-45f4-924b-10716e90ba31",
+          "traceId": "9ade8ab6",
+          "type": "GENERATION",
+          "name": "9ade_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:39:44.006000+00:00",
+          "endTime": "2025-08-05T00:40:02.849000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18843.0,
+          "completionTokens": 647,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2695,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-40-03-001831_chatcmpl-be692f44-aa4a-4281-b485-5efa18374726",
+          "traceId": "9ade8ab6",
+          "type": "GENERATION",
+          "name": "9ade_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:40:03.001000+00:00",
+          "endTime": "2025-08-05T00:40:21.350000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18349.0,
+          "completionTokens": 629,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2677,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-40-21-503125_chatcmpl-a5df6300-f96f-4660-a52f-b2adba4c747a",
+          "traceId": "9ade8ab6",
+          "type": "GENERATION",
+          "name": "9ade_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:40:21.503000+00:00",
+          "endTime": "2025-08-05T00:40:40.057000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18554.0,
+          "completionTokens": 637,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2685,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:38:56.325Z",
+      "updatedAt": "2025-08-05T00:40:45.981Z"
+    },
+    {
+      "id": "a58034f9",
+      "timestamp": "2025-08-05T00:37:07.039000+00:00",
+      "name": "a580_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup (Loading model and setting up video capture)\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video stream or file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile(cap.isOpened()):\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocessing: Resize and normalize the frame\n    resized_frame = cv2.resize(frame, (300, 300))\n    normalized_frame = resized_frame / 255.0\n\n    # Convert to numpy array and expand dimensions\n    input_data = normalized_frame.astype('float32')\n    input_data = input_data[None, :, :, :]  # Add batch dimension\n\n    # Phase 3: Inference (Not applicable as we are using OpenCV directly)\n\n    # Phase 4.2: Interpret Results (Not applicable as we are using OpenCV directly)\n\n    # Phase 4.3: Handle Output (Draw bounding boxes on the frame)\n    # In this example, we'll just write the processed frame to the output video\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 13
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 101.66,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-37-07-041186_chatcmpl-2d37c08e-717c-451e-ba2c-c301d0926845",
+          "traceId": "a58034f9",
+          "type": "GENERATION",
+          "name": "a580_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:37:07.041000+00:00",
+          "endTime": "2025-08-05T00:37:32.872000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25831.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-37-33-036932_chatcmpl-cf227ace-ee7a-4fee-a1d6-2e0fae4a5978",
+          "traceId": "a58034f9",
+          "type": "GENERATION",
+          "name": "a580_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:37:33.036000+00:00",
+          "endTime": "2025-08-05T00:37:55.069000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22033.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-37-55-232645_chatcmpl-eaf15a92-b69d-47c6-9f79-0cf221d43347",
+          "traceId": "a58034f9",
+          "type": "GENERATION",
+          "name": "a580_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:37:55.232000+00:00",
+          "endTime": "2025-08-05T00:38:12.110000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16878.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-38-12-266410_chatcmpl-bb451a98-3964-48ea-9c44-326e4a7c4fa0",
+          "traceId": "a58034f9",
+          "type": "GENERATION",
+          "name": "a580_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:38:12.266000+00:00",
+          "endTime": "2025-08-05T00:38:34.907000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22641.0,
+          "completionTokens": 789,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2837,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-38-35-052289_chatcmpl-cee87090-efbd-4d55-9836-773875226978",
+          "traceId": "a58034f9",
+          "type": "GENERATION",
+          "name": "a580_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:38:35.052000+00:00",
+          "endTime": "2025-08-05T00:38:48.701000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 13649.0,
+          "completionTokens": 452,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2500,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:37:07.559Z",
+      "updatedAt": "2025-08-05T00:38:54.698Z"
+    },
+    {
+      "id": "5cfedae5",
+      "timestamp": "2025-08-05T00:35:33.087000+00:00",
+      "name": "5cfe_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Phase 1: Setup\ntry:\n    labels = []\n    with open(label_path, 'r') as f:\n        labels = [line.strip() for line in f]\nexcept FileNotFoundError:\n    print(\"Label file not found. Proceeding without labels.\")\n    labels = []\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.)\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resizing\n    input_data = resized_frame / 255.0  # Normalize pixel values\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, :, :, :]  # Add batch dimension\n\n    # Phase 3: Inference (Not implemented here, as the model loading and invocation are not part of the prompt)\n    # In a real implementation, you would load the TFLite model, allocate tensors,\n    # set the input tensor, invoke the interpreter, and get the output tensor.\n\n    # Placeholder for inference results\n    output_data = None  # Replace with actual inference results\n\n    # Phase 4.2: Interpret Results (Placeholder)\n    # Assuming output_data contains bounding boxes and class indices\n    # Replace with actual interpretation logic based on your model's output\n    if output_data is not None:\n        # Example: Draw bounding boxes and labels on the frame\n        # for box, class_id in output_data:\n        #     x1, y1, x2, y2 = box\n        #     label = labels[class_id] if labels else str(class_id)\n        #     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)\n        #     cv2.putText(frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n        pass\n\n    # Phase 4.3: Handle Output\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 12
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 87.114,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-35-33-088466_chatcmpl-7070bc68-ce4c-4ac8-a570-53b301533d9c",
+          "traceId": "5cfedae5",
+          "type": "GENERATION",
+          "name": "5cfe_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:35:33.088000+00:00",
+          "endTime": "2025-08-05T00:35:58.915000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25827.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-35-59-080562_chatcmpl-9f54ca18-733d-40e1-837f-10c9ca357657",
+          "traceId": "5cfedae5",
+          "type": "GENERATION",
+          "name": "5cfe_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:35:59.080000+00:00",
+          "endTime": "2025-08-05T00:36:21.151000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22071.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-36-21-300415_chatcmpl-aa0996e6-e9c6-44b6-a03b-2b955aac91f1",
+          "traceId": "5cfedae5",
+          "type": "GENERATION",
+          "name": "5cfe_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:36:21.300000+00:00",
+          "endTime": "2025-08-05T00:36:38.177000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16877.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-36-38-323249_chatcmpl-111590d6-1a0d-4dc0-ac7a-24ff03d4801e",
+          "traceId": "5cfedae5",
+          "type": "GENERATION",
+          "name": "5cfe_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:36:38.323000+00:00",
+          "endTime": "2025-08-05T00:37:00.202000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 21879.0,
+          "completionTokens": 761,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2809,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:35:33.608Z",
+      "updatedAt": "2025-08-05T00:37:06.230Z"
+    },
+    {
+      "id": "37087067",
+      "timestamp": "2025-08-05T00:34:03.389000+00:00",
+      "name": "3708_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Configuration Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f]\n\n# Initialize video capture\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = int(cap.get(cv2.CAP_PROP_FPS))\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame (resize, normalize, etc.)\n    resized_frame = cv2.resize(frame, (300, 300))  # Example resizing\n    input_data = resized_frame / 255.0  # Normalize to [0, 1]\n    input_data = input_data.astype('float32')\n    input_data = input_data[None, ...]  # Add batch dimension\n\n    # Phase 3: Inference (Placeholder - Replace with actual inference code)\n    # In a real implementation, you would load the TFLite model,\n    # allocate tensors, set input data, invoke the interpreter,\n    # and get the output data.\n\n    # Phase 4.2: Interpret Results (Placeholder - Replace with actual interpretation code)\n    # Assuming the output is a list of bounding boxes and class labels\n    # Replace this with your actual output interpretation logic\n\n    # Phase 4.3: Handle Output\n    # Draw bounding boxes and labels on the frame\n    # Replace this with your actual output handling logic\n\n    # Write the processed frame to the output video\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 11
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 83.392,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-34-03-391717_chatcmpl-a3763fae-80eb-4547-8545-14ea5e5426ea",
+          "traceId": "37087067",
+          "type": "GENERATION",
+          "name": "3708_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:34:03.391000+00:00",
+          "endTime": "2025-08-05T00:34:29.213000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25822.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-34-29-381293_chatcmpl-f38ccc0f-a756-47ff-a819-1c65140d2add",
+          "traceId": "37087067",
+          "type": "GENERATION",
+          "name": "3708_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:34:29.381000+00:00",
+          "endTime": "2025-08-05T00:34:51.456000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22075.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-34-51-606476_chatcmpl-f7a7b650-858f-4c2f-808a-612a7ac62f44",
+          "traceId": "37087067",
+          "type": "GENERATION",
+          "name": "3708_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:34:51.606000+00:00",
+          "endTime": "2025-08-05T00:35:08.480000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16874.0,
+          "completionTokens": 573,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2621,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-35-08-650596_chatcmpl-decffedb-29e1-4347-bcaa-fa2de272247b",
+          "traceId": "37087067",
+          "type": "GENERATION",
+          "name": "3708_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:35:08.650000+00:00",
+          "endTime": "2025-08-05T00:35:26.783000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18133.0,
+          "completionTokens": 620,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2668,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:34:03.911Z",
+      "updatedAt": "2025-08-05T00:35:32.502Z"
+    },
+    {
+      "id": "16ffea2f",
+      "timestamp": "2025-08-05T00:32:12.240000+00:00",
+      "name": "16ff_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_code": "import cv2\nimport numpy as np\n\n# Phase 1: Setup\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load the model\ninterpreter = cv2.dnn.readNetFromTFLite(model_path)\ninput_size = interpreter.getInputSize()\noutput_size = interpreter.getOutputSize()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess the frame\n    resized_frame = cv2.resize(frame, (input_size[0], input_size[1]))\n    input_data = np.expand_dims(resized_frame, axis=0)\n    input_data = input_data.astype(np.float32)\n\n    # Phase 3: Inference\n    interpreter.setInput(input_data)\n    output_data = interpreter.forward()\n\n    # Phase 4: Output Interpretation & Handling Loop\n    # Assuming output_data is a bounding box detection output\n    boxes = output_data[0][0]\n    classes = output_data[1][0]\n    scores = output_data[2][0]\n\n    for i in range(len(boxes)):\n        if scores[i] > 0.5:  # Confidence threshold\n            box = boxes[i]\n            class_id = int(classes[i])\n            label = labels[class_id]\n            x1, y1, x2, y2 = map(int, box)\n            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)\n            cv2.putText(frame, f\"{label}: {scores[i]:.2f}\", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)\n\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()",
+        "last_error": "Traceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/results/object_detection/sketches/tmp_20250805033356_psg_gemma3:27b/tmp_20250805033356_psg_gemma3:27b.py\", line 15, in <module>\n    interpreter = cv2.dnn.readNetFromTFLite(model_path)\ncv2.error: OpenCV(4.10.0) /io/opencv/modules/dnn/src/tflite/tflite_importer.cpp:118: error: (-213:The function/feature is not implemented) Parse tensor with type UINT8 in function 'parseTensor'\n\n"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 10
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 103.995,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-32-12-241697_chatcmpl-01d0b41a-8278-444e-a939-86d5bc5975f6",
+          "traceId": "16ffea2f",
+          "type": "GENERATION",
+          "name": "16ff_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:32:12.241000+00:00",
+          "endTime": "2025-08-05T00:32:38.402000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 26161.0,
+          "completionTokens": 914,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2635,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-32-38-550245_chatcmpl-824a366f-9982-4151-8237-f54cc67c7824",
+          "traceId": "16ffea2f",
+          "type": "GENERATION",
+          "name": "16ff_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:32:38.550000+00:00",
+          "endTime": "2025-08-05T00:33:00.621000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 22071.0,
+          "completionTokens": 767,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2815,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-33-00-766060_chatcmpl-f37ca9cf-4ec4-4427-826e-564c9e588fa4",
+          "traceId": "16ffea2f",
+          "type": "GENERATION",
+          "name": "16ff_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:33:00.766000+00:00",
+          "endTime": "2025-08-05T00:33:19.931000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 19165.0,
+          "completionTokens": 659,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2707,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-33-20-075224_chatcmpl-081177c0-c280-4f5b-b88b-7fa2e9a54338",
+          "traceId": "16ffea2f",
+          "type": "GENERATION",
+          "name": "16ff_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:33:20.075000+00:00",
+          "endTime": "2025-08-05T00:33:35.129000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 15054.0,
+          "completionTokens": 504,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2552,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-33-35-502700_chatcmpl-dda4a8b0-a3ba-4246-8a45-d2003b8cae24",
+          "traceId": "16ffea2f",
+          "type": "GENERATION",
+          "name": "16ff_psg_gen_attempt#5",
+          "startTime": "2025-08-05T00:33:35.502000+00:00",
+          "endTime": "2025-08-05T00:33:56.087000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 20585.0,
+          "completionTokens": 711,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2759,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "e91ba5f1-de26-44e1-831a-a3b21445a9d6",
+          "traceId": "16ffea2f",
+          "type": "SPAN",
+          "name": "error_16_psg_failure_signal_py_sketch_generator",
+          "startTime": "2025-08-05T00:33:56.236000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Failed. Last error: Traceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/results/object_detection/sketches/tmp_20250805033356_psg_gemma3:27b/tmp_20250805033356_psg_gemma3:27b.py\", line 15, in <module>\n    interpreter = cv2.dnn.readNetFromTFLite(model_path)\ncv2.error: OpenCV(4.10.0) /io/opencv/modules/dnn/src/tflite/tflite_importer.cpp:118: error: (-213:The function/feature is not implemented) Parse tensor with type UINT8 in function 'parseTensor'\n\n",
+          "calculatedTotalCost": 0.0,
+          "completionTokens": 0,
+          "environment": "default",
+          "promptTokens": 0,
+          "totalTokens": 0,
+          "costDetails": {},
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:32:12.760Z",
+      "updatedAt": "2025-08-05T00:34:01.694Z"
+    },
+    {
+      "id": "698b4384",
+      "timestamp": "2025-08-05T00:30:15.166000+00:00",
+      "name": "698b_py_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import cv2\n\n# Phase 1: Setup\n# 1.2 Paths/Parameters\nmodel_path  = \"models/ssd-mobilenet_v1/detect.tflite\"\ninput_path  = \"data/object_detection/sheeps.mp4\"\noutput_path  = \"results/object_detection/test_results/sheeps_detections.mp4\"\nlabel_path  = \"models/ssd-mobilenet_v1/labelmap.txt\"\n\n# 1.3 Load Labels (Conditional)\ntry:\n    with open(label_path, 'r') as f:\n        labels = [line.strip() for line in f]\nexcept FileNotFoundError:\n    labels = []  # If labels file not found, use an empty list\n\n# 1.4 Load Interpreter (Not using ai_edge_litert, using cv2 for video processing)\n# Using OpenCV for video processing instead of a TFLite interpreter for this example.\n# This simplifies the code and focuses on the video processing aspects.\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n# 2.1 Acquire Input Data\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\n# Get video properties\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\nfps = cap.get(cv2.CAP_PROP_FPS)\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')  # or use 'XVID'\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\n# Phase 4: Output Interpretation & Handling Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # 4.2 Interpret Results (Placeholder - Replace with your model inference code)\n    # In a real application, you would perform inference here using your TFLite model.\n    # For this example, we'll just draw a rectangle on the frame.\n    # Replace this with your actual model inference and result interpretation.\n    # Example:\n    # results = interpreter.invoke(frame)\n    # bounding_boxes = results['boxes']\n    # classes = results['classes']\n    # scores = results['scores']\n    # for box, class_id, score in zip(bounding_boxes, classes, scores):\n    #     if score > 0.5:\n    #         label = labels[class_id] if labels else str(class_id)\n    #         cv2.rectangle(frame, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), (0, 255, 0), 2)\n    #         cv2.putText(frame, f\"{label}: {score:.2f}\", (int(box[0]), int(box[1]) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Draw a rectangle as a placeholder\n    cv2.rectangle(frame, (100, 100), (200, 200), (0, 255, 0), 2)\n\n    # 4.3 Handle Output\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "gemma3:27b_d558_psg_batch",
+      "metadata": {
+        "num_run": 9
+      },
+      "tags": [
+        "benchmark",
+        "gemma3:27b",
+        "py_sketch_generator"
+      ],
+      "latency": 110.011,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-03-30-15-167967_chatcmpl-005ce6d9-f25c-4e4b-979c-529731bc864a",
+          "traceId": "698b4384",
+          "type": "GENERATION",
+          "name": "698b_psg_gen_attempt#1",
+          "startTime": "2025-08-05T00:30:15.167000+00:00",
+          "endTime": "2025-08-05T00:31:00.301000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 45134.0,
+          "completionTokens": 803,
+          "environment": "default",
+          "promptTokens": 1721,
+          "totalTokens": 2524,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-31-00-450602_chatcmpl-04f5be9c-65a5-405d-bec5-c9d3f97ea808",
+          "traceId": "698b4384",
+          "type": "GENERATION",
+          "name": "698b_psg_gen_attempt#2",
+          "startTime": "2025-08-05T00:31:00.450000+00:00",
+          "endTime": "2025-08-05T00:31:22.121000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 21671.0,
+          "completionTokens": 696,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2744,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-31-22-285126_chatcmpl-f35a052f-e73f-4ffd-8ef5-8fccf9c418b4",
+          "traceId": "698b4384",
+          "type": "GENERATION",
+          "name": "698b_psg_gen_attempt#3",
+          "startTime": "2025-08-05T00:31:22.285000+00:00",
+          "endTime": "2025-08-05T00:31:39.140000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16855.0,
+          "completionTokens": 531,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2579,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-03-31-39-298195_chatcmpl-a8d4530d-2095-460e-ae65-7dceac147d03",
+          "traceId": "698b4384",
+          "type": "GENERATION",
+          "name": "698b_psg_gen_attempt#4",
+          "startTime": "2025-08-05T00:31:39.298000+00:00",
+          "endTime": "2025-08-05T00:32:05.178000+00:00",
+          "model": "gemma3:27b",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 25880.0,
+          "completionTokens": 845,
+          "environment": "default",
+          "promptTokens": 2048,
+          "totalTokens": 2893,
+          "costDetails": {},
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "createdAt": "2025-08-05T00:30:15.686Z",
+      "updatedAt": "2025-08-05T00:32:10.811Z"
+    }
+  ],
+  "meta": {
+    "total_items": 22
+  }
+}

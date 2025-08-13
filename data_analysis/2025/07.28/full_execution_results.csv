@@ -1,0 +1,2 @@
+index,filename,script_id,success,execution_time,error,entry_id,session_id,source_file,timestamp
+0,001_ae24_qwen32_tpusg_afad0c8e.py,script_98057d5d_1755041676,False,16.226295709609985,❌ Remote execution failed with exit code 255,afad0c8e,qwen2.5-coder:32b_ae24_tpusg_batch,raw_qwen2.5-coder:32b_ae24_tpusg_batch,2025-07-29T11:40:03.731000+00:00

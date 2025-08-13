@@ -1,0 +1,4 @@
+index,filename,script_id,success,execution_time,error,entry_id,session_id,source_file,timestamp
+0,001_c26f_phi4_tpusg_0a9fc2a6.py,script_59c216f8_1754971292,True,53.50919699668884,,0a9fc2a6,phi4_c26f_tpusg_batch,raw_phi4_c26f_tpusg_batch,2025-08-10T11:37:14.278000+00:00
+1,002_c26f_phi4_tpusg_c390bcf0.py,script_dbab02d4_1754971348,True,53.913841009140015,,c390bcf0,phi4_c26f_tpusg_batch,raw_phi4_c26f_tpusg_batch,2025-08-10T11:36:00.661000+00:00
+2,003_c26f_phi4_tpusg_c50e13ef.py,script_7d16b864_1754971404,True,53.689846992492676,,c50e13ef,phi4_c26f_tpusg_batch,raw_phi4_c26f_tpusg_batch,2025-08-10T11:34:47.737000+00:00

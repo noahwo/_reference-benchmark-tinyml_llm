@@ -1,0 +1,12 @@
+num_run,name,trace_id,batch_id,status,latency,total_tokens,prompt_tokens,completion_tokens,total_cost,parameters,generation_count,prompt_cost,completion_cost,tags,timestamp
+1,d788_tpu_sketch_generator,d788d147,qwen2.5-coder:32b_4e11_tpusg_batch,success,96.38,2613,1819,794,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753790910
+2,e6fb_tpu_sketch_generator,e6fbe36c,qwen2.5-coder:32b_4e11_tpusg_batch,success,36.69,2658,1819,839,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791065
+3,9e92_tpu_sketch_generator,9e9242c6,qwen2.5-coder:32b_4e11_tpusg_batch,success,34.13,2596,1819,777,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791160
+4,159f_tpu_sketch_generator,159fbf7b,qwen2.5-coder:32b_4e11_tpusg_batch,success,36.76,2659,1819,840,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791249
+5,faa9_tpu_sketch_generator,faa96707,qwen2.5-coder:32b_4e11_tpusg_batch,success,40.34,2759,1819,940,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791345
+6,2e9e_tpu_sketch_generator,2e9ee915,qwen2.5-coder:32b_4e11_tpusg_batch,success,36.81,2678,1819,859,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791444
+7,0af9_tpu_sketch_generator,0af97ce2,qwen2.5-coder:32b_4e11_tpusg_batch,success,37.39,2693,1819,874,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791539
+8,e589_tpu_sketch_generator,e5893c18,qwen2.5-coder:32b_4e11_tpusg_batch,success,122.71,8744,5915,2829,0.0,N/A,3,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791635
+9,2d6f_tpu_sketch_generator,2d6f3d6b,qwen2.5-coder:32b_4e11_tpusg_batch,success,82.68,5819,3867,1952,0.0,N/A,2,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791834
+10,613d_tpu_sketch_generator,613dc8c4,qwen2.5-coder:32b_4e11_tpusg_batch,success,35.0,2634,1819,815,0.0,N/A,1,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753791982
+11,c344_tpu_sketch_generator,c344c50d,qwen2.5-coder:32b_4e11_tpusg_batch,success,183.86,12349,7963,4386,0.0,N/A,4,0,0,"['experiment', 'qwen2.5-coder:32b', 'tpu_sketch_generator']",1753792076

@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 
 import pandas as pd
+
 # %%``
 
 def combine_csv_files():
@@ -83,7 +84,7 @@ def combine_csv_files():
     
     # Combine all dataframes
     combined_df = pd.concat(all_dataframes, ignore_index=True)
-    
+    combined_df['generation_count'] = combined_df['generation_count'].astype(int)
     # Sort by batch_id and then by num_run if available
     if 'batch_id' in combined_df.columns:
         sort_columns = ['batch_id']
@@ -118,3 +119,4 @@ def combine_csv_files():
 
 if __name__ == "__main__":
     combine_csv_files()
+ 

@@ -3,3 +3,6 @@ main.synctex.gz
 .DS_Store
 */**/tmp.ipynb
 project-intro.md
+.vscode
+.claude
+.github

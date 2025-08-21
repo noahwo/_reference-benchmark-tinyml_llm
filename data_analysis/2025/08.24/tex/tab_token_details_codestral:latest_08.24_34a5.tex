@@ -1,0 +1,31 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{4}{c|}{Overall Token} &
+          \multicolumn{4}{c|}{Input Token} &
+          \multicolumn{4}{c|}{Output Token} \\ \cline{2-13}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} \\ \hline
+    TPUSG & 13403 & 13441 & 14988 & 9151 & 10035 & 10240 & 10240 & 6144 & 3368 & 3286 & 4748 & 1497 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Token consumption details regarding Overall, Input, and Output in three stages. Batch ID: 34a5, Model: codestral:latest, Date: 08.24, Parameters: temperature=0.1, top-p=0.3}
+        \label{tab:token_details_34a5_codestral:latest_08.24}
+        \end{table}
+    

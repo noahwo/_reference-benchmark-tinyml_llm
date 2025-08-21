@@ -1,0 +1,735 @@
+{
+  "data": [
+    {
+      "id": "1e955725",
+      "timestamp": "2025-08-19T19:01:44.942000+00:00",
+      "name": "1e95_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_error": "Keyboard interrupt received"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 11
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 22.007,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-22-01-44-944443_chatcmpl-8eb48886-b688-4904-a227-dd6942cff311",
+          "traceId": "1e955725",
+          "type": "GENERATION",
+          "name": "1e95_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T19:01:44.944000+00:00",
+          "endTime": "2025-08-19T19:01:58.037000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 13093.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 759,
+          "totalTokens": 2592,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "43ef5e42-d691-472f-9292-7e75d7f71280",
+          "traceId": "1e955725",
+          "type": "SPAN",
+          "name": "error_1e_tpusg_failure_signal_tpu_sketch_generator",
+          "startTime": "2025-08-19T19:02:06.951000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Keyboard interrupt received",
+          "calculatedTotalCost": 0.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 0,
+          "totalTokens": 0,
+          "promptTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T19:02:12.077Z",
+      "createdAt": "2025-08-19T19:01:45.465Z"
+    },
+    {
+      "id": "395788bd",
+      "timestamp": "2025-08-19T19:00:29.263000+00:00",
+      "name": "3957_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\nimport cv2\nimport os\n\n# Phase 1: Setup\n\n# Define paths and parameters\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU acceleration\ntry:\n    interpreter = Interpreter(model_path=model_path,\n                              experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path=model_path,\n                                  experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        raise Exception(\"Failed to load EdgeTPU delegate\") from e\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n\n# Acquire input data\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    raise Exception(\"Error opening video file\")\n\nframe_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))\nframe_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))\nfps = cap.get(cv2.CAP_PROP_FPS)\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'XVID')\nout = cv2.VideoWriter(output_path, fourcc, fps, (frame_width, frame_height))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess data\n    input_data = cv2.resize(frame, (input_details[0]['shape'][1], input_details[0]['shape'][2]))\n    input_data = cv2.cvtColor(input_data, cv2.COLOR_BGR2RGB)\n    input_data = np.expand_dims(input_data, axis=0)\n\n    # Quantization handling\n    floating_model = (input_details[0]['dtype'] == np.float32)\n    if floating_model:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n\n    # Get output tensor(s)\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]  # Bounding boxes\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]  # Class IDs\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]   # Confidence scores\n\n    # Interpret results and apply confidence thresholding\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            class_id = int(classes[i])\n            box = boxes[i]\n            ymin, xmin, ymax, xmax = map(int, [box[0] * frame_height, box[1] * frame_width,\n                                              box[2] * frame_height, box[3] * frame_width])\n\n            # Draw bounding box and label\n            cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)\n            label = f'{labels[class_id]}: {scores[i]:.2f}'\n            cv2.putText(frame, label, (xmin, ymin - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Write the frame to output file\n    out.write(frame)\n\n# Phase 5: Cleanup\n\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 10
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 14.883,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-22-00-29-265648_chatcmpl-c86af141-95cf-46a3-9fd0-8fb3070c2801",
+          "traceId": "395788bd",
+          "type": "GENERATION",
+          "name": "3957_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T19:00:29.265000+00:00",
+          "endTime": "2025-08-19T19:00:44.148000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14883.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 881,
+          "totalTokens": 2714,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T19:01:46.721Z",
+      "createdAt": "2025-08-19T19:00:29.784Z"
+    },
+    {
+      "id": "cc78088e",
+      "timestamp": "2025-08-19T18:58:32.554000+00:00",
+      "name": "cc78_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_code": "import os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\ntry:\n    interpreter = Interpreter(model_path='/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite', \n                            experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path='/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite', \n                                experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        raise RuntimeError(\"Failed to load EdgeTPU delegate: \" + str(e))\n\ninterpreter.allocate_tensors()\n\n# Get input and output tensors\ninput_details  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_details  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\n\n# Load labels\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nimport cv2\n\ncap = cv2.VideoCapture('/home/mendel/tinyml_autopilot/data/sheeps.mp4')\nif not cap.isOpened():\n    raise IOError(\"Cannot open video\")\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess data\n    input_shape = input_details['shape']\n    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\n    frame_resized = cv2.resize(frame_rgb, (input_shape[1], input_shape[2]))\n    input_data = np.expand_dims(frame_resized, axis=0)\n\n    floating_model = (input_details['dtype'] == np.float32)\n    if floating_model:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n    output_boxes = interpreter.get_tensor(output_details[0]['index'])\n    output_classes = interpreter.get_tensor(output_details[1]['index'])\n    output_scores = interpreter.get_tensor(output_details[2]['index'])\n\n    for i in range(len(output_boxes)):\n        if output_scores[i] > 0.5:\n            y1, x1, y2, x2 = map(int, output_boxes[i] * [frame.shape[0], frame.shape[1], frame.shape[0], frame.shape[1]])\n            class_id = int(output_classes[i])\n            label = labels[class_id]\n            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {output_scores[i]:.2f}', (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Display the frame\n    cv2.imshow('Object Detection', frame)\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\ncap.release()\ncv2.destroyAllWindows()",
+        "last_error": "Max retries reached with error. Last error: Traceback (most recent call last):\n  File \"script_3c5b1060_1755630014.py\", line 40, in <module>\n    input_shape = input_details['shape']\nTypeError: string indices must be integers."
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 9
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 110.238,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-58-32-555998_chatcmpl-5510c0bd-beb6-4958-a2f0-92715fe4a1db",
+          "traceId": "cc78088e",
+          "type": "GENERATION",
+          "name": "cc78_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:58:32.555000+00:00",
+          "endTime": "2025-08-19T18:58:44.946000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 12391.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 727,
+          "totalTokens": 2560,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-21-58-53-095059_chatcmpl-f15ba26f-2c9f-4e7e-920b-22fe90a45109",
+          "traceId": "cc78088e",
+          "type": "GENERATION",
+          "name": "cc78_tpusg_gen_attempt#2",
+          "startTime": "2025-08-19T18:58:53.095000+00:00",
+          "endTime": "2025-08-19T18:59:08.078000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14983.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 890,
+          "totalTokens": 2938,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-21-59-15-761725_chatcmpl-9990c2b6-52b4-4b97-9d3e-37106da79741",
+          "traceId": "cc78088e",
+          "type": "GENERATION",
+          "name": "cc78_tpusg_gen_attempt#3",
+          "startTime": "2025-08-19T18:59:15.761000+00:00",
+          "endTime": "2025-08-19T18:59:30.436000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14675.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 870,
+          "totalTokens": 2918,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-21-59-38-388589_chatcmpl-6c3fc87b-cd13-4d0e-86b1-38450b780524",
+          "traceId": "cc78088e",
+          "type": "GENERATION",
+          "name": "cc78_tpusg_gen_attempt#4",
+          "startTime": "2025-08-19T18:59:38.388000+00:00",
+          "endTime": "2025-08-19T18:59:52.888000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14500.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 859,
+          "totalTokens": 2907,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-22-00-00-592922_chatcmpl-5313bd63-de3d-48a4-b9b9-216ac15d6473",
+          "traceId": "cc78088e",
+          "type": "GENERATION",
+          "name": "cc78_tpusg_gen_attempt#5",
+          "startTime": "2025-08-19T19:00:00.592000+00:00",
+          "endTime": "2025-08-19T19:00:14.930000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14338.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 848,
+          "totalTokens": 2896,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "0b58db94-c423-4e46-b39d-a8277c2962e5",
+          "traceId": "cc78088e",
+          "type": "SPAN",
+          "name": "error_cc_tpusg_failure_signal_tpu_sketch_generator",
+          "startTime": "2025-08-19T19:00:22.793000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Failed: Max retries reached with error. Last error: Traceback (most recent call last):\n  File \"script_3c5b1060_1755630014.py\", line 40, in <module>\n    input_shape = input_details['shape']\nTypeError: string indices must be integers.",
+          "calculatedTotalCost": 0.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 0,
+          "totalTokens": 0,
+          "promptTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T19:00:28.243Z",
+      "createdAt": "2025-08-19T18:58:33.075Z"
+    },
+    {
+      "id": "5ad83ea8",
+      "timestamp": "2025-08-19T18:57:22.590000+00:00",
+      "name": "5ad8_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\n\n# Paths/Parameters\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load Interpreter with EdgeTPU\ntry:\n    interpreter = Interpreter(model_path=model_path, \n                              experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    print(f\"Failed to load EdgeTPU delegate: {e}\")\n    try:\n        interpreter = Interpreter(model_path=model_path, \n                                  experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        print(f\"Failed to load alternative EdgeTPU delegate: {e}\")\n        exit(1)\n\ninterpreter.allocate_tensors()\n\n# Get Model Details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\ninput_shape = input_details[0]['shape']\ninput_dtype = input_details[0]['dtype']\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n\nimport cv2\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit(1)\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess Data\n    input_data = cv2.resize(frame, (input_shape[1], input_shape[2]))\n    input_data = cv2.cvtColor(input_data, cv2.COLOR_BGR2RGB)\n    input_data = np.expand_dims(input_data, axis=0).astype(input_dtype)\n\n    if input_dtype == np.float32:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n\n    # Get Output Tensor(s)\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]  # Bounding boxes\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]  # Class IDs\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]   # Confidence scores\n\n    # Interpret Results\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            class_id = int(classes[i])\n            label = labels[class_id]\n            box = boxes[i]\n\n            y_min, x_min, y_max, x_max = map(int, [box[0] * frame.shape[0], box[1] * frame.shape[1],\n                                                   box[2] * frame.shape[0], box[3] * frame.shape[1]])\n\n            # Draw bounding box and label\n            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {scores[i]:.2f}', (x_min, y_min - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Handle Output\n    cv2.imshow('Detection', frame)\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\ncap.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 8
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 14.212,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-57-22-593401_chatcmpl-b0d3738d-0b75-4060-9383-5c601a06ed9a",
+          "traceId": "5ad83ea8",
+          "type": "GENERATION",
+          "name": "5ad8_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:57:22.593000+00:00",
+          "endTime": "2025-08-19T18:57:36.805000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14212.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 841,
+          "totalTokens": 2674,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:58:31.318Z",
+      "createdAt": "2025-08-19T18:57:23.114Z"
+    },
+    {
+      "id": "1f81c2be",
+      "timestamp": "2025-08-19T18:56:08.968000+00:00",
+      "name": "1f81_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import os\nimport time\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Configuration parameters\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU delegate\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    print(f\"Error loading EdgeTPU delegate: {e}\")\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        print(f\"Fallback error loading EdgeTPU delegate: {e}\")\n        exit(1)\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Input preprocessing\nheight, width = input_details[0]['shape'][1], input_details[0]['shape'][2]\nfloating_model = (input_details[0]['dtype'] == np.float32)\n\nimport cv2\n\n# Open video capture\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit(1)\n\n# Define the codec and create VideoWriter object\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 30.0, (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))\n\nwhile cap.isOpened():\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess frame\n    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\n    frame_resized = cv2.resize(frame_rgb, (width, height))\n    input_data = np.expand_dims(frame_resized, axis=0)\n\n    if floating_model:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Set input tensor\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n\n    # Run inference\n    interpreter.invoke()\n\n    # Get output tensors\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    # Post-processing\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            ymin, xmin, ymax, xmax = boxes[i]\n            label = labels[int(classes[i])]\n            cv2.rectangle(frame, (int(xmin * frame.shape[1]), int(ymin * frame.shape[0])), \n                          (int(xmax * frame.shape[1]), int(ymax * frame.shape[0])), \n                          (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {scores[i]:.2f}', \n                        (int(xmin * frame.shape[1]), int(ymin * frame.shape[0]) - 10), \n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Write the frame with bounding boxes to the output file\n    out.write(frame)\n\n# Release everything if job is finished\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 7
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 14.223,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-56-08-970083_chatcmpl-33060b11-48a7-4226-b1d6-645adce109eb",
+          "traceId": "1f81c2be",
+          "type": "GENERATION",
+          "name": "1f81_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:56:08.970000+00:00",
+          "endTime": "2025-08-19T18:56:23.193000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14223.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 842,
+          "totalTokens": 2675,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:57:20.658Z",
+      "createdAt": "2025-08-19T18:56:09.488Z"
+    },
+    {
+      "id": "eacf0894",
+      "timestamp": "2025-08-19T18:53:43.307000+00:00",
+      "name": "eacf_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\nmodel_path     = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path     = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path     = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path     = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold     = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load Interpreter with EdgeTPU\ntry:\n    interpreter = Interpreter(model_path=model_path,\n                              experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path=model_path,\n                                  experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        raise Exception(\"Failed to load EdgeTPU delegate: {}\".format(e))\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nimport cv2\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    raise Exception(\"Error opening video file\")\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess data\n    input_data = cv2.resize(frame, (input_details[0]['shape'][1], input_details[0]['shape'][2]))\n    input_data = np.expand_dims(input_data, axis=0)\n    \n    # Ensure the input data matches the expected type and scale\n    if input_details[0]['dtype'] == np.uint8:\n        input_data = (input_data - 127.5).astype(np.int32) * (2 / 128.0)\n        input_data = (input_data + 1) * 127.5\n        input_data = np.clip(input_data, 0, 255).astype(np.uint8)\n    else:\n        input_data = input_data / 127.5 - 1\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n    boxes = output_details[0]['index']\n    classes = output_details[1]['index']\n    scores = output_details[2]['index']\n    num_detections = output_details[3]['index']\n\n    boxes = np.squeeze(interpreter.get_tensor(boxes))\n    classes = np.squeeze(interpreter.get_tensor(classes)).astype(np.int32)\n    scores = np.squeeze(interpreter.get_tensor(scores))\n\n    # Fix: Ensure the number of detections is within bounds\n    num_detections = min(num_detections, len(scores))\n\n    for i in range(int(num_detections)):\n        if scores[i] > confidence_threshold:\n            class_name = labels[classes[i]]\n            ymin, xmin, ymax, xmax = boxes[i]\n            cv2.rectangle(frame, (int(xmin * frame.shape[1]), int(ymin * frame.shape[0])),\n                          (int(xmax * frame.shape[1]), int(ymax * frame.shape[0])), (0, 255, 0), 2)\n            cv2.putText(frame, '{}: {:.2f}'.format(class_name, scores[i]),\n                        (int(xmin * frame.shape[1]), int(ymin * frame.shape[0]) - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Handle Output\n    cv2.imshow('Object Detection', frame)\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\ncap.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 6
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 89.027,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-53-43-309238_chatcmpl-fe50c2b3-63ed-4254-8344-2d5d79637acd",
+          "traceId": "eacf0894",
+          "type": "GENERATION",
+          "name": "eacf_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:53:43.309000+00:00",
+          "endTime": "2025-08-19T18:53:56.937000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 13628.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 804,
+          "totalTokens": 2637,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-21-54-04-825249_chatcmpl-befd42eb-2798-4ec8-bb7f-60fdfd0e7bc4",
+          "traceId": "eacf0894",
+          "type": "GENERATION",
+          "name": "eacf_tpusg_gen_attempt#2",
+          "startTime": "2025-08-19T18:54:04.825000+00:00",
+          "endTime": "2025-08-19T18:54:20.370000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 15545.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 926,
+          "totalTokens": 2974,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-21-54-28-580187_chatcmpl-7c61062f-3c04-4138-be84-8401e0b9ad9d",
+          "traceId": "eacf0894",
+          "type": "GENERATION",
+          "name": "eacf_tpusg_gen_attempt#3",
+          "startTime": "2025-08-19T18:54:28.580000+00:00",
+          "endTime": "2025-08-19T18:54:47.489000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 18909.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 1144,
+          "totalTokens": 3192,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-21-54-55-619834_chatcmpl-9b66a1e9-d382-4089-ac1d-015987823546",
+          "traceId": "eacf0894",
+          "type": "GENERATION",
+          "name": "eacf_tpusg_gen_attempt#4",
+          "startTime": "2025-08-19T18:54:55.619000+00:00",
+          "endTime": "2025-08-19T18:55:12.336000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16717.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 999,
+          "totalTokens": 3047,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:56:08.096Z",
+      "createdAt": "2025-08-19T18:53:43.832Z"
+    },
+    {
+      "id": "669ab066",
+      "timestamp": "2025-08-19T18:52:35.710000+00:00",
+      "name": "669a_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        raise Exception(\"Failed to load EdgeTPU delegate\") from e\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nimport cv2\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    raise Exception(f\"Error opening video file {input_path}\")\n\nfourcc = cv2.VideoWriter_fourcc(*'mp4v')\nout = cv2.VideoWriter(output_path, fourcc, 30.0, (640, 480))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess data\n    height, width, channels = input_details[0]['shape'][1:4]\n    input_data = cv2.resize(frame, (width, height))\n    input_data = np.expand_dims(input_data, axis=0)\n    input_data = input_data.astype(np.uint8)\n\n    if input_details[0]['dtype'] == np.float32:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]  # Class ID\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]   # Confidence\n\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            class_name = labels[int(classes[i])]\n            box = boxes[i]\n            y_min, x_min, y_max, x_max = box\n            cv2.rectangle(frame, (int(x_min * width), int(y_min * height)), \n                            (int(x_max * width), int(y_max * height)), (0, 255, 0), 2)\n            label_text = f'{class_name}: {scores[i]:.2f}'\n            cv2.putText(frame, label_text, (int(x_min * width), int(y_min * height) - 10), \n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 5
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 13.112,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-52-35-713105_chatcmpl-d7a217bf-a684-4d5b-b4cd-4bef057b020d",
+          "traceId": "669ab066",
+          "type": "GENERATION",
+          "name": "669a_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:52:35.713000+00:00",
+          "endTime": "2025-08-19T18:52:48.825000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 13112.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 772,
+          "totalTokens": 2605,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:53:42.457Z",
+      "createdAt": "2025-08-19T18:52:36.235Z"
+    },
+    {
+      "id": "2bd80f95",
+      "timestamp": "2025-08-19T18:51:24.021000+00:00",
+      "name": "2bd8_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\nimport cv2\n\n# Configuration parameters\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Phase 1: Setup\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1')])\n    except Exception as e:\n        print(f\"Failed to load EdgeTPU delegate: {e}\")\n        exit()\n\ninterpreter.allocate_tensors()\n\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Phase 2: Input Acquisition & Preprocessing Loop\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nframe_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))\nframe_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))\n\nout = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'XVID'), 30.0, (frame_width, frame_height))\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess data\n    input_data = cv2.resize(frame, (input_details[0]['shape'][1], input_details[0]['shape'][2]))\n    input_data = cv2.cvtColor(input_data, cv2.COLOR_BGR2RGB)\n    input_data = np.expand_dims(input_data, axis=0)\n\n    # Quantization handling\n    if input_details[0]['dtype'] == np.float32:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            class_name = labels[int(classes[i])]\n            ymin, xmin, ymax, xmax = boxes[i]\n            box_color = (0, 255, 0)  # Green color\n            cv2.rectangle(frame, (int(xmin * frame_width), int(ymin * frame_height)),\n                           (int(xmax * frame_width), int(ymax * frame_height)), box_color, 2)\n            label_text = f'{class_name}: {scores[i]:.2f}'\n            cv2.putText(frame, label_text, (int(xmin * frame_width), int(ymin * frame_height) - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, box_color, 2)\n\n    # Write the result to output video\n    out.write(frame)\n\n# Phase 5: Cleanup\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 4
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 13.257,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-51-24-023792_chatcmpl-e75018c7-1231-4daf-8f62-3247ca4781aa",
+          "traceId": "2bd80f95",
+          "type": "GENERATION",
+          "name": "2bd8_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:51:24.023000+00:00",
+          "endTime": "2025-08-19T18:51:37.280000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 13257.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 779,
+          "totalTokens": 2612,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:52:34.937Z",
+      "createdAt": "2025-08-19T18:51:24.570Z"
+    },
+    {
+      "id": "1d8fae77",
+      "timestamp": "2025-08-19T18:50:08.535000+00:00",
+      "name": "1d8f_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import numpy as np\nimport cv2\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\n\n# Define necessary variables using the model path, input path, label path, output paths, or other parameters provided.\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load labels from the label path\nlabels = []\nwith open(label_path, 'r') as f:\n    for line in f:\n        labels.append(line.strip())\n\n# Instantiate interpreter with EdgeTPU acceleration\ntry:\n    interpreter = Interpreter(model_path=model_path, \n                            experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path=model_path, \n                                experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        print(f\"Error loading EdgeTPU delegate: {e}\")\n        exit(1)\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n\n# Acquire Input Data: Read the video file\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit(1)\n\n# Get video frame dimensions and initialize output video writer\nframe_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))\nframe_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))\nout = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'XVID'), 30.0, (frame_width, frame_height))\n\n# Preprocess Data Loop\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Resize and preprocess the frame\n    input_data = cv2.resize(frame, (input_details[0]['shape'][2], input_details[0]['shape'][1]))\n    input_data = input_data[np.newaxis, :, :, :]\n\n    # Quantization Handling\n    floating_model = (input_details[0]['dtype'] == np.float32)\n    if floating_model:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Set Input Tensor(s)\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n\n    # Run Inference\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n\n    # Get Output Tensor(s)\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    # Interpret Results\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            class_id = int(classes[i])\n            box = boxes[i]\n            label = labels[class_id]\n            ymin, xmin, ymax, xmax = box\n\n            # Convert to frame dimensions\n            xmin = int(xmin * frame_width)\n            xmax = int(xmax * frame_width)\n            ymin = int(ymin * frame_height)\n            ymax = int(ymax * frame_height)\n\n            # Draw bounding box and label on the frame\n            cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {scores[i]:.2f}', (xmin, ymin - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Handle Output: Write the processed frame to the output video\n    out.write(frame)\n\n# Phase 5: Cleanup\n\n# Release resources\ncap.release()\nout.release()\ncv2.destroyAllWindows()\n\nprint(\"Processing complete and video saved.\")"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 3
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 15.245,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-50-08-538487_chatcmpl-83ce38ca-abd8-4cd5-b74f-d1f6d076b5c2",
+          "traceId": "1d8fae77",
+          "type": "GENERATION",
+          "name": "1d8f_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:50:08.538000+00:00",
+          "endTime": "2025-08-19T18:50:23.783000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 15245.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 907,
+          "totalTokens": 2740,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:51:21.290Z",
+      "createdAt": "2025-08-19T18:50:09.058Z"
+    },
+    {
+      "id": "24405748",
+      "timestamp": "2025-08-19T18:48:34.505000+00:00",
+      "name": "2440_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import os\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Configuration parameters\nmodel_path   = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path   = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path   = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path   = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold   = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU delegate\ntry:\n    interpreter = Interpreter(model_path=model_path,\n                              experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    print(f\"Failed to load EdgeTPU delegate: {e}\")\n    try:\n        interpreter = Interpreter(model_path=model_path,\n                                  experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        print(f\"Second attempt to load EdgeTPU delegate failed: {e}\")\n        raise\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Check if model uses floating point inputs\nimport numpy as np  # Import numpy here to fix the NameError\nfloating_model = (input_details[0]['dtype'] == np.float32)\n\nimport cv2\n\n# Open video file\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error: Could not open video.\")\n    exit()\n\nframe_width = int(cap.get(3))\nframe_height = int(cap.get(4))\n\nfourcc = cv2.VideoWriter_fourcc(*'XVID')\nout = cv2.VideoWriter(output_path, fourcc, 30.0, (frame_width, frame_height))\n\nwhile cap.isOpened():\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Preprocess data\n    input_data = cv2.resize(frame, (input_details[0]['shape'][1], input_details[0]['shape'][2]))\n    input_data = cv2.cvtColor(input_data, cv2.COLOR_BGR2RGB)\n    input_data = np.expand_dims(input_data, axis=0)\n\n    if floating_model:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Set input tensor\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n\n    # Run inference\n    interpreter.invoke()\n\n    # Get output tensors\n    boxes = interpreter.get_tensor(output_details[0]['index'])\n    classes = interpreter.get_tensor(output_details[1]['index'])\n    scores = interpreter.get_tensor(output_details[2]['index'])\n    num_detections = interpreter.get_tensor(output_details[3]['index'])\n\n    # Interpret results\n    for i in range(int(num_detections)):\n        if scores[0, i] > confidence_threshold:\n            ymin = int(max(1, (boxes[0, i, 0] * frame_height)))\n            xmin = int(max(1, (boxes[0, i, 1] * frame_width)))\n            ymax = int(min(frame_height, (boxes[0, i, 2] * frame_height)))\n            xmax = int(min(frame_width, (boxes[0, i, 3] * frame_width)))\n\n            label = labels[int(classes[0, i])]\n            cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {scores[0, i]:.2f}', (xmin, ymin - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Write frame to output video\n    out.write(frame)\n\ncap.release()\nout.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 2
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 35.249,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-48-34-507359_chatcmpl-0dcf9052-5827-4c75-9237-ef720c8b6701",
+          "traceId": "24405748",
+          "type": "GENERATION",
+          "name": "2440_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:48:34.507000+00:00",
+          "endTime": "2025-08-19T18:48:48.975000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 14468.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 858,
+          "totalTokens": 2691,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-21-48-53-324298_chatcmpl-e9a7387f-cf13-451e-b116-199841c44085",
+          "traceId": "24405748",
+          "type": "GENERATION",
+          "name": "2440_tpusg_gen_attempt#2",
+          "startTime": "2025-08-19T18:48:53.324000+00:00",
+          "endTime": "2025-08-19T18:49:09.756000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 16432.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 981,
+          "totalTokens": 3029,
+          "promptTokens": 2048,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:50:07.215Z",
+      "createdAt": "2025-08-19T18:48:35.026Z"
+    },
+    {
+      "id": "ec43f6b1",
+      "timestamp": "2025-08-19T18:46:58.851000+00:00",
+      "name": "ec43_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\n\n# Paths/Parameters\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load Labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load Interpreter with EdgeTPU\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept OSError:\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        raise RuntimeError(f\"Failed to load EdgeTPU delegate: {e}\")\n\ninterpreter.allocate_tensors()\n\n# Get Model Details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n\nimport cv2\n\n# Open video file\ncap = cv2.VideoCapture(input_path)\n\nif not cap.isOpened():\n    raise IOError(\"Could not open input video\")\n\nwhile True:\n    # Acquire Input Data\n    ret, frame = cap.read()\n    \n    if not ret:\n        break  # End of video\n\n    # Preprocess Data\n    height, width, channels = frame.shape\n    input_shape = input_details[0]['shape'][1:3]\n    resized_frame = cv2.resize(frame, (input_shape[1], input_shape[0]))\n    rgb_frame = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)\n    input_data = np.expand_dims(rgb_frame, axis=0)\n\n    # Quantization Handling\n    if input_details[0]['dtype'] == np.float32:\n        floating_model = True\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n\n    # Get Output Tensor(s)\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    # Interpret Results\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            y_min, x_min, y_max, x_max = boxes[i]\n            label_id = int(classes[i])\n            label_text = labels[label_id]\n\n            # Post-processing\n            y_min = int(y_min * height)\n            x_min = int(x_min * width)\n            y_max = int(y_max * height)\n            x_max = int(x_max * width)\n\n            # Draw bounding box and label\n            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label_text}: {scores[i]:.2f}', (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Handle Output\n    cv2.imshow('Object Detection', frame)\n\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\n\ncap.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_684d_tpusg_batch",
+      "metadata": {
+        "num_run": 1
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "latency": 40.69,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-21-46-58-853189_chatcmpl-1ce6ae53-847d-4b79-81ca-79f610ec740e",
+          "traceId": "ec43f6b1",
+          "type": "GENERATION",
+          "name": "ec43_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T18:46:58.853000+00:00",
+          "endTime": "2025-08-19T18:47:39.543000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 40690.0,
+          "costDetails": {},
+          "environment": "default",
+          "completionTokens": 829,
+          "totalTokens": 2662,
+          "promptTokens": 1833,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "environment": "default",
+      "updatedAt": "2025-08-19T18:48:34.059Z",
+      "createdAt": "2025-08-19T18:46:59.373Z"
+    }
+  ],
+  "meta": {
+    "total_items": 11
+  }
+}

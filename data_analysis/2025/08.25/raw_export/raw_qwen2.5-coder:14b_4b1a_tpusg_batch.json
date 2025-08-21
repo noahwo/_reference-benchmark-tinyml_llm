@@ -1,0 +1,236 @@
+{
+  "data": [
+    {
+      "id": "17309ed8",
+      "timestamp": "2025-08-19T11:42:09.068000+00:00",
+      "name": "1730_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU acceleration\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        raise RuntimeError(\"Failed to load EdgeTPU delegate: \" + str(e))\n\ninterpreter.allocate_tensors()\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nimport cv2\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    raise RuntimeError(\"Could not open video file.\")\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Resize frame to input size\n    h, w, _ = frame.shape\n    input_shape = input_details[0]['shape'][1:3]\n    resized_frame = cv2.resize(frame, (input_shape[1], input_shape[0]))\n    input_data = np.expand_dims(resized_frame, axis=0)\n\n    # Preprocess data\n    if input_details[0]['dtype'] == np.float32:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            box = boxes[i]\n            class_id = int(classes[i])\n            label = labels[class_id]\n            score = scores[i]\n\n            # Draw bounding box\n            y_min, x_min, y_max, x_max = map(int, [box[0] * h, box[1] * w, box[2] * h, box[3] * w])\n            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {score:.2f}', (x_min, y_min - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Display the frame\n    cv2.imshow('Detected Objects', frame)\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\ncap.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_4b1a_tpusg_batch",
+      "release": null,
+      "version": null,
+      "user_id": null,
+      "metadata": {
+        "num_run": 2
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "public": false,
+      "html_path": "/project/cmavm4dny0006mo07fyz082g6/traces/17309ed8",
+      "latency": 13.088,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-42-09-070187_chatcmpl-d100b339-d93c-4464-9060-afc785cab85e",
+          "traceId": "17309ed8",
+          "type": "GENERATION",
+          "name": "1730_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T11:42:09.070000+00:00",
+          "endTime": "2025-08-19T11:42:22.158000+00:00",
+          "completionStartTime": "2025-08-19T11:42:22.158000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "input": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "### CONTEXT ###\nYou are an expert in Machine Learning on Edge Devices, highly skilled in the workflow, tools, techniques, and best practices of TinyML operations. \nYour expertise extends to hardware, including microcontrollers and microprocessors. \nYou will be asked questions regarding various tasks of edge machine learning , for example, data engineering, model designing, model evaluation, model conversion, deployment sketch developing, etc, of machine learning on small devices and may need to generate code to execute corresponding tasks, for example, data cleaning, model training code, etc. \nYour output is directly going to be executed without furhter modification nor additional implementation, so make sure your code output is strictly following the format instrutiuons and the requirements of the task.\n\n### RESPONSE FORMAT ###\n- Generate a Python script based *precisely* on the provided application description and requirements.\n- Output should contain ONLY a code block where there is completed python code.\n- The code should be clear, accurate, and directly executable, skip any code you are unsure about the detail.\n- Naming strategy should reflect quantization information.\n- If error info conflicts with my requirements, follow my requirements strictly while re-generating code.\n- Your goal is to generate a complete, runnable Python script based on the user's application description and requirements. \n- Ensure the code is clean, well-commented, and uses standard Python libraries ('numpy', 'time', 'os', 'cv2' only if needed for image/video).\n- The generated script should be enclosed in a single Python code block like ```python ... ```\n- Provide the complete Python code in script enclosed in a single ```python ... ``` block, you cannot skip outputting any part of the code.\n\n\n"
+              },
+              {
+                "role": "user",
+                "content": "\n### OBJECTIVE ###\nGenerate a complete Python script for the application named 'Object Detection via a video file with TPU'. The deployment target device is 'Google Coral Dev Board'.\n\n\n### CONFIGURATION PARAMETERS ###\nAll the required paths and parameters are provided below, use them in generated code:\n-   model_path: '/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite'\n-   label_path: '/home/mendel/tinyml_autopilot/models/labelmap.txt'  \n-   Input Method Description: 'Read a single video file from the given input_path'\n-   input_path: '/home/mendel/tinyml_autopilot/data//sheeps.mp4'  \n-   Output Method Description: 'Output the video file with rectangles drew on the detected objects, along with texts of labels and calculated mAP(mean average precision)'\n-   output_path: '/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4' \n-   Confidence Threshold: '0.5'\n\n### USEFUL INFORMATION ###\n**The first 10 lines of labelmap**:\n```\nperson\nbicycle\ncar\nmotorcycle\nairplane\nbus\ntrain\ntruck\nboat\ntraffic light\n```\n\n### INSTRUCTIONS ###\n-   Adhere strictly to the Application Description and Core Requirements variables provided above to generate the complete Python script.\n-   Use the paths and parameters provided under ### CONFIGURATION PARAMETERS ###, no placeholders allowed in your code. All the needed paths and parameters are already included.\n-   Follow the phase structure outlined in the **HIGH-LEVEL ABSTRACT** reference logic provided below.\n-   Implement the specific Python code for Phases 2, 4.2, and 4.3 based *solely* on the Application Description and Input/Output Method Descriptions provided above.\n-   Import standard libraries only as needed for the described application logic.\n-   Import ONLY the libraries needed for the specific task defined by the application description and I/O methods. Do not assume libraries like 'cv2' unless image/video processing is explicitly mentioned.\n-   The script must be optimized for Google Coral Dev Board EdgeTPU execution with proper EdgeTPU delegate usage.\n-   Include error handling for EdgeTPU delegate loading failures and provide informative error messages.\n-   Check to insure you have NO placeholders like \"path_to...\" in your code, all the real values of paths and parameters are already included under ### CONFIGURATION PARAMETERS ###.\n\n### HIGH-LEVEL ABSTRACT REFERENCE LOGIC ###\nFormatted Abstract Reference Logic Reminder:\n\n**HIGH-LEVEL ABSTRACT Reference Logic for TFLite Inference with EdgeTPU:**\n\n**Phase 1: Setup**\n1.1. **Imports**: Import interpreter and delegate literally by `from tflite_runtime.interpreter import Interpreter, load_delegate`. If import fails, fallback to `from tensorflow.lite import Interpreter` and `from tensorflow.lite.experimental import load_delegate`.\n1.2. **Paths/Parameters**: Define necessary variables using the model path, input path (if provided and relevant), label path (if provided and relevant), output paths, or other parameters provided in the main prompt.\n1.3. **Load Labels (Conditional)**: If a label path variable was defined and is needed for the application (check main prompt's description), implement code to read the label file into a Python list.\n1.4. **Load Interpreter with EdgeTPU**: Instantiate interpreter with EdgeTPU acceleration:\n     ```\n     try:\n         interpreter = Interpreter(model_path=..., \n                                 experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\n     except:\n         interpreter = Interpreter(model_path=..., \n                                 experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n     ```\n     using the provided model path variable, and call `interpreter.allocate_tensors()`.\n1.5. **Get Model Details**: Retrieve `input_details = interpreter.get_input_details()` and `output_details = interpreter.get_output_details()`. Store necessary indices and properties (shape, dtype) for input/output tensors.\n\n**Phase 2: Input Acquisition & Preprocessing Loop (Implement based on main prompt's input description)**\n2.1. **Acquire Input Data**: Implement code to get raw data according to the input description provided in the main prompt. **Use the input path variable if it was provided and is relevant to the described input method (e.g., reading a specific file/folder).** This phase is highly application-dependent.\n2.2. **Preprocess Data**: Implement code to transform the raw data into the `numpy` array(s) based on  the extracted information of shape and `dtype` from the retrieved `input_details`. Store result in an `input_data` variable.\n2.3. **Quantization Handling**: Check if model uses floating point inputs: `floating_model = (input_details[0]['dtype'] == np.float32)`. If floating model, normalize: `input_data = (np.float32(input_data) - 127.5) / 127.5`.\n2.4. **Loop Control**: If the input description implies processing continuous data (stream, camera, multiple files), implement the appropriate loop structure and exit conditions. If processing single input, plan to run Phase 3 once.\n\n**Phase 3: Inference (Run per preprocessed input)**\n3.1. **Set Input Tensor(s)**: For each required input tensor: `interpreter.set_tensor(input_details[idx]['index'], input_data_variable[idx])`. Use the preprocessed `input_data` variable.\n3.2. **Run Inference**: `interpreter.invoke()`.\n\n**Phase 4: Output Interpretation & Handling Loop (Implement based on main prompt's application and output descriptions)**\n4.1. **Get Output Tensor(s)**: Retrieve results using `output_variable[idx] = interpreter.get_tensor(output_details[idx]['index'])`. Store in an `output_data` variable. \n4.2. **Interpret Results**: Implement code to process the raw `output_data` variable according to the specific task (defined in the main prompt's application name and description) to generate meaningful results. **If labels were loaded in Phase 1.4 and are relevant (e.g., for classification), use the label list here to map indices to names.**\n4.3. **Post-processing**: For detection models, apply confidence thresholding, coordinate scaling, and bounding box clipping to ensure results are within valid ranges.\n4.4. **Handle Output**: Implement code to deliver the interpreted results according to the output description provided in the main prompt (e.g., print, write to file using the provided output path variable, send data, control actuator).\n4.5. **Loop Continuation**: If inside a loop from Phase 2.4, implement logic to continue or break based on exit conditions.\n\n**Phase 5: Cleanup**\n5.1. Implement code to release any resources acquired in Phase 2 (e.g., close files, release camera).\n\n"
+              }
+            ]
+          },
+          "metadata": {
+            "hidden_params": {
+              "model_id": null,
+              "cache_key": null,
+              "api_base": null,
+              "response_cost": null,
+              "additional_headers": null
+            },
+            "litellm_response_cost": null,
+            "api_base": "http://10.251.36.228:11444/api/generate",
+            "cache_hit": false,
+            "requester_metadata": {}
+          },
+          "output": {
+            "content": "```python\nimport os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\nmodel_path = '/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite'\nlabel_path = '/home/mendel/tinyml_autopilot/models/labelmap.txt'\ninput_path = '/home/mendel/tinyml_autopilot/data/sheeps.mp4'\noutput_path = '/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4'\nconfidence_threshold = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU acceleration\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        raise RuntimeError(\"Failed to load EdgeTPU delegate: \" + str(e))\n\ninterpreter.allocate_tensors()\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\n# Phase 2: Input Acquisition & Preprocessing Loop\nimport cv2\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    raise RuntimeError(\"Could not open video file.\")\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Resize frame to input size\n    h, w, _ = frame.shape\n    input_shape = input_details[0]['shape'][1:3]\n    resized_frame = cv2.resize(frame, (input_shape[1], input_shape[0]))\n    input_data = np.expand_dims(resized_frame, axis=0)\n\n    # Preprocess data\n    if input_details[0]['dtype'] == np.float32:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            box = boxes[i]\n            class_id = int(classes[i])\n            label = labels[class_id]\n            score = scores[i]\n\n            # Draw bounding box\n            y_min, x_min, y_max, x_max = map(int, [box[0] * h, box[1] * w, box[2] * h, box[3] * w])\n            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {score:.2f}', (x_min, y_min - 10),\n                        cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Display the frame\n    cv2.imshow('Detected Objects', frame)\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\ncap.release()\ncv2.destroyAllWindows()\n```",
+            "role": "assistant",
+            "tool_calls": null,
+            "function_call": null
+          },
+          "usage": {
+            "input": 1833,
+            "output": 768,
+            "total": 2601,
+            "unit": "TOKENS"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 13088.0,
+          "timeToFirstToken": 13.088,
+          "costDetails": {},
+          "environment": "default",
+          "usageDetails": {
+            "input": 1833,
+            "output": 768,
+            "total": 2601
+          },
+          "completionTokens": 768,
+          "totalTokens": 2601,
+          "createdAt": "2025-08-19T11:42:23.161Z",
+          "unit": "TOKENS",
+          "updatedAt": "2025-08-19T11:42:28.206Z",
+          "projectId": "cmavm4dny0006mo07fyz082g6",
+          "promptTokens": 1833,
+          "version": null,
+          "statusMessage": null,
+          "parentObservationId": null,
+          "promptId": null,
+          "promptName": null,
+          "promptVersion": null,
+          "modelId": null,
+          "inputPrice": null,
+          "outputPrice": null,
+          "totalPrice": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "scores": [],
+      "bookmarked": false,
+      "environment": "default",
+      "updatedAt": "2025-08-19T11:43:16.783Z",
+      "createdAt": "2025-08-19T11:42:09.590Z",
+      "projectId": "cmavm4dny0006mo07fyz082g6",
+      "externalId": null
+    },
+    {
+      "id": "4b197f07",
+      "timestamp": "2025-08-19T11:40:22.518000+00:00",
+      "name": "4b19_tpu_sketch_generator",
+      "input": null,
+      "output": {
+        "status": "success",
+        "sketch": "import os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\n\n# Define necessary variables\nmodel_path  = \"/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite\"\nlabel_path  = \"/home/mendel/tinyml_autopilot/models/labelmap.txt\"\ninput_path  = \"/home/mendel/tinyml_autopilot/data//sheeps.mp4\"\noutput_path  = \"/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4\"\nconfidence_threshold  = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU acceleration\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    print(f\"Failed to load EdgeTPU delegate: {e}\")\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        print(f\"Failed to load EdgeTPU delegate from alternative path: {e}\")\n        raise\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\ninput_shape = input_details[0]['shape']\ninput_dtype = input_details[0]['dtype']\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n\nimport cv2\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Resize and preprocess the frame\n    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\n    frame_resized = cv2.resize(frame_rgb, (input_shape[1], input_shape[2]))\n    input_data = np.expand_dims(frame_resized, axis=0).astype(input_dtype)\n\n    # Quantization handling for floating point inputs\n    if input_dtype == np.float32:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n\n    # Get output tensor(s)\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    # Interpret results\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            label = labels[int(classes[i])]\n            box = boxes[i]\n            y_min, x_min, y_max, x_max = map(int, box * [frame.shape[0], frame.shape[1], frame.shape[0], frame.shape[1]])\n            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {scores[i]:.2f}', (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Display the frame\n    cv2.imshow('Object Detection', frame)\n\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\ncap.release()\ncv2.destroyAllWindows()"
+      },
+      "session_id": "qwen2.5-coder:14b_4b1a_tpusg_batch",
+      "release": null,
+      "version": null,
+      "user_id": null,
+      "metadata": {
+        "num_run": 1
+      },
+      "tags": [
+        "benchmark",
+        "qwen2.5-coder:14b",
+        "tpu_sketch_generator"
+      ],
+      "public": false,
+      "html_path": "/project/cmavm4dny0006mo07fyz082g6/traces/4b197f07",
+      "latency": 50.789,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-40-22-521007_chatcmpl-23893368-3d0c-4909-b342-2133be932580",
+          "traceId": "4b197f07",
+          "type": "GENERATION",
+          "name": "4b19_tpusg_gen_attempt#1",
+          "startTime": "2025-08-19T11:40:22.521000+00:00",
+          "endTime": "2025-08-19T11:41:13.310000+00:00",
+          "completionStartTime": "2025-08-19T11:41:13.310000+00:00",
+          "model": "qwen2.5-coder:14b",
+          "modelParameters": {},
+          "input": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "### CONTEXT ###\nYou are an expert in Machine Learning on Edge Devices, highly skilled in the workflow, tools, techniques, and best practices of TinyML operations. \nYour expertise extends to hardware, including microcontrollers and microprocessors. \nYou will be asked questions regarding various tasks of edge machine learning , for example, data engineering, model designing, model evaluation, model conversion, deployment sketch developing, etc, of machine learning on small devices and may need to generate code to execute corresponding tasks, for example, data cleaning, model training code, etc. \nYour output is directly going to be executed without furhter modification nor additional implementation, so make sure your code output is strictly following the format instrutiuons and the requirements of the task.\n\n### RESPONSE FORMAT ###\n- Generate a Python script based *precisely* on the provided application description and requirements.\n- Output should contain ONLY a code block where there is completed python code.\n- The code should be clear, accurate, and directly executable, skip any code you are unsure about the detail.\n- Naming strategy should reflect quantization information.\n- If error info conflicts with my requirements, follow my requirements strictly while re-generating code.\n- Your goal is to generate a complete, runnable Python script based on the user's application description and requirements. \n- Ensure the code is clean, well-commented, and uses standard Python libraries ('numpy', 'time', 'os', 'cv2' only if needed for image/video).\n- The generated script should be enclosed in a single Python code block like ```python ... ```\n- Provide the complete Python code in script enclosed in a single ```python ... ``` block, you cannot skip outputting any part of the code.\n\n\n"
+              },
+              {
+                "role": "user",
+                "content": "\n### OBJECTIVE ###\nGenerate a complete Python script for the application named 'Object Detection via a video file with TPU'. The deployment target device is 'Google Coral Dev Board'.\n\n\n### CONFIGURATION PARAMETERS ###\nAll the required paths and parameters are provided below, use them in generated code:\n-   model_path: '/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite'\n-   label_path: '/home/mendel/tinyml_autopilot/models/labelmap.txt'  \n-   Input Method Description: 'Read a single video file from the given input_path'\n-   input_path: '/home/mendel/tinyml_autopilot/data//sheeps.mp4'  \n-   Output Method Description: 'Output the video file with rectangles drew on the detected objects, along with texts of labels and calculated mAP(mean average precision)'\n-   output_path: '/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4' \n-   Confidence Threshold: '0.5'\n\n### USEFUL INFORMATION ###\n**The first 10 lines of labelmap**:\n```\nperson\nbicycle\ncar\nmotorcycle\nairplane\nbus\ntrain\ntruck\nboat\ntraffic light\n```\n\n### INSTRUCTIONS ###\n-   Adhere strictly to the Application Description and Core Requirements variables provided above to generate the complete Python script.\n-   Use the paths and parameters provided under ### CONFIGURATION PARAMETERS ###, no placeholders allowed in your code. All the needed paths and parameters are already included.\n-   Follow the phase structure outlined in the **HIGH-LEVEL ABSTRACT** reference logic provided below.\n-   Implement the specific Python code for Phases 2, 4.2, and 4.3 based *solely* on the Application Description and Input/Output Method Descriptions provided above.\n-   Import standard libraries only as needed for the described application logic.\n-   Import ONLY the libraries needed for the specific task defined by the application description and I/O methods. Do not assume libraries like 'cv2' unless image/video processing is explicitly mentioned.\n-   The script must be optimized for Google Coral Dev Board EdgeTPU execution with proper EdgeTPU delegate usage.\n-   Include error handling for EdgeTPU delegate loading failures and provide informative error messages.\n-   Check to insure you have NO placeholders like \"path_to...\" in your code, all the real values of paths and parameters are already included under ### CONFIGURATION PARAMETERS ###.\n\n### HIGH-LEVEL ABSTRACT REFERENCE LOGIC ###\nFormatted Abstract Reference Logic Reminder:\n\n**HIGH-LEVEL ABSTRACT Reference Logic for TFLite Inference with EdgeTPU:**\n\n**Phase 1: Setup**\n1.1. **Imports**: Import interpreter and delegate literally by `from tflite_runtime.interpreter import Interpreter, load_delegate`. If import fails, fallback to `from tensorflow.lite import Interpreter` and `from tensorflow.lite.experimental import load_delegate`.\n1.2. **Paths/Parameters**: Define necessary variables using the model path, input path (if provided and relevant), label path (if provided and relevant), output paths, or other parameters provided in the main prompt.\n1.3. **Load Labels (Conditional)**: If a label path variable was defined and is needed for the application (check main prompt's description), implement code to read the label file into a Python list.\n1.4. **Load Interpreter with EdgeTPU**: Instantiate interpreter with EdgeTPU acceleration:\n     ```\n     try:\n         interpreter = Interpreter(model_path=..., \n                                 experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\n     except:\n         interpreter = Interpreter(model_path=..., \n                                 experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n     ```\n     using the provided model path variable, and call `interpreter.allocate_tensors()`.\n1.5. **Get Model Details**: Retrieve `input_details = interpreter.get_input_details()` and `output_details = interpreter.get_output_details()`. Store necessary indices and properties (shape, dtype) for input/output tensors.\n\n**Phase 2: Input Acquisition & Preprocessing Loop (Implement based on main prompt's input description)**\n2.1. **Acquire Input Data**: Implement code to get raw data according to the input description provided in the main prompt. **Use the input path variable if it was provided and is relevant to the described input method (e.g., reading a specific file/folder).** This phase is highly application-dependent.\n2.2. **Preprocess Data**: Implement code to transform the raw data into the `numpy` array(s) based on  the extracted information of shape and `dtype` from the retrieved `input_details`. Store result in an `input_data` variable.\n2.3. **Quantization Handling**: Check if model uses floating point inputs: `floating_model = (input_details[0]['dtype'] == np.float32)`. If floating model, normalize: `input_data = (np.float32(input_data) - 127.5) / 127.5`.\n2.4. **Loop Control**: If the input description implies processing continuous data (stream, camera, multiple files), implement the appropriate loop structure and exit conditions. If processing single input, plan to run Phase 3 once.\n\n**Phase 3: Inference (Run per preprocessed input)**\n3.1. **Set Input Tensor(s)**: For each required input tensor: `interpreter.set_tensor(input_details[idx]['index'], input_data_variable[idx])`. Use the preprocessed `input_data` variable.\n3.2. **Run Inference**: `interpreter.invoke()`.\n\n**Phase 4: Output Interpretation & Handling Loop (Implement based on main prompt's application and output descriptions)**\n4.1. **Get Output Tensor(s)**: Retrieve results using `output_variable[idx] = interpreter.get_tensor(output_details[idx]['index'])`. Store in an `output_data` variable. \n4.2. **Interpret Results**: Implement code to process the raw `output_data` variable according to the specific task (defined in the main prompt's application name and description) to generate meaningful results. **If labels were loaded in Phase 1.4 and are relevant (e.g., for classification), use the label list here to map indices to names.**\n4.3. **Post-processing**: For detection models, apply confidence thresholding, coordinate scaling, and bounding box clipping to ensure results are within valid ranges.\n4.4. **Handle Output**: Implement code to deliver the interpreted results according to the output description provided in the main prompt (e.g., print, write to file using the provided output path variable, send data, control actuator).\n4.5. **Loop Continuation**: If inside a loop from Phase 2.4, implement logic to continue or break based on exit conditions.\n\n**Phase 5: Cleanup**\n5.1. Implement code to release any resources acquired in Phase 2 (e.g., close files, release camera).\n\n"
+              }
+            ]
+          },
+          "metadata": {
+            "hidden_params": {
+              "model_id": null,
+              "cache_key": null,
+              "api_base": null,
+              "response_cost": null,
+              "additional_headers": null
+            },
+            "litellm_response_cost": null,
+            "api_base": "http://10.251.36.228:11444/api/generate",
+            "cache_hit": false,
+            "requester_metadata": {}
+          },
+          "output": {
+            "content": "```python\nimport os\nimport numpy as np\nfrom tflite_runtime.interpreter import Interpreter, load_delegate\n\n# Phase 1: Setup\n\n# Define necessary variables\nmodel_path = '/home/mendel/tinyml_autopilot/models/edgetpu_detect.tflite'\nlabel_path = '/home/mendel/tinyml_autopilot/models/labelmap.txt'\ninput_path = '/home/mendel/tinyml_autopilot/data/sheeps.mp4'\noutput_path = '/home/mendel/tinyml_autopilot/results/sheeps_detections.mp4'\nconfidence_threshold = 0.5\n\n# Load labels\nwith open(label_path, 'r') as f:\n    labels = [line.strip() for line in f.readlines()]\n\n# Load interpreter with EdgeTPU acceleration\ntry:\n    interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('libedgetpu.so.1.0')])\nexcept Exception as e:\n    print(f\"Failed to load EdgeTPU delegate: {e}\")\n    try:\n        interpreter = Interpreter(model_path=model_path, experimental_delegates=[load_delegate('/usr/lib/aarch64-linux-gnu/libedgetpu.so.1.0')])\n    except Exception as e:\n        print(f\"Failed to load EdgeTPU delegate from alternative path: {e}\")\n        raise\n\ninterpreter.allocate_tensors()\n\n# Get model details\ninput_details = interpreter.get_input_details()\noutput_details = interpreter.get_output_details()\n\ninput_shape = input_details[0]['shape']\ninput_dtype = input_details[0]['dtype']\n\n# Phase 2: Input Acquisition & Preprocessing Loop\n\nimport cv2\n\ncap = cv2.VideoCapture(input_path)\nif not cap.isOpened():\n    print(\"Error opening video file\")\n    exit()\n\nwhile True:\n    ret, frame = cap.read()\n    if not ret:\n        break\n\n    # Resize and preprocess the frame\n    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)\n    frame_resized = cv2.resize(frame_rgb, (input_shape[1], input_shape[2]))\n    input_data = np.expand_dims(frame_resized, axis=0).astype(input_dtype)\n\n    # Quantization handling for floating point inputs\n    if input_dtype == np.float32:\n        input_data = (np.float32(input_data) - 127.5) / 127.5\n\n    # Phase 3: Inference\n    interpreter.set_tensor(input_details[0]['index'], input_data)\n    interpreter.invoke()\n\n    # Phase 4: Output Interpretation & Handling Loop\n\n    # Get output tensor(s)\n    boxes = interpreter.get_tensor(output_details[0]['index'])[0]\n    classes = interpreter.get_tensor(output_details[1]['index'])[0]\n    scores = interpreter.get_tensor(output_details[2]['index'])[0]\n\n    # Interpret results\n    for i in range(len(scores)):\n        if scores[i] > confidence_threshold:\n            label = labels[int(classes[i])]\n            box = boxes[i]\n            y_min, x_min, y_max, x_max = map(int, box * [frame.shape[0], frame.shape[1], frame.shape[0], frame.shape[1]])\n            cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)\n            cv2.putText(frame, f'{label}: {scores[i]:.2f}', (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)\n\n    # Display the frame\n    cv2.imshow('Object Detection', frame)\n\n    if cv2.waitKey(1) & 0xFF == ord('q'):\n        break\n\n# Phase 5: Cleanup\ncap.release()\ncv2.destroyAllWindows()\n```",
+            "role": "assistant",
+            "tool_calls": null,
+            "function_call": null
+          },
+          "usage": {
+            "input": 1833,
+            "output": 801,
+            "total": 2634,
+            "unit": "TOKENS"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 50789.0,
+          "timeToFirstToken": 50.789,
+          "costDetails": {},
+          "environment": "default",
+          "usageDetails": {
+            "input": 1833,
+            "output": 801,
+            "total": 2634
+          },
+          "completionTokens": 801,
+          "totalTokens": 2634,
+          "createdAt": "2025-08-19T11:41:13.605Z",
+          "unit": "TOKENS",
+          "updatedAt": "2025-08-19T11:41:18.661Z",
+          "projectId": "cmavm4dny0006mo07fyz082g6",
+          "promptTokens": 1833,
+          "version": null,
+          "statusMessage": null,
+          "parentObservationId": null,
+          "promptId": null,
+          "promptName": null,
+          "promptVersion": null,
+          "modelId": null,
+          "inputPrice": null,
+          "outputPrice": null,
+          "totalPrice": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        }
+      ],
+      "scores": [],
+      "bookmarked": false,
+      "environment": "default",
+      "updatedAt": "2025-08-19T11:42:07.825Z",
+      "createdAt": "2025-08-19T11:40:23.193Z",
+      "projectId": "cmavm4dny0006mo07fyz082g6",
+      "externalId": null
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 50,
+    "total_items": 2,
+    "total_pages": 1
+  }
+}

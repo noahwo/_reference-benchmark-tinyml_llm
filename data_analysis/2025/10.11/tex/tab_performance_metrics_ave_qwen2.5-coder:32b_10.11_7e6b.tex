@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    DP & 86.62 & 83.80 & 126.00 & 14275 & 13826 & 20557 & 0.933 \\ \hline
+MC & 39.83 & 38.55 & 77.04 & 4259 & 4083 & 9369 & 0.967 \\ \hline
+SG & 205.75 & 0.00 & 205.75 & 17833 & 0 & 17833 & 0.000 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Batch ID: 7e6b, Model: qwen2.5-coder:32b, Date: 10.11, Parameters: None}
+        \label{tab:performance_metrics_ave_7e6b_qwen2.5-coder:32b_10.11}
+        \end{table}
+    

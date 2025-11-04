@@ -1,0 +1,11 @@
+model_config,parameters,psg,tpusg
+codestral,False,50.0,33.3
+codestral,True,10.0,14.4
+gemma3:27b,False,53.3,6.7
+gemma3:27b,True,71.2,0.0
+phi4,False,77.8,95.6
+phi4,True,100.0,100.0
+qwen14b,False,52.2,94.5
+qwen14b,True,4.6,100.0
+qwen32b,False,50.0,96.7
+qwen32b,True,39.7,35.0

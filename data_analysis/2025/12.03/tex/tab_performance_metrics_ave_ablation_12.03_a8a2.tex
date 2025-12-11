@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    SG & 145.19 & 0.00 & 145.19 & 8283 & 0 & 8283 & 0.000 \\ \hline
+PSG & 94.01 & 85.12 & 138.48 & 3445 & 3119 & 5071 & 0.833 \\ \hline
+TPUSG & 89.04 & 62.15 & 135.48 & 3445 & 2418 & 5220 & 0.633 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Batch ID: a8a2, Model: ablation, Date: 12.03, Parameters: None}
+        \label{tab:performance_metrics_ave_a8a2_ablation_12.03}
+        \end{table}
+    

@@ -1,0 +1,2657 @@
+{
+  "data": [
+    {
+      "id": "5e1e639d",
+      "timestamp": "2025-10-01T11:42:50.784000+00:00",
+      "name": "5e1e_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 30
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.249,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-42-50-786755_chatcmpl-95f0c25a-ff85-4528-aa35-34338667513f",
+          "traceId": "5e1e639d",
+          "type": "GENERATION",
+          "name": "5e_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:42:50.786000+00:00",
+          "endTime": "2025-10-01T11:42:57.034000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6248.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "6338e037-9791-48f7-9165-26e77937da22",
+          "traceId": "5e1e639d",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:42:50.785000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:43:06.473Z",
+      "createdAt": "2025-10-01T11:42:51.295Z",
+      "environment": "default"
+    },
+    {
+      "id": "d88bd014",
+      "timestamp": "2025-10-01T11:42:14.358000+00:00",
+      "name": "d88b_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, provide a few samples of that type\n    for _ in range(100):\n        yield [tf.random.uniform((1, 224, 224, 3), dtype=tf.float32)]  # Adjust shape as needed\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output is uint8 as specified\n\n# Convert the model\ntflite_quant_model = converter.convert()\n\n# Save the converted TFLite model to file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 29
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 5.916,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-42-14-359805_chatcmpl-f591b506-2373-43f7-a7c6-fb34eca19240",
+          "traceId": "d88bd014",
+          "type": "GENERATION",
+          "name": "d8_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:42:14.359000+00:00",
+          "endTime": "2025-10-01T11:42:20.274000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 5915.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 306,
+          "environment": "default",
+          "totalTokens": 722,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "9ca28765-12bf-491f-aaf3-6f1ee862616a",
+          "traceId": "d88bd014",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:42:14.358000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:42:30.027Z",
+      "createdAt": "2025-10-01T11:42:14.871Z",
+      "environment": "default"
+    },
+    {
+      "id": "83ee4b23",
+      "timestamp": "2025-10-01T11:41:37.980000+00:00",
+      "name": "83ee_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 28
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.382,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-41-37-982540_chatcmpl-d3f3d332-5843-4d6c-a71e-0100f15c45e6",
+          "traceId": "83ee4b23",
+          "type": "GENERATION",
+          "name": "83_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:41:37.982000+00:00",
+          "endTime": "2025-10-01T11:41:44.362000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6380.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "46bcbacc-6b59-440e-8478-13adc407c4f1",
+          "traceId": "83ee4b23",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:41:37.980000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:41:54.128Z",
+      "createdAt": "2025-10-01T11:41:38.490Z",
+      "environment": "default"
+    },
+    {
+      "id": "903e01ef",
+      "timestamp": "2025-10-01T11:41:01.540000+00:00",
+      "name": "903e_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Corresponds to uint8 input data type\nconverter.inference_output_type = tf.uint8  # Corresponds to uint8 output data type\n\n# Convert the model\ntflite_quant_model = converter.convert()\n\n# Save the converted TFLite model with quantization\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 27
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.136,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-41-01-542191_chatcmpl-9ba43273-c2f3-4821-ac21-759635ef5abd",
+          "traceId": "903e01ef",
+          "type": "GENERATION",
+          "name": "90_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:41:01.542000+00:00",
+          "endTime": "2025-10-01T11:41:07.676000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6134.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 317,
+          "environment": "default",
+          "totalTokens": 733,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "415e2d1f-fdbc-4c3f-baf3-d885b9827f5f",
+          "traceId": "903e01ef",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:41:01.540000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:41:17.198Z",
+      "createdAt": "2025-10-01T11:41:02.050Z",
+      "environment": "default"
+    },
+    {
+      "id": "1adbadc0",
+      "timestamp": "2025-10-01T11:40:25.134000+00:00",
+      "name": "1adb_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 26
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.186,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-40-25-136365_chatcmpl-f443909c-e130-46b3-a455-6d377d673eba",
+          "traceId": "1adbadc0",
+          "type": "GENERATION",
+          "name": "1a_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:40:25.136000+00:00",
+          "endTime": "2025-10-01T11:40:31.320000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6184.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "13f9216e-1e5f-4cf5-8053-ad136fb5f9f5",
+          "traceId": "1adbadc0",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:40:25.134000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:40:40.776Z",
+      "createdAt": "2025-10-01T11:40:25.645Z",
+      "environment": "default"
+    },
+    {
+      "id": "dc882972",
+      "timestamp": "2025-10-01T11:39:48.727000+00:00",
+      "name": "dc88_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 25
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.513,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-39-48-729574_chatcmpl-16dc366c-d59b-44ae-8bdb-9749189b1163",
+          "traceId": "dc882972",
+          "type": "GENERATION",
+          "name": "dc_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:39:48.729000+00:00",
+          "endTime": "2025-10-01T11:39:55.240000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6511.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "41e2537d-c41e-4542-8259-04bd3e39a6df",
+          "traceId": "dc882972",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:39:48.727000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:40:04.848Z",
+      "createdAt": "2025-10-01T11:39:49.239Z",
+      "environment": "default"
+    },
+    {
+      "id": "9cefb6cb",
+      "timestamp": "2025-10-01T11:38:30.248000+00:00",
+      "name": "9cef_model_converter",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up converter for TFLite with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define input and output data types for quantization\nconverter.inference_input_type = tf.uint8\nconverter.inference_output_type = tf.uint8\n\n# Specify supported operations for quantized model\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set the representative dataset function for calibration\ndef representative_data_gen():\n    # Assuming a generator or data pipeline that yields input samples\n    # Replace with actual data loading logic\n    for _ in range(100):  # Example: 100 batches of data\n        yield [tf.random.uniform((1, 224, 224, 3), maxval=255, dtype=tf.uint8)]\n\nconverter.representative_dataset = representative_data_gen\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model\nwith open(\"models/fruit_to_emoji/tflite_model_quantized.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)",
+        "last_error": "Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:39:19.622494: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:39:19.626042: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:39:19.636956: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:39:19.655087: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:39:19.660647: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:39:19.673335: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:39:20.521115: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001143919.py/tmp_20251001143919_mc_phi4:latest/tmp_20251001143919_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 24
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 52.391,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-38-30-249996_chatcmpl-ad04fd92-84ab-4fb1-bd21-ee92a6b5d21f",
+          "traceId": "9cefb6cb",
+          "type": "GENERATION",
+          "name": "9c_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:38:30.249000+00:00",
+          "endTime": "2025-10-01T11:38:36.175000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 5926.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 307,
+          "environment": "default",
+          "totalTokens": 723,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-38-39-504044_chatcmpl-4ad4ad70-8d9f-49af-a5be-345d848a2559",
+          "traceId": "9cefb6cb",
+          "type": "GENERATION",
+          "name": "9c_mc_error_handling_attempt#2",
+          "startTime": "2025-10-01T11:38:39.504000+00:00",
+          "endTime": "2025-10-01T11:38:46.768000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7264.0,
+          "promptTokens": 1800,
+          "costDetails": {},
+          "completionTokens": 307,
+          "environment": "default",
+          "totalTokens": 2107,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-38-50-147376_chatcmpl-bbc39728-69ef-4969-b163-214bf5f8c195",
+          "traceId": "9cefb6cb",
+          "type": "GENERATION",
+          "name": "9c_mc_error_handling_attempt#3",
+          "startTime": "2025-10-01T11:38:50.147000+00:00",
+          "endTime": "2025-10-01T11:38:57.630000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7483.0,
+          "promptTokens": 1800,
+          "costDetails": {},
+          "completionTokens": 304,
+          "environment": "default",
+          "totalTokens": 2104,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-39-00-967030_chatcmpl-9ec74563-3cb5-4e65-96d1-d9207b4c9691",
+          "traceId": "9cefb6cb",
+          "type": "GENERATION",
+          "name": "9c_mc_error_handling_attempt#4",
+          "startTime": "2025-10-01T11:39:00.967000+00:00",
+          "endTime": "2025-10-01T11:39:08.423000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7456.0,
+          "promptTokens": 1797,
+          "costDetails": {},
+          "completionTokens": 304,
+          "environment": "default",
+          "totalTokens": 2101,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-39-11-871369_chatcmpl-cdb1273c-8780-4155-a632-82306b61a0c9",
+          "traceId": "9cefb6cb",
+          "type": "GENERATION",
+          "name": "9c_mc_error_handling_attempt#5",
+          "startTime": "2025-10-01T11:39:11.871000+00:00",
+          "endTime": "2025-10-01T11:39:19.353000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7482.0,
+          "promptTokens": 1797,
+          "costDetails": {},
+          "completionTokens": 304,
+          "environment": "default",
+          "totalTokens": 2101,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "9bfabde1-2bfc-467d-9f9f-742443fb2fb7",
+          "traceId": "9cefb6cb",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:38:30.248000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        },
+        {
+          "id": "e1bd0071-d821-42d7-bf4c-7cb0003ae96f",
+          "traceId": "9cefb6cb",
+          "type": "SPAN",
+          "name": "error_9c_mc_failure_signal_model_converter",
+          "startTime": "2025-10-01T11:39:22.639000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Failed. Last error: Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:39:19.622494: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:39:19.626042: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:39:19.636956: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:39:19.655087: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:39:19.660647: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:39:19.673335: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:39:20.521115: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001143919.py/tmp_20251001143919_mc_phi4:latest/tmp_20251001143919_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:39:27.925Z",
+      "createdAt": "2025-10-01T11:38:30.757Z",
+      "environment": "default"
+    },
+    {
+      "id": "a1844278",
+      "timestamp": "2025-10-01T11:37:53.595000+00:00",
+      "name": "a184_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 23
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.164,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-37-53-597087_chatcmpl-a927c5d5-d830-42a2-882a-743732c2fc30",
+          "traceId": "a1844278",
+          "type": "GENERATION",
+          "name": "a1_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:37:53.597000+00:00",
+          "endTime": "2025-10-01T11:37:59.759000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6162.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "0301c1cf-d0e7-4891-aca4-1bef8505f16d",
+          "traceId": "a1844278",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:37:53.595000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:38:09.246Z",
+      "createdAt": "2025-10-01T11:37:54.105Z",
+      "environment": "default"
+    },
+    {
+      "id": "2ee83441",
+      "timestamp": "2025-10-01T11:37:17.205000+00:00",
+      "name": "2ee8_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 22
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.478,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-37-17-207631_chatcmpl-3f4990ca-b2b6-49dd-a7e1-c8f696595cb2",
+          "traceId": "2ee83441",
+          "type": "GENERATION",
+          "name": "2e_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:37:17.207000+00:00",
+          "endTime": "2025-10-01T11:37:23.684000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6477.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "4676d5af-e926-4d0c-b23e-c4a27eec8b56",
+          "traceId": "2ee83441",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:37:17.206000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:37:33.319Z",
+      "createdAt": "2025-10-01T11:37:17.717Z",
+      "environment": "default"
+    },
+    {
+      "id": "0cbf446a",
+      "timestamp": "2025-10-01T11:35:58.824000+00:00",
+      "name": "0cbf_model_converter",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define input and output data types for quantization\nconverter.inference_input_type = tf.uint8\nconverter.inference_output_type = tf.uint8\n\n# Specify supported operations for quantized model\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set the representative dataset function for calibration\ndef representative_data_gen():\n    # Assuming a generator or dataset is available to provide input data samples\n    # Replace with actual data loading logic as needed\n    for _ in range(100):  # Example: 100 samples\n        yield [tf.random.uniform((1, 224, 224, 3), maxval=255, dtype=tf.uint8)]\n\nconverter.representative_dataset = representative_data_gen\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model\nwith open(\"models/fruit_to_emoji/tflite_model_quantized.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)",
+        "last_error": "Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:36:47.815658: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:36:47.819179: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:36:47.830040: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:36:47.847976: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:36:47.853168: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:36:47.865611: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:36:48.849048: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001143647.py/tmp_20251001143647_mc_phi4:latest/tmp_20251001143647_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 21
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 52.194,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-35-58-826875_chatcmpl-31de28b9-7769-436f-8f3e-8bb5f3e10d6d",
+          "traceId": "0cbf446a",
+          "type": "GENERATION",
+          "name": "0c_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:35:58.826000+00:00",
+          "endTime": "2025-10-01T11:36:04.748000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 5922.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 308,
+          "environment": "default",
+          "totalTokens": 724,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-36-08-065457_chatcmpl-7c02935b-c146-4923-ab14-06b1d688db05",
+          "traceId": "0cbf446a",
+          "type": "GENERATION",
+          "name": "0c_mc_error_handling_attempt#2",
+          "startTime": "2025-10-01T11:36:08.065000+00:00",
+          "endTime": "2025-10-01T11:36:15.275000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7210.0,
+          "promptTokens": 1801,
+          "costDetails": {},
+          "completionTokens": 305,
+          "environment": "default",
+          "totalTokens": 2106,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-36-18-587913_chatcmpl-e33b1c26-d960-4d65-9c36-e9e777467195",
+          "traceId": "0cbf446a",
+          "type": "GENERATION",
+          "name": "0c_mc_error_handling_attempt#3",
+          "startTime": "2025-10-01T11:36:18.587000+00:00",
+          "endTime": "2025-10-01T11:36:26.056000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7469.0,
+          "promptTokens": 1798,
+          "costDetails": {},
+          "completionTokens": 305,
+          "environment": "default",
+          "totalTokens": 2103,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-36-29-315272_chatcmpl-66f66daa-d4b5-4f39-9162-1ba68c88ecf9",
+          "traceId": "0cbf446a",
+          "type": "GENERATION",
+          "name": "0c_mc_error_handling_attempt#4",
+          "startTime": "2025-10-01T11:36:29.315000+00:00",
+          "endTime": "2025-10-01T11:36:36.793000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7478.0,
+          "promptTokens": 1798,
+          "costDetails": {},
+          "completionTokens": 305,
+          "environment": "default",
+          "totalTokens": 2103,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-36-40-032396_chatcmpl-f92a302f-493c-4a18-a82f-6c43ffd40ccc",
+          "traceId": "0cbf446a",
+          "type": "GENERATION",
+          "name": "0c_mc_error_handling_attempt#5",
+          "startTime": "2025-10-01T11:36:40.032000+00:00",
+          "endTime": "2025-10-01T11:36:47.557000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7525.0,
+          "promptTokens": 1798,
+          "costDetails": {},
+          "completionTokens": 305,
+          "environment": "default",
+          "totalTokens": 2103,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "3ad495ff-9054-419d-97b5-2b00a8e82067",
+          "traceId": "0cbf446a",
+          "type": "SPAN",
+          "name": "error_0c_mc_failure_signal_model_converter",
+          "startTime": "2025-10-01T11:36:51.019000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Failed. Last error: Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:36:47.815658: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:36:47.819179: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:36:47.830040: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:36:47.847976: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:36:47.853168: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:36:47.865611: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:36:48.849048: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001143647.py/tmp_20251001143647_mc_phi4:latest/tmp_20251001143647_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        },
+        {
+          "id": "c69366d6-fb12-48b6-bb9d-9d6876130b24",
+          "traceId": "0cbf446a",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:35:58.825000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:36:56.502Z",
+      "createdAt": "2025-10-01T11:35:59.336Z",
+      "environment": "default"
+    },
+    {
+      "id": "5ddd025f",
+      "timestamp": "2025-10-01T11:35:23.457000+00:00",
+      "name": "5ddd_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, provide a few samples of that type\n    for _ in range(100):\n        yield [tf.random.uniform((1, 224, 224, 3), dtype=tf.float32)]  # Adjust shape as needed\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output is uint8 as specified\n\n# Convert the model\ntflite_quant_model = converter.convert()\n\n# Save the converted TFLite model to file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 20
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 5.909,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-35-23-458620_chatcmpl-0d0fdc85-a774-43da-8a7d-51b70bb7b2bf",
+          "traceId": "5ddd025f",
+          "type": "GENERATION",
+          "name": "5d_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:35:23.458000+00:00",
+          "endTime": "2025-10-01T11:35:29.366000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 5908.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 306,
+          "environment": "default",
+          "totalTokens": 722,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "9b136573-d888-4dfc-8313-861260a28f74",
+          "traceId": "5ddd025f",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:35:23.457000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:35:38.622Z",
+      "createdAt": "2025-10-01T11:35:23.967Z",
+      "environment": "default"
+    },
+    {
+      "id": "3214cd07",
+      "timestamp": "2025-10-01T11:34:47.011000+00:00",
+      "name": "3214_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 19
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.27,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-34-47-013622_chatcmpl-0ed773d6-ceb5-4ef7-9a1c-0c0f3f0fbb00",
+          "traceId": "3214cd07",
+          "type": "GENERATION",
+          "name": "32_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:34:47.013000+00:00",
+          "endTime": "2025-10-01T11:34:53.282000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6269.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "f08bfdab-a05d-439f-af00-6541c8e0b02e",
+          "traceId": "3214cd07",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:34:47.012000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:35:02.697Z",
+      "createdAt": "2025-10-01T11:34:47.521Z",
+      "environment": "default"
+    },
+    {
+      "id": "e894928d",
+      "timestamp": "2025-10-01T11:34:10.683000+00:00",
+      "name": "e894_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 18
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.227,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-34-10-684881_chatcmpl-94274c8f-bad3-4110-92f5-9327123d62ca",
+          "traceId": "e894928d",
+          "type": "GENERATION",
+          "name": "e8_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:34:10.684000+00:00",
+          "endTime": "2025-10-01T11:34:16.910000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6226.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "c1a998ae-8688-42f5-b9ae-b6cde9cbee32",
+          "traceId": "e894928d",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:34:10.683000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:34:26.271Z",
+      "createdAt": "2025-10-01T11:34:11.194Z",
+      "environment": "default"
+    },
+    {
+      "id": "eb34eba4",
+      "timestamp": "2025-10-01T11:33:34.260000+00:00",
+      "name": "eb34_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 17
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.211,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-33-34-261994_chatcmpl-9ad5442d-fe79-4683-913e-fc421e77df00",
+          "traceId": "eb34eba4",
+          "type": "GENERATION",
+          "name": "eb_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:33:34.261000+00:00",
+          "endTime": "2025-10-01T11:33:40.471000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6210.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "0d748166-debc-402d-a4f2-bed45252b22f",
+          "traceId": "eb34eba4",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:33:34.260000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:33:49.947Z",
+      "createdAt": "2025-10-01T11:33:34.771Z",
+      "environment": "default"
+    },
+    {
+      "id": "71aeae4b",
+      "timestamp": "2025-10-01T11:32:57.885000+00:00",
+      "name": "71ae_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 16
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.155,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-32-57-887493_chatcmpl-d477026b-cba4-4c52-bbe0-a584032b36e7",
+          "traceId": "71aeae4b",
+          "type": "GENERATION",
+          "name": "71_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:32:57.887000+00:00",
+          "endTime": "2025-10-01T11:33:04.041000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6154.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "ce0c087c-d7d5-4577-a06e-cd61125d74bc",
+          "traceId": "71aeae4b",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:32:57.886000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:33:13.522Z",
+      "createdAt": "2025-10-01T11:32:58.397Z",
+      "environment": "default"
+    },
+    {
+      "id": "4fc0c75a",
+      "timestamp": "2025-10-01T11:32:21.461000+00:00",
+      "name": "4fc0_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 15
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.45,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-32-21-463287_chatcmpl-314bbcc8-f2cc-4931-a421-167af8b006a5",
+          "traceId": "4fc0c75a",
+          "type": "GENERATION",
+          "name": "4f_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:32:21.463000+00:00",
+          "endTime": "2025-10-01T11:32:27.912000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6449.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "c0b89337-99fd-4a75-a08c-c37fb8426ab5",
+          "traceId": "4fc0c75a",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:32:21.462000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:32:37.597Z",
+      "createdAt": "2025-10-01T11:32:21.974Z",
+      "environment": "default"
+    },
+    {
+      "id": "b610f7a8",
+      "timestamp": "2025-10-01T11:31:02.951000+00:00",
+      "name": "b610_model_converter",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up converter for TFLite with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define input and output data types for quantization\nconverter.inference_input_type = tf.uint8\nconverter.inference_output_type = tf.uint8\n\n# Specify supported operations for quantized model\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set the representative dataset function for calibration\ndef representative_data_gen():\n    # Assuming a generator or data pipeline that yields input samples\n    # Replace with actual data loading logic\n    for _ in range(100):  # Example: 100 batches of data\n        yield [tf.random.uniform([1, *original_model.input_shape[1:]], dtype=tf.float32)]  # Adjust shape as needed\n\nconverter.representative_dataset = representative_data_gen\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model\nwith open(\"models/fruit_to_emoji/tflite_model_quantized.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)",
+        "last_error": "Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:31:52.642570: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:31:52.646097: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:31:52.657033: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:31:52.674517: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:31:52.679810: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:31:52.692423: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:31:53.526581: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001143152.py/tmp_20251001143152_mc_phi4:latest/tmp_20251001143152_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 14
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 52.709,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-31-02-953345_chatcmpl-561451f1-c574-4c82-b6e4-453f03b7773a",
+          "traceId": "b610f7a8",
+          "type": "GENERATION",
+          "name": "b6_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:31:02.953000+00:00",
+          "endTime": "2025-10-01T11:31:08.830000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 5877.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 304,
+          "environment": "default",
+          "totalTokens": 720,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-31-12-460521_chatcmpl-af5f2bc8-390d-4c2b-b20d-3489fffd2edf",
+          "traceId": "b610f7a8",
+          "type": "GENERATION",
+          "name": "b6_mc_error_handling_attempt#2",
+          "startTime": "2025-10-01T11:31:12.460000+00:00",
+          "endTime": "2025-10-01T11:31:19.668000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7208.0,
+          "promptTokens": 1797,
+          "costDetails": {},
+          "completionTokens": 306,
+          "environment": "default",
+          "totalTokens": 2103,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-31-23-030426_chatcmpl-baca2717-12a8-4d16-8769-fe9f97bd1d55",
+          "traceId": "b610f7a8",
+          "type": "GENERATION",
+          "name": "b6_mc_error_handling_attempt#3",
+          "startTime": "2025-10-01T11:31:23.030000+00:00",
+          "endTime": "2025-10-01T11:31:30.516000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7486.0,
+          "promptTokens": 1799,
+          "costDetails": {},
+          "completionTokens": 306,
+          "environment": "default",
+          "totalTokens": 2105,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-31-33-903065_chatcmpl-eaea4bd2-b990-4426-8a28-877d573501a7",
+          "traceId": "b610f7a8",
+          "type": "GENERATION",
+          "name": "b6_mc_error_handling_attempt#4",
+          "startTime": "2025-10-01T11:31:33.903000+00:00",
+          "endTime": "2025-10-01T11:31:41.381000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7478.0,
+          "promptTokens": 1799,
+          "costDetails": {},
+          "completionTokens": 306,
+          "environment": "default",
+          "totalTokens": 2105,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-31-44-881278_chatcmpl-062dcb42-d013-41d5-8e25-bb616af958b0",
+          "traceId": "b610f7a8",
+          "type": "GENERATION",
+          "name": "b6_mc_error_handling_attempt#5",
+          "startTime": "2025-10-01T11:31:44.881000+00:00",
+          "endTime": "2025-10-01T11:31:52.375000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7494.0,
+          "promptTokens": 1799,
+          "costDetails": {},
+          "completionTokens": 306,
+          "environment": "default",
+          "totalTokens": 2105,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "7b0f248e-7285-4835-b4cf-0ed56c74c395",
+          "traceId": "b610f7a8",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:31:02.952000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        },
+        {
+          "id": "f006a583-7bb5-440a-8b71-7d845dc92a6b",
+          "traceId": "b610f7a8",
+          "type": "SPAN",
+          "name": "error_b6_mc_failure_signal_model_converter",
+          "startTime": "2025-10-01T11:31:55.661000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Failed. Last error: Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:31:52.642570: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:31:52.646097: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:31:52.657033: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:31:52.674517: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:31:52.679810: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:31:52.692423: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:31:53.526581: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001143152.py/tmp_20251001143152_mc_phi4:latest/tmp_20251001143152_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:32:01.078Z",
+      "createdAt": "2025-10-01T11:31:03.465Z",
+      "environment": "default"
+    },
+    {
+      "id": "00027110",
+      "timestamp": "2025-10-01T11:30:26.570000+00:00",
+      "name": "0002_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 13
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.207,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-30-26-572130_chatcmpl-8415c608-3d0e-45bf-b161-81fe5ef500a0",
+          "traceId": "00027110",
+          "type": "GENERATION",
+          "name": "00_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:30:26.572000+00:00",
+          "endTime": "2025-10-01T11:30:32.777000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6205.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "863fbece-c469-413b-8315-941d7fe2ad41",
+          "traceId": "00027110",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:30:26.570000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:30:42.204Z",
+      "createdAt": "2025-10-01T11:30:27.084Z",
+      "environment": "default"
+    },
+    {
+      "id": "5e67761f",
+      "timestamp": "2025-10-01T11:29:50.085000+00:00",
+      "name": "5e67_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 12
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.215,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-29-50-086983_chatcmpl-14902595-35aa-4621-9fce-294b620ff80b",
+          "traceId": "5e67761f",
+          "type": "GENERATION",
+          "name": "5e_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:29:50.086000+00:00",
+          "endTime": "2025-10-01T11:29:56.300000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6214.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "03d29f60-72a1-49ad-abfe-794fde0f2dcf",
+          "traceId": "5e67761f",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:29:50.085000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:30:05.680Z",
+      "createdAt": "2025-10-01T11:29:50.598Z",
+      "environment": "default"
+    },
+    {
+      "id": "d2104010",
+      "timestamp": "2025-10-01T11:29:13.699000+00:00",
+      "name": "d210_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 11
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.181,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-29-13-701073_chatcmpl-a5532c12-7626-410b-a295-8525795ce386",
+          "traceId": "d2104010",
+          "type": "GENERATION",
+          "name": "d2_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:29:13.701000+00:00",
+          "endTime": "2025-10-01T11:29:19.880000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6179.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "df1a510a-a3a1-4c8e-a3ff-173ede3c87e7",
+          "traceId": "d2104010",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:29:13.699000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:29:29.356Z",
+      "createdAt": "2025-10-01T11:29:14.212Z",
+      "environment": "default"
+    },
+    {
+      "id": "7981dc29",
+      "timestamp": "2025-10-01T11:28:37.316000+00:00",
+      "name": "7981_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 10
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.206,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-28-37-317991_chatcmpl-af88b194-a38e-4d18-ba11-77755e6bf22a",
+          "traceId": "7981dc29",
+          "type": "GENERATION",
+          "name": "79_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:28:37.317000+00:00",
+          "endTime": "2025-10-01T11:28:43.522000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6205.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "d600b732-9fee-4864-83da-cccf82cfd20c",
+          "traceId": "7981dc29",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:28:37.316000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:28:52.936Z",
+      "createdAt": "2025-10-01T11:28:37.829Z",
+      "environment": "default"
+    },
+    {
+      "id": "ee0199da",
+      "timestamp": "2025-10-01T11:28:00.936000+00:00",
+      "name": "ee01_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, provide a few samples of that type\n    for _ in range(100):\n        yield [tf.random.uniform((1, 224, 224, 3), dtype=tf.float32)]  # Adjust shape as needed\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output is uint8 as specified\n\n# Convert the model\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 9
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 5.864,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-28-00-938370_chatcmpl-8f8972af-7156-4583-bb50-af8d609f08b6",
+          "traceId": "ee0199da",
+          "type": "GENERATION",
+          "name": "ee_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:28:00.938000+00:00",
+          "endTime": "2025-10-01T11:28:06.801000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 5863.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 304,
+          "environment": "default",
+          "totalTokens": 720,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "2317138b-7ede-487b-86b0-85efe0905268",
+          "traceId": "ee0199da",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:28:00.937000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:28:16.609Z",
+      "createdAt": "2025-10-01T11:28:01.451Z",
+      "environment": "default"
+    },
+    {
+      "id": "a9fabbdc",
+      "timestamp": "2025-10-01T11:27:24.547000+00:00",
+      "name": "a9fa_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 8
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.242,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-27-24-549077_chatcmpl-c1af77ee-3a81-4b2d-bbd5-0ff2a7071818",
+          "traceId": "a9fabbdc",
+          "type": "GENERATION",
+          "name": "a9_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:27:24.549000+00:00",
+          "endTime": "2025-10-01T11:27:30.789000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6240.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "d80919bf-b81c-4de6-a194-f923cd5d632a",
+          "traceId": "a9fabbdc",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:27:24.547000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:27:40.687Z",
+      "createdAt": "2025-10-01T11:27:25.059Z",
+      "environment": "default"
+    },
+    {
+      "id": "d420fbe6",
+      "timestamp": "2025-10-01T11:26:48.065000+00:00",
+      "name": "d420_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 7
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.414,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-26-48-067152_chatcmpl-a2d601d4-b6db-4eb3-8881-1e965cbb2d82",
+          "traceId": "d420fbe6",
+          "type": "GENERATION",
+          "name": "d4_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:26:48.067000+00:00",
+          "endTime": "2025-10-01T11:26:54.479000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6412.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "9977d6a1-cfbc-4713-9e2b-6b57c5a61526",
+          "traceId": "d420fbe6",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:26:48.065000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:27:04.164Z",
+      "createdAt": "2025-10-01T11:26:48.579Z",
+      "environment": "default"
+    },
+    {
+      "id": "04252637",
+      "timestamp": "2025-10-01T11:25:47.692000+00:00",
+      "name": "0425_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original model from the specified path\noriginal_model = tf.keras.models.load_model('models/fruit_to_emoji/og_model/model.keras')\n\n# Set up TFLite converter with quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\n\ndef representative_data_gen():\n    # Generate random data for calibration\n    for _ in range(100):  # Adjust the number of samples as needed\n        yield [tf.random.uniform([1, *original_model.input_shape[1:]], maxval=1.0, dtype=tf.float32)]\n\n# Set the representative dataset generator\nconverter.representative_dataset = representative_data_gen\n\n# Define input and output data types for quantization\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\nconverter.inference_input_type = tf.uint8  # Input type as uint8\nconverter.inference_output_type = tf.uint8  # Output type as uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quantized_model = converter.convert()\n\n# Save the converted model to the specified path\nwith open('models/fruit_to_emoji/tflite_model/model_quant.tflite', 'wb') as f:\n    f.write(tflite_quantized_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 6
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 31.276,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-25-47-694111_chatcmpl-0e8fb2fd-b753-4245-832d-7ce73901c174",
+          "traceId": "04252637",
+          "type": "GENERATION",
+          "name": "04_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:25:47.694000+00:00",
+          "endTime": "2025-10-01T11:25:55.003000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7309.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 380,
+          "environment": "default",
+          "totalTokens": 796,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-25-58-499181_chatcmpl-2f2b05a3-dd36-427b-adf8-e47fcd497dc4",
+          "traceId": "04252637",
+          "type": "GENERATION",
+          "name": "04_mc_error_handling_attempt#2",
+          "startTime": "2025-10-01T11:25:58.499000+00:00",
+          "endTime": "2025-10-01T11:26:08.797000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 10298.0,
+          "promptTokens": 2048,
+          "costDetails": {},
+          "completionTokens": 443,
+          "environment": "default",
+          "totalTokens": 2491,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-26-11-844703_chatcmpl-11fde792-ba4d-4610-835d-1207d55beded",
+          "traceId": "04252637",
+          "type": "GENERATION",
+          "name": "04_mc_error_handling_attempt#3",
+          "startTime": "2025-10-01T11:26:11.844000+00:00",
+          "endTime": "2025-10-01T11:26:18.968000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7124.0,
+          "promptTokens": 1300,
+          "costDetails": {},
+          "completionTokens": 311,
+          "environment": "default",
+          "totalTokens": 1611,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "1c775ad3-7145-4ebe-8979-f98401b589b8",
+          "traceId": "04252637",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:25:47.692000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:26:27.848Z",
+      "createdAt": "2025-10-01T11:25:48.208Z",
+      "environment": "default"
+    },
+    {
+      "id": "c7be2bcf",
+      "timestamp": "2025-10-01T11:25:11.296000+00:00",
+      "name": "c7be_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 5
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.464,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-25-11-298776_chatcmpl-dd93ff82-b36a-4822-9fa4-0bdb5596797f",
+          "traceId": "c7be2bcf",
+          "type": "GENERATION",
+          "name": "c7_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:25:11.298000+00:00",
+          "endTime": "2025-10-01T11:25:17.761000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6463.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "877c23a5-75bd-49ca-be75-a03b1322011d",
+          "traceId": "c7be2bcf",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:25:11.297000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:25:27.440Z",
+      "createdAt": "2025-10-01T11:25:11.810Z",
+      "environment": "default"
+    },
+    {
+      "id": "cfee90f7",
+      "timestamp": "2025-10-01T11:23:52.761000+00:00",
+      "name": "cfee_model_converter",
+      "input": null,
+      "output": {
+        "status": "failed",
+        "last_code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up converter for TFLite with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define input and output data types for quantization\nconverter.inference_input_type = tf.uint8\nconverter.inference_output_type = tf.uint8\n\n# Specify supported operations for quantized model\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set the representative dataset function for calibration\ndef representative_data_gen():\n    # Assuming a generator or data pipeline that yields input samples\n    # Replace with actual data loading logic\n    for _ in range(100):  # Example: 100 batches of data\n        yield [tf.random.uniform((1, 224, 224, 3), maxval=255, dtype=tf.uint8)]\n\nconverter.representative_dataset = representative_data_gen\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model_quantized.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)",
+        "last_error": "Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:24:42.247279: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:24:42.250634: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:24:42.261409: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:24:42.278773: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:24:42.284081: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:24:42.296324: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:24:43.115914: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001142441.py/tmp_20251001142441_mc_phi4:latest/tmp_20251001142441_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 4
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 52.456,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-23-52-763164_chatcmpl-9ca604db-353b-4952-8463-4ed4142ff0b3",
+          "traceId": "cfee90f7",
+          "type": "GENERATION",
+          "name": "cf_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:23:52.763000+00:00",
+          "endTime": "2025-10-01T11:23:58.713000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 5950.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 307,
+          "environment": "default",
+          "totalTokens": 723,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-24-02-071048_chatcmpl-171002f2-561b-48da-bf7b-343ed4246f74",
+          "traceId": "cfee90f7",
+          "type": "GENERATION",
+          "name": "cf_mc_error_handling_attempt#2",
+          "startTime": "2025-10-01T11:24:02.071000+00:00",
+          "endTime": "2025-10-01T11:24:09.335000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7264.0,
+          "promptTokens": 1800,
+          "costDetails": {},
+          "completionTokens": 307,
+          "environment": "default",
+          "totalTokens": 2107,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-24-12-569184_chatcmpl-00d86b94-306c-410e-a286-c2f1c4ca01c1",
+          "traceId": "cfee90f7",
+          "type": "GENERATION",
+          "name": "cf_mc_error_handling_attempt#3",
+          "startTime": "2025-10-01T11:24:12.569000+00:00",
+          "endTime": "2025-10-01T11:24:20.071000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7502.0,
+          "promptTokens": 1800,
+          "costDetails": {},
+          "completionTokens": 307,
+          "environment": "default",
+          "totalTokens": 2107,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-24-23-690452_chatcmpl-bc74b0f4-1c57-40f0-9574-732a5d235a46",
+          "traceId": "cfee90f7",
+          "type": "GENERATION",
+          "name": "cf_mc_error_handling_attempt#4",
+          "startTime": "2025-10-01T11:24:23.690000+00:00",
+          "endTime": "2025-10-01T11:24:31.168000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7478.0,
+          "promptTokens": 1800,
+          "costDetails": {},
+          "completionTokens": 307,
+          "environment": "default",
+          "totalTokens": 2107,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "time-14-24-34-460528_chatcmpl-32738853-8ca1-496d-9d86-c03ec868b04a",
+          "traceId": "cfee90f7",
+          "type": "GENERATION",
+          "name": "cf_mc_error_handling_attempt#5",
+          "startTime": "2025-10-01T11:24:34.460000+00:00",
+          "endTime": "2025-10-01T11:24:41.982000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 7522.0,
+          "promptTokens": 1800,
+          "costDetails": {},
+          "completionTokens": 307,
+          "environment": "default",
+          "totalTokens": 2107,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "99378869-1b8c-42ac-b513-a927e3230042",
+          "traceId": "cfee90f7",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:23:52.761000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        },
+        {
+          "id": "e4f1e5b2-dc3d-45e3-92d8-4f191bc1edf8",
+          "traceId": "cfee90f7",
+          "type": "SPAN",
+          "name": "error_cf_mc_failure_signal_model_converter",
+          "startTime": "2025-10-01T11:24:45.217000+00:00",
+          "level": "ERROR",
+          "statusMessage": "Failed. Last error: Failed to generate valid code after the max 5 attempts. Last error from code execution: 2025-10-01 14:24:42.247279: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:24:42.250634: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.\n2025-10-01 14:24:42.261409: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n2025-10-01 14:24:42.278773: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n2025-10-01 14:24:42.284081: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n2025-10-01 14:24:42.296324: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.\nTo enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.\n2025-10-01 14:24:43.115914: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT\n/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/keras/src/saving/saving_lib.py:757: UserWarning: Skipping variable loading for optimizer 'rmsprop', because it has 8 variables whereas the saved optimizer has 7 variables. \n  saveable.load_own_variables(weights_store.get(inner_path))\nTraceback (most recent call last):\n  File \"/home/wuguangh/Projects/tinyml-autopilot/models/fruit_to_emoji/tflite_model/tmp_converter20251001142441.py/tmp_20251001142441_mc_phi4:latest/tmp_20251001142441_mc_phi4:latest.py\", line 29, in <module>\n    tflite_quant_model = converter.convert()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1231, in wrapper\n    return self._convert_and_export_metrics(convert_func, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1183, in _convert_and_export_metrics\n    result = convert_func(self, *args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1744, in convert\n    saved_model_convert_result = self._convert_as_saved_model()\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1725, in _convert_as_saved_model\n    return super(TFLiteKerasModelConverterV2, self).convert(\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1449, in convert\n    self._validate_inputs(graph_def, input_tensors)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 215, in wrapper\n    raise error from None  # Re-throws the exception.\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/convert_phase.py\", line 205, in wrapper\n    return func(*args, **kwargs)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1330, in _validate_inputs\n    self._validate_inference_input_output_types(self._quant_mode)\n  File \"/home/wuguangh/.conda/envs/tinyml/lib/python3.10/site-packages/tensorflow/lite/python/lite.py\", line 1269, in _validate_inference_input_output_types\n    raise ValueError(\nValueError: The inference_input_type and inference_output_type must be tf.float32.\n",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:24:50.418Z",
+      "createdAt": "2025-10-01T11:23:53.275Z",
+      "environment": "default"
+    },
+    {
+      "id": "5ce812cb",
+      "timestamp": "2025-10-01T11:23:16.425000+00:00",
+      "name": "5ce8_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 3
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.206,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-23-16-427796_chatcmpl-d9d64802-25b5-453e-9128-389d1b23e97d",
+          "traceId": "5ce812cb",
+          "type": "GENERATION",
+          "name": "5c_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:23:16.427000+00:00",
+          "endTime": "2025-10-01T11:23:22.632000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6205.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "2714a75f-54ac-4f09-89e2-f4a04cb53b29",
+          "traceId": "5ce812cb",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:23:16.426000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:23:32.041Z",
+      "createdAt": "2025-10-01T11:23:16.939Z",
+      "environment": "default"
+    },
+    {
+      "id": "7ece2ac1",
+      "timestamp": "2025-10-01T11:22:39.085000+00:00",
+      "name": "7ece_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up converter for TFLite with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define inference input and output types\ninference_input_type = tf.uint8\ninference_output_type = tf.uint8\n\n# Specify supported operations for quantized model\nsupported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,  # Enable TensorFlow Lite ops.\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8  # Enable INT8 ops.\n]\n\n# Set the converter's parameters for quantization\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = lambda: representative_data_gen()\nconverter.target_spec.supported_ops = supported_ops\nconverter.inference_input_type = inference_input_type\nconverter.inference_output_type = inference_output_type\n\n# Function to generate representative dataset for quantization\ndef representative_data_gen():\n    # Assuming a function `get_sample_data()` that yields sample input data\n    for _ in range(100):\n        yield [tf.random.uniform((1, 224, 224, 3), dtype=tf.float32)]  # Adjust shape as needed\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 2
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 6.803,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-22-39-087728_chatcmpl-939820ad-91c2-4929-afd6-a036d4514099",
+          "traceId": "7ece2ac1",
+          "type": "GENERATION",
+          "name": "7e_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:22:39.087000+00:00",
+          "endTime": "2025-10-01T11:22:45.889000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 6802.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 353,
+          "environment": "default",
+          "totalTokens": 769,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "4ebee18d-68c4-42d7-911b-8357aede77d6",
+          "traceId": "7ece2ac1",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:22:39.086000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:22:55.714Z",
+      "createdAt": "2025-10-01T11:22:39.599Z",
+      "environment": "default"
+    },
+    {
+      "id": "dae6e1d4",
+      "timestamp": "2025-10-01T11:21:03.722000+00:00",
+      "name": "dae6_model_converter",
+      "input": null,
+      "output": {
+        "status": "success",
+        "code": "import tensorflow as tf\n\n# Load the original Keras model\noriginal_model = tf.keras.models.load_model(\"models/fruit_to_emoji/og_model/model.keras\")\n\n# Set up TFLite converter with 8-bit integer quantization\nconverter = tf.lite.TFLiteConverter.from_keras_model(original_model)\n\n# Define representative dataset for calibration\ndef representative_data_gen():\n    # Assuming the model expects float32 input, generate some sample data\n    import numpy as np\n    for _ in range(100):\n        yield [np.random.rand(1, 224, 224, 3).astype(np.float32)]  # Adjust shape according to your model's input\n\nconverter.optimizations = [tf.lite.Optimize.DEFAULT]\nconverter.representative_dataset = representative_data_gen\nconverter.target_spec.supported_ops = [\n    tf.lite.OpsSet.TFLITE_BUILTINS,\n    tf.lite.OpsSet.TFLITE_BUILTINS_INT8\n]\n\n# Set input and output types for quantization\nconverter.inference_input_type = tf.uint8  # Input data type is uint8 after quantization\nconverter.inference_output_type = tf.uint8  # Output data type is uint8\n\n# Convert the model to TFLite format with quantization\ntflite_quant_model = converter.convert()\n\n# Save the converted model to a file\nwith open(\"models/fruit_to_emoji/tflite_model/model_quant.tflite\", \"wb\") as f:\n    f.write(tflite_quant_model)"
+      },
+      "session_id": "phi4_ebaa_mc_batch",
+      "metadata": {
+        "num_run": 1
+      },
+      "tags": [
+        "benchmark",
+        "model_converter",
+        "phi4:latest"
+      ],
+      "latency": 36.813,
+      "total_cost": 0.0,
+      "observations": [
+        {
+          "id": "time-14-21-03-744401_chatcmpl-e9741d13-b407-487b-9c22-39357c41fba8",
+          "traceId": "dae6e1d4",
+          "type": "GENERATION",
+          "name": "da_mc_conversion_code_gen",
+          "startTime": "2025-10-01T11:21:03.744000+00:00",
+          "endTime": "2025-10-01T11:21:40.536000+00:00",
+          "model": "phi4:latest",
+          "modelParameters": {
+            "temperature": "0.1",
+            "top_p": "0.3"
+          },
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "latency": 36792.0,
+          "promptTokens": 416,
+          "costDetails": {},
+          "completionTokens": 321,
+          "environment": "default",
+          "totalTokens": 737,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null
+        },
+        {
+          "id": "d84767e2-cfe9-43ba-971a-42030459f468",
+          "traceId": "dae6e1d4",
+          "type": "SPAN",
+          "name": "start_model_converter",
+          "startTime": "2025-10-01T11:21:03.723000+00:00",
+          "level": "DEFAULT",
+          "calculatedTotalCost": 0.0,
+          "promptTokens": 0,
+          "costDetails": {},
+          "completionTokens": 0,
+          "environment": "default",
+          "totalTokens": 0,
+          "endTime": null,
+          "model": null,
+          "modelParameters": null,
+          "statusMessage": null,
+          "calculatedInputCost": null,
+          "calculatedOutputCost": null,
+          "latency": null
+        }
+      ],
+      "updatedAt": "2025-10-01T11:22:18.597Z",
+      "createdAt": "2025-10-01T11:21:04.390Z",
+      "environment": "default"
+    }
+  ],
+  "meta": {
+    "total_items": 30
+  }
+}

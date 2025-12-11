@@ -1,0 +1,33 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{4}{c|}{Overall Token} &
+          \multicolumn{4}{c|}{Input Token} &
+          \multicolumn{4}{c|}{Output Token} \\ \cline{2-13}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} &
+          \multicolumn{1}{c|}{Ave} &
+          \multicolumn{1}{c|}{Med} &
+          \multicolumn{1}{c|}{Max} &
+          \multicolumn{1}{c|}{Min} \\ \hline
+    DP & 14275 & 13113 & 22148 & 12342 & 11597 & 10739 & 16980 & 10394 & 2678 & 2465 & 5262 & 1948 \\ \hline
+MC & 4259 & 4562 & 9999 & 734 & 3149 & 3368 & 7755 & 451 & 1109 & 1161 & 2365 & 283 \\ \hline
+SG & 17833 & 17626 & 20195 & 17095 & 11760 & 11576 & 13509 & 11552 & 6072 & 6055 & 6686 & 5518 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Token consumption details regarding Overall, Input, and Output in three stages. Batch ID: 7e6b, Model: qwen2.5-coder:32b, Date: 11.02, Parameters: None}
+        \label{tab:token_details_7e6b_qwen2.5-coder:32b_11.02}
+        \end{table}
+    

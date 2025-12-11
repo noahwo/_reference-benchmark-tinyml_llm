@@ -1,0 +1,28 @@
+
+    \begin{table}[!h]
+        \centering
+        \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|r|r|r|r|r|r|r|}
+        \hline
+        \multicolumn{1}{|c|}{} &
+          \multicolumn{3}{c|}{Ave Execution Time (s)} &
+          \multicolumn{3}{c|}{Ave Total Tokens} &
+          \multicolumn{1}{c|}{} \\ \cline{2-7}
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{Stages}} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{c|}{Overall} &
+          \multicolumn{1}{c|}{Pass} &
+          \multicolumn{1}{c|}{Fail} &
+          \multicolumn{1}{|c|}{\multirow{-2}{*}{\shortstack{Success\\Rate}}} \\ \hline
+    DP & 80.63 & 80.63 & 0.00 & 13478 & 13478 & 0 & 1.000 \\ \hline
+MC & 31.57 & 31.57 & 0.00 & 4433 & 4433 & 0 & 1.000 \\ \hline
+SG & 180.64 & 0.00 & 180.64 & 17739 & 0 & 17739 & 0.000 \\ \hline
+
+        \end{tabular}%
+        }
+        \caption{Performance metrics of passed and failed runs,including execution time, token consumption, and success rate in three stages. Batch ID: 363e, Model: qwen2.5-coder:32b, Date: 11.01, Parameters: temperature=0.1, top-p=0.3}
+        \label{tab:performance_metrics_ave_363e_qwen2.5-coder:32b_11.01}
+        \end{table}
+    
